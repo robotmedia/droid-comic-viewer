@@ -15,7 +15,7 @@
  ******************************************************************************/
 package net.robotmedia.acv.ui.widget;
 
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.utils.MathUtils;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -47,7 +47,7 @@ public class CaptionView extends RelativeLayout {
 
 	
 	private void init() {
-		final int margin = Utils.dipToPixel(getContext(), 5);
+		final int margin = MathUtils.dipToPixel(getContext(), 5);
 		mCaptionButton = new Button(getContext());
 		{
 			final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);

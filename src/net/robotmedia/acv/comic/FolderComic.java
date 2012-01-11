@@ -20,8 +20,8 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import net.robotmedia.acv.utils.TrackingManager;
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.logic.TrackingManager;
+import net.robotmedia.acv.utils.FileUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,8 +39,8 @@ public class FolderComic extends Comic {
 		if (folder.isDirectory()) {
 			String[] files = folder.list(new FilenameFilter() {
 				public boolean accept(File dir, String filename) {
-					String ext = Utils.getFileExtension(filename);
-					return Utils.isImage(ext);
+					String ext = FileUtils.getFileExtension(filename);
+					return FileUtils.isImage(ext);
 				}});
 			TreeMap<String, String> images = new TreeMap<String, String>();
 			for (int i = 0; i < files.length; i++) {

@@ -24,8 +24,7 @@ import java.util.TreeMap;
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.Constants;
 import net.robotmedia.acv.logic.PreferencesController;
-import net.robotmedia.acv.utils.ControllerUtils;
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.utils.FileUtils;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -73,7 +72,7 @@ public class SDBrowserActivity extends ListActivity {
 				for (int i = 0; i < allContents.length; i++) {
 					String contentName = allContents[i];
 					if (contentName.indexOf(".") != 0) { // Exclude hidden files
-						String extension = Utils.getFileExtension(contentName);
+						String extension = FileUtils.getFileExtension(contentName);
 						if (supportedExtensions.containsKey(extension.toLowerCase())) {
 							File contentFile = new File(path, contentName);
 							auxContents.put(contentFile.getName().toLowerCase(), contentFile);
@@ -125,7 +124,7 @@ public class SDBrowserActivity extends ListActivity {
 
 				File file = contents.get(position);
 				String name = file.getName();
-				String extension = Utils.getFileExtension(name);
+				String extension = FileUtils.getFileExtension(name);
 				int iconId;
 				if (supportedExtensions.containsKey(extension)) {
 					iconId = supportedExtensions.get(extension);
@@ -172,7 +171,7 @@ public class SDBrowserActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.sd_browser);
-		supportedExtensions = ControllerUtils.getSupportedExtensions(this);
+		supportedExtensions = Constants.getSupportedExtensions(this);
 		preferencesController = new PreferencesController(this);
 		
 		String storageState = Environment.getExternalStorageState();
@@ -215,8 +214,8 @@ public class SDBrowserActivity extends ListActivity {
 					if ((file != null) && (file.isDirectory())) {
 						String[] images = file.list(new FilenameFilter() {
 							public boolean accept(File dir, String filename) {
-								String ext = Utils.getFileExtension(filename);
-								return Utils.isImage(ext);
+								String ext = FileUtils.getFileExtension(filename);
+								return FileUtils.isImage(ext);
 							}});
 						if (images.length > 0) {
 							setResultAndFinish(file);

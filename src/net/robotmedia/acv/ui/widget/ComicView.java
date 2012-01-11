@@ -65,7 +65,8 @@ import net.robotmedia.acv.comic.Comic;
 import net.robotmedia.acv.logic.PreferencesController;
 import net.robotmedia.acv.logic.ServiceManager;
 import net.robotmedia.acv.ui.widget.SuperImageView.LayoutMeasures;
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.utils.IntentUtils;
+import net.robotmedia.acv.utils.MathUtils;
 
 public class ComicView extends RelativeLayout implements OnCompletionListener, OnErrorListener  {
 
@@ -342,7 +343,7 @@ public class ComicView extends RelativeLayout implements OnCompletionListener, O
 			if (comic instanceof ACVComic && Constants.SCALE_MODE_NONE_VALUE.equals(scaleMode)) {
 				int width = current.getOriginalWidth();
 				int height = current.getOriginalHeight();
-				if (Utils.isEqual(width, 480, 2) && Utils.isEqual(height, 320, 2)) {
+				if (MathUtils.isEqual(width, 480, 2) && MathUtils.isEqual(height, 320, 2)) {
 					scaleMode = Constants.SCALE_MODE_BEST_VALUE;
 				}
 			}
@@ -553,7 +554,7 @@ public class ComicView extends RelativeLayout implements OnCompletionListener, O
 							mGetNativeUrlTask = new GetNativeUrlTask();
 							mGetNativeUrlTask.execute(comicId);
 						} else {
-							Utils.openURI(getContext(), message.uri, message.nonMarketUri);
+							IntentUtils.openURI(getContext(), message.uri, message.nonMarketUri);
 						}
 					}					
 				}
@@ -1206,7 +1207,7 @@ public class ComicView extends RelativeLayout implements OnCompletionListener, O
 			final AnimationSet set = new AnimationSet(true);
 			int fromXDelta = 1;
 			int fromYDelta = 1;
-			final int maxDeltaScaled = Utils.dipToPixel(getContext(), 30);
+			final int maxDeltaScaled = MathUtils.dipToPixel(getContext(), 30);
 			for (int i = 0; i < 5; i++) {
 				int toXDelta = Math.round((float) (Math.random() * maxDeltaScaled) - ((float) maxDeltaScaled / 2f));
 				int toYDelta = Math.round((float) (Math.random() * maxDeltaScaled) - ((float) maxDeltaScaled / 2f));

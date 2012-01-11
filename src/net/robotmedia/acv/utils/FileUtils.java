@@ -17,12 +17,34 @@ package net.robotmedia.acv.utils;
 
 import java.io.File;
 
+import net.robotmedia.acv.Constants;
+
 public class FileUtils {
 
 	private static final String EXTENSION_TTF = "ttf";
 	private static final String EXTENSION_HTM = "htm";
 	private static final String EXTENSION_HTML = "html";
 
+	public static String getFileExtension(String fileName) {
+		String[] splitExtension = fileName.split("\\.");
+		if (splitExtension.length > 1) {
+			String extension = splitExtension[splitExtension.length - 1];
+			return extension.toLowerCase();
+		} else {
+			return "";
+		}
+	}
+	
+	public static String getFileName(String filePath) {
+		String[] split = filePath.split("/");
+		if (split.length > 1) {
+			String fileName = split[split.length - 1];
+			return fileName;
+		} else {
+			return "";
+		}
+	}
+	
 	private static String getExtension(String fileName) {
 		int index = fileName.lastIndexOf(".");
 		if (index > 0) {
@@ -35,6 +57,18 @@ public class FileUtils {
 	public static boolean isFont(String fileName) {
 		final String extension = getExtension(fileName);
 		return EXTENSION_TTF.equalsIgnoreCase(extension);
+	}
+	
+	public static boolean isImage(String ext) {
+		return (Constants.JPG_EXTENSION.equalsIgnoreCase(ext) || Constants.JPEG_EXTENSION.equalsIgnoreCase(ext) || Constants.PNG_EXTENSION.equalsIgnoreCase(ext) || Constants.GIF_EXTENSION.equalsIgnoreCase(ext) || Constants.BMP_EXTENSION.equalsIgnoreCase(ext));
+	}
+	
+	public static boolean isVideo(String ext) {
+		return Constants.MP4_EXTENSION.equalsIgnoreCase(ext);
+	}
+	
+	public static boolean isAudio(String ext) {
+		return Constants.MP3_EXTENSION.equalsIgnoreCase(ext);
 	}
 
 	public static boolean isHidden(String entryName) {

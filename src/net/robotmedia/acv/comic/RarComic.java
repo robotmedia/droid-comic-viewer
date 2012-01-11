@@ -29,8 +29,8 @@ import de.innosystec.unrar.Archive;
 import de.innosystec.unrar.rarfile.FileHeader;
 import de.innosystec.unrar.unpack.decode.Compress;
 
-import net.robotmedia.acv.utils.TrackingManager;
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.logic.TrackingManager;
+import net.robotmedia.acv.utils.FileUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -67,8 +67,8 @@ public class RarComic extends Comic {
 					} else {
 						fileName = fh.getFileNameString();
 					}
-					String extension = Utils.getFileExtension(fileName);
-					if (Utils.isImage(extension)) {
+					String extension = FileUtils.getFileExtension(fileName);
+					if (FileUtils.isImage(extension)) {
 						fileHeaders.put(fileName, fh);
 						final String key = this.addLeadingZeroes(fileName);
 						headers.put(key, fileName);

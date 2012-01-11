@@ -15,6 +15,11 @@
  ******************************************************************************/
 package net.robotmedia.acv;
 
+import java.util.HashMap;
+
+import net.androidcomics.acv.R;
+import android.app.Activity;
+
 public class Constants {
 
 	// State
@@ -98,6 +103,21 @@ public class Constants {
 	public static final String CBR_EXTENSION = "cbr";
 	public static final String MP4_EXTENSION = "mp4";
 	public static final String MP3_EXTENSION = "mp3";
+	
+	public static HashMap<String, Integer> getSupportedExtensions(Activity activity) {
+		HashMap<String, Integer> supportedExtensions = new HashMap<String, Integer>();
+		supportedExtensions.put(Constants.ACV_EXTENSION, R.drawable.icon);
+		supportedExtensions.put(Constants.ZIP_EXTENSION, R.drawable.compress);			
+		supportedExtensions.put(Constants.RAR_EXTENSION, R.drawable.compress);
+		supportedExtensions.put(Constants.CBZ_EXTENSION, R.drawable.comment);
+		supportedExtensions.put(Constants.JPG_EXTENSION, R.drawable.image);
+		supportedExtensions.put(Constants.JPEG_EXTENSION, R.drawable.image);
+		supportedExtensions.put(Constants.GIF_EXTENSION, R.drawable.image);
+		supportedExtensions.put(Constants.BMP_EXTENSION, R.drawable.image);
+		supportedExtensions.put(Constants.PNG_EXTENSION, R.drawable.image);
+		supportedExtensions.put(Constants.CBR_EXTENSION, R.drawable.comment);
+		return supportedExtensions;
+	}
 	
 	public static final int SCREEN_BROWSER_CODE = 0;
 	public static final int SD_BROWSER_CODE = 1;

@@ -17,7 +17,7 @@ package net.robotmedia.acv.comic;
 
 import java.io.File;
 
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.utils.FileUtils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -44,8 +44,8 @@ public class FileComic extends Comic {
 	
 	protected FileComic(String path) {
 		super(path);
-		String extension = Utils.getFileExtension(path);
-		if (Utils.isImage(extension)) {
+		String extension = FileUtils.getFileExtension(path);
+		if (FileUtils.isImage(extension)) {
 			File file = new File(path);	
 			if (file.isDirectory()) {
 				error();

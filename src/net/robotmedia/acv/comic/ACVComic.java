@@ -36,7 +36,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import net.robotmedia.acv.Constants;
 import net.robotmedia.acv.utils.FileUtils;
 import net.robotmedia.acv.utils.StringUtils;
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.utils.MathUtils;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -135,12 +135,12 @@ public class ACVComic extends Comic {
 			if (FileUtils.isHidden(entryName)) {
 				return;
 			}
-			String extension = Utils.getFileExtension(entryName);
-			if (Utils.isImage(extension)) {
+			String extension = FileUtils.getFileExtension(entryName);
+			if (FileUtils.isImage(extension)) {
 				final String key = this.addLeadingZeroes(entryName);
 				TreeMap<String, String> bucket = classify(entryName);
 				bucket.put(key, entryName);
-			} else if (Utils.isVideo(extension)) {
+			} else if (FileUtils.isVideo(extension)) {
 				String[] split = entryName.split("\\.");
 				if (split.length > 1) {
 					String numberSuffix = split[split.length - 2];
@@ -156,7 +156,7 @@ public class ACVComic extends Comic {
 						}
 					}
 				}
-			} else if (Utils.isAudio(extension) || FileUtils.isFont(entryName) || FileUtils.isWebpage(entryName)) {
+			} else if (FileUtils.isAudio(extension) || FileUtils.isFont(entryName) || FileUtils.isWebpage(entryName)) {
 				final File file = extract(entry, entry.getName());
 				ACVComic.this.addFile(file.getName(), file);
 			}

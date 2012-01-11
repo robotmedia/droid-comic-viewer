@@ -15,8 +15,12 @@
  ******************************************************************************/
 package net.robotmedia.acv.utils;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
 public class IntentUtils {
@@ -30,5 +34,20 @@ public class IntentUtils {
 	public static void view(Context context, String uri) {
 		final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 		context.startActivity(intent);
+	}
+	
+	public static void openURI(final Context context, final String uri, final String alternateUri) {
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse(uri));
+		List<ResolveInfo> list = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+		if (list != null && list.size() > 0) {
+			context.startActivity(intent);
+		} else {
+			if (alternateUri != null) {
+				intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse(alternateUri));
+				context.startActivity(intent);
+			}
+		}
 	}
 }

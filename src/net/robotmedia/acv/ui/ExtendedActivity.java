@@ -17,7 +17,7 @@ package net.robotmedia.acv.ui;
 
 import java.util.HashSet;
 
-import net.robotmedia.acv.utils.TrackingManager;
+import net.robotmedia.acv.logic.TrackingManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;

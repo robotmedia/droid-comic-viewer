@@ -27,8 +27,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import net.robotmedia.acv.Constants;
-import net.robotmedia.acv.utils.TrackingManager;
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.logic.TrackingManager;
+import net.robotmedia.acv.utils.FileUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -239,8 +239,8 @@ public class ZipComic extends Comic {
 	
 	protected void processEntry(ZipEntry entry) {
 		String entryName = entry.getName();
-		String extension = Utils.getFileExtension(entryName);
-		if (Utils.isImage(extension)) {
+		String extension = FileUtils.getFileExtension(entryName);
+		if (FileUtils.isImage(extension)) {
 			final String entryNameWithLeadingZeroes = this.addLeadingZeroes(entryName);
 			unorderedScreens.put(entryNameWithLeadingZeroes, entryName);
 		}

@@ -17,7 +17,7 @@ package net.robotmedia.acv.ui.settings;
 
 import java.util.HashSet;
 
-import net.robotmedia.acv.utils.TrackingManager;
+import net.robotmedia.acv.logic.TrackingManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.Preference;

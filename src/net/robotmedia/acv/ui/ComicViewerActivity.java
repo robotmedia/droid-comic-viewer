@@ -28,16 +28,15 @@ import net.robotmedia.acv.comic.Comic;
 import net.robotmedia.acv.logic.PreferencesController;
 import net.robotmedia.acv.logic.SetComicScreenAsTask;
 import net.robotmedia.acv.logic.ShareViewTask;
+import net.robotmedia.acv.logic.TrackingManager;
 import net.robotmedia.acv.provider.HistoryManager;
 import net.robotmedia.acv.ui.settings.SettingsActivity;
 import net.robotmedia.acv.ui.widget.ComicView;
 import net.robotmedia.acv.ui.widget.ComicViewListener;
 import net.robotmedia.acv.ui.widget.DialogFactory;
-import net.robotmedia.acv.utils.ControllerUtils;
 import net.robotmedia.acv.utils.FileUtils;
 import net.robotmedia.acv.utils.Reflect;
-import net.robotmedia.acv.utils.TrackingManager;
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.utils.MathUtils;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -305,9 +304,9 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	
 	public boolean onFling(MotionEvent e1, MotionEvent e2, float arg2, float arg3) {
 		if (mPinch) return false;
-		final double angle = Utils.getAngle(e1.getX(), e1.getY(), e2.getX(), e2.getY());
-		final int minFlingDifference = Utils.dipToPixel(this, Constants.MIN_FLING_DIFFERENCE_DIP);
-		final float distance = Utils.distance(e1.getX(), e1.getY(), e2.getX(), e2.getY());
+		final double angle = MathUtils.getAngle(e1.getX(), e1.getY(), e2.getX(), e2.getY());
+		final int minFlingDifference = MathUtils.dipToPixel(this, Constants.MIN_FLING_DIFFERENCE_DIP);
+		final float distance = MathUtils.distance(e1.getX(), e1.getY(), e2.getX(), e2.getY());
 
 		boolean comicLoaded = isComicLoaded();
 		if (distance > minFlingDifference) {
@@ -523,7 +522,7 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 		final float y = e.getY();
 		final int width = mMain.getWidth();
 		final int height = mMain.getHeight();
-		final int cornerWidth = Utils.dipToPixel(this, Constants.CORNER_WIDTH_DIP);
+		final int cornerWidth = MathUtils.dipToPixel(this, Constants.CORNER_WIDTH_DIP);
 
 		String inputKey = null;
 		String defaultAction = null;
@@ -592,7 +591,7 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 			final float y0 = Reflect.getY(e, 0);
 			final float x1 = Reflect.getX(e, 1);
 			final float y1 = Reflect.getY(e, 1);
-			final float newDistance = Utils.distance(x0, y0, x1, y1);
+			final float newDistance = MathUtils.distance(x0, y0, x1, y1);
 			float ratio =  newDistance / pinchDistance;
 			ratio = 1 + (ratio - 1) * 0.5f;
 			mScreen.zoom(ratio, pinchCenter);
@@ -622,7 +621,7 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 			final float y0 = Reflect.getY(e, 0);
 			final float x1 = Reflect.getX(e, 1);
 			final float y1 = Reflect.getY(e, 1);
-			pinchDistance = Utils.distance(x0, y0, x1, y1);
+			pinchDistance = MathUtils.distance(x0, y0, x1, y1);
 			final int centerX = Math.round(x0 + x1) / 2;
 			final int centerY = Math.round(y0 + y1) / 2;
 			Point center = new Point(centerX, centerY);
@@ -685,7 +684,7 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 		
 		// Actions that require a comic
 		if (isComicLoaded()) {
-			final int scrollIncrement = Utils.dipToPixel(this, Constants.MANUAL_SCROLL_INCREMENT_DIP);
+			final int scrollIncrement = MathUtils.dipToPixel(this, Constants.MANUAL_SCROLL_INCREMENT_DIP);
 			if (Constants.ACTION_VALUE_PREVIOUS.equals(actionValue)) {
 				action = previous();
 			} else if (Constants.ACTION_VALUE_PREVIOUS_SCREEN.equals(actionValue)) {
@@ -791,12 +790,12 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 		
 		String[] allContents = parent.list();
 		TreeMap<String, File> aux = new TreeMap<String, File>();
-		HashMap<String, Integer> supportedExtensions = ControllerUtils.getSupportedExtensions(this);
+		HashMap<String, Integer> supportedExtensions = Constants.getSupportedExtensions(this);
 		if (allContents != null) {
 			String path = parent.getPath();
 			for (int i = 0; i < allContents.length; i++) {
 				String contentName = allContents[i];
-				String extension = Utils.getFileExtension(contentName);
+				String extension = FileUtils.getFileExtension(contentName);
 				if (!net.robotmedia.acv.utils.FileUtils.isHidden(contentName) && supportedExtensions.containsKey(extension.toLowerCase())) {
 					File contentFile = new File(path, contentName);
 					aux.put(contentFile.getName().toLowerCase(), contentFile);

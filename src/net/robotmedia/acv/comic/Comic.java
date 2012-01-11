@@ -25,8 +25,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.robotmedia.acv.Constants;
-import net.robotmedia.acv.utils.TrackingManager;
-import net.robotmedia.acv.utils.Utils;
+import net.robotmedia.acv.logic.TrackingManager;
+import net.robotmedia.acv.utils.FileUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -74,7 +74,7 @@ public abstract class Comic {
 			comic = new FolderComic(path);
 			type = Constants.EVENT_VALUE_FOLDER;
 		} else {
-			type = Utils.getFileExtension(path);
+			type = FileUtils.getFileExtension(path);
 			if (Constants.ZIP_EXTENSION.equals(type) || Constants.CBZ_EXTENSION.equals(type)) {
 				try {
 					comic = new ZipComic(path);
@@ -109,7 +109,7 @@ public abstract class Comic {
 						comic.type = Constants.ZIP_EXTENSION;
 					}
 				}
-			} else if (Utils.isImage(type)) {  
+			} else if (FileUtils.isImage(type)) {  
 				comic = new FileComic(path);
 			} else if (Constants.ACV_EXTENSION.equals(type)) {
 				comic = new ACVComic(path);
@@ -145,7 +145,7 @@ public abstract class Comic {
 
 	protected Comic(String path) {
 		instance = this;
-		name = Utils.getFileName(path);
+		name = FileUtils.getFileName(path);
 		this.path = path;
 		this.imageState = new HashMap<String, ImageState>();
 		bounds = new BitmapFactory.Options();
