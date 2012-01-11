@@ -22,7 +22,7 @@
 	<ImageSwitcher android:id="@+id/switcher"
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:layout_centerInParent="true" />
-	<net.robotcomics.ui.Letterbox
+	<net.robotmedia.acv.ui.widget.Letterbox
 		android:id="@+id/letterbox" android:layout_width="fill_parent"
 		android:layout_height="fill_parent" />
 	<Button android:id="@+id/message_button" android:layout_width="wrap_content"

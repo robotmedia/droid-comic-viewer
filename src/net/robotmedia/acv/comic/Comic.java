@@ -24,9 +24,9 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.robotcomics.acv.common.Constants;
+import net.robotmedia.acv.Constants;
+import net.robotmedia.acv.utils.TrackingManager;
 import net.robotmedia.acv.utils.Utils;
-import net.robotmedia.tracking.TrackingManager;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

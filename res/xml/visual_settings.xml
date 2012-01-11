@@ -33,7 +33,7 @@
 		<CheckBoxPreference android:key="invisible_corners"
 			android:title="@string/preference_invisible_corners_title" android:summary="@string/preference_invisible_corners_summary"
 			android:defaultValue="false" />
-		<net.robotcomics.acv.ui.BrightnessPreference android:key="brightness"
+		<net.robotmedia.acv.ui.settings.BrightnessPreference android:key="brightness"
 			android:title="@string/preference_brigthness_title" android:summary="@string/preference_brigthness_summary"
 			android:defaultValue="-1"/>
 </PreferenceScreen>

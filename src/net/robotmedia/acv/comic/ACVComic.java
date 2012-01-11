@@ -33,7 +33,7 @@ import java.util.zip.ZipFile;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import net.robotcomics.acv.common.Constants;
+import net.robotmedia.acv.Constants;
 import net.robotmedia.acv.utils.FileUtils;
 import net.robotmedia.acv.utils.StringUtils;
 import net.robotmedia.acv.utils.Utils;

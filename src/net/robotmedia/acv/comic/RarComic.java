@@ -29,8 +29,8 @@ import de.innosystec.unrar.Archive;
 import de.innosystec.unrar.rarfile.FileHeader;
 import de.innosystec.unrar.unpack.decode.Compress;
 
+import net.robotmedia.acv.utils.TrackingManager;
 import net.robotmedia.acv.utils.Utils;
-import net.robotmedia.tracking.TrackingManager;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

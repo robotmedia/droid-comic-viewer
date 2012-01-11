@@ -17,7 +17,7 @@ package net.robotmedia.acv.comic;
 
 import java.util.ArrayList;
 
-import net.robotcomics.acv.common.Constants;
+import net.robotmedia.acv.Constants;
 
 public class ACVFrame extends ACVRectangle {
 

@@ -17,7 +17,7 @@ package net.robotmedia.acv.utils;
 
 import java.util.List;
 
-import net.robotcomics.acv.common.Constants;
+import net.robotmedia.acv.Constants;
 
 import android.content.Context;
 import android.content.Intent;

@@ -26,9 +26,9 @@ import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import net.robotcomics.acv.common.Constants;
+import net.robotmedia.acv.Constants;
+import net.robotmedia.acv.utils.TrackingManager;
 import net.robotmedia.acv.utils.Utils;
-import net.robotmedia.tracking.TrackingManager;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
