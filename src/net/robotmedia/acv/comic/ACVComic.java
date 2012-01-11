@@ -213,7 +213,7 @@ public class ACVComic extends Comic {
 	
 	private ArrayList<String> originals = new ArrayList<String>();
 		
-	protected ACVComic(String comicPath) {
+	public ACVComic(String comicPath) {
 		super(comicPath);
 		innerComic = new ACVZipComic(path);
 		init();
