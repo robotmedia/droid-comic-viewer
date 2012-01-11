@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+    <string-array name="transition_mode_labels">
+        <item>Translate</item>
+        <item>Fade</item>
+        <item>None</item>  
+    </string-array>
+
+    <string-array name="transition_mode_values">
+        <item>translate</item>
+        <item>fade</item>
+        <item>none</item>  
+    </string-array>
+    
+    <string-array name="scale_mode_labels">
+        <item>None</item>
+        <item>Fit width</item>
+        <item>Fit height</item>  
+        <item>Fit screen</item>
+    </string-array>
+
+    <string-array name="scale_mode_values">
+        <item>none</item>
+        <item>width</item>
+        <item>height</item>  
+        <item>best</item>
+    </string-array>
+
+    <string-array name="direction_labels">
+        <item>Left-to-right</item>
+        <item>Right-to-left</item>
+    </string-array>
+
+    <string-array name="direction_values">
+        <item>ltr</item>
+        <item>rtl</item>
+    </string-array>
+
+    <string-array name="action_labels">
+        <item>Next</item>
+        <item>Previous</item>
+        <item>Zoom in</item>  
+        <item>Zoom out</item>
+        <item>Rotate</item>
+        <item>Scroll up</item>        
+        <item>Scroll down</item>       
+        <item>Scroll left</item>
+        <item>Scroll right</item>        
+        <item>First</item>
+        <item>Last</item>
+        <item>Fit width</item>
+        <item>Fit height</item>
+        <item>Fit screen</item>
+        <item>Open screen browser</item>
+        <item>Open SD browser</item>
+        <item>Open settings</item>
+        <item>Show menu</item>
+        <item>Close</item>
+        <item>None</item>
+    </string-array>
+
+    <string-array name="action_values">
+        <item>next</item>
+        <item>previous</item>
+        <item>zoom_in</item>  
+        <item>zoom_out</item>
+        <item>rotate</item>
+        <item>scroll_up</item>        
+        <item>scroll_down</item>
+        <item>scroll_left</item>
+        <item>scroll_right</item>        
+        <item>first</item>
+        <item>last</item>
+        <item>fit_width</item>
+        <item>fit_height</item>
+        <item>fit_screen</item>
+        <item>screen_browser</item>             
+	    <item>sd_browser</item>
+	    <item>settings</item>
+        <item>menu</item>
+   	    <item>close</item>
+   	    <item>none</item>
+    </string-array>
+
+</resources>

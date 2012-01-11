@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+<string name='activity_browse_label'>Páginas</string>
+<string name='activity_sd_browser_label'>Selecione um Comics do seu SD</string>
+<string name='activity_settings_label'>Configurações</string>
+<string name='activity_credits_label'>Créditos</string>
+<string name='activity_subscribe_label'>Assinar</string>
+<string name='main_intro'>Aperte <b>Menu</b> para começar</string>
+<string name='item_navigate_title'>Ir para</string>
+<string name='item_navigate_shortcut'>I</string>
+<string name='item_first_title'>Primeira</string>
+<string name='item_previous_title'>Anterior</string>
+<string name='item_next_title'>Próxima</string>
+<string name='item_previous_screen_title'>Página anterior</string>
+<string name='item_next_screen_title'>Próxima página</string>
+<string name='item_last_title'>Última</string>
+<string name='item_zoom_title'>Zoom</string>
+<string name='item_zoom_shortcut'>Z</string>
+<string name='item_zoom_in_title'>Zoom in</string>
+<string name='item_zoom_out_title'>Zoom out</string>
+<string name='item_fit_width_title'>Ajustar à largura</string>
+<string name='item_fit_height_title'>Ajustar à altura</string>
+<string name='item_actual_size'>Tamanho original</string>
+<string name='item_rotate_title'>Rotacionar</string>
+<string name='item_rotate_shortcut'>R</string>
+<string name='item_browse_title'>Navegar</string>
+<string name='item_browse_shortcut'>N</string>
+<string name='item_share_title'>Compartilhar</string>
+<string name='item_share_shortcut'>C</string>
+<string name='item_share_screen_title'>Compartilhar esta página</string>
+<string name='item_set_as_title'>Usar como</string>
+<string name='item_share_app_title'>Recomendar ACV</string>
+<string name='item_open_title'>Abrir</string>
+<string name='item_open_shortcut'>A</string>
+<string name='item_settings_title'>Settings</string>
+<string name='item_settings_shortcut'>S</string>
+<string name='menu_close_title'>Fechar</string>
+<string name='menu_close_shortcut'>F</string>
+<string name='dialog_no_sd_title'>Atenção</string>
+<string name='dialog_no_sd_text'>Cartão SD não foi encontrado.\n\nPor favor insira ou monte seu cartão SD para abrir os comics.</string>
+<string name='dialog_page_progress_title'>Carregando...</string>
+<string name='dialog_page_progress_text'>Carregando página @number. Por favor, aguarde...</string>
+<string name='dialog_loading_progress_title'>Carregando...</string>
+<string name='dialog_loading_progress_text'>Carregando Comic do cartão SD.</string>
+<string name='dialog_load_error_title'>Oops!</string>
+<string name='dialog_load_error_text'>Aconteceu um erro enquanto carregava. Se precisar de ajuda, por favor contate support@androidcomics.net</string>
+<string name='dialog_page_error_title'>Oops!</string>
+<string name='dialog_page_error_text'>Não foi possível carregar a imagem. Isso geralmente acontece defido a memória não suficiente.\n\nPara arquivos CBR/RAR, tente extraí-los em uma pastar e abri-la com um toque longo.\n\nCaso contrpario, fechar o ACV e abrir depois de um tempo pode ajudar.</string>
+<string name='dialog_flip_controls_title'>Inverter controles?</string>
+<string name='dialog_flip_controls_text'>Inverter controles de navegação para se adaptar a nova direção da leitura?</string>
+<string name='dialog_unavailable_title'>Aplicativo não disponível</string>
+<string name='dialog_unavailable_text'>O aplicativo requisitado ainda não está disponível, ou não é possível checar agora.\n\nVocê gostaria de assinar nosso boletim e ser notificado sobre os próximos lançamentos?</string>
+<string name='sd_browser_back'>Voltar</string>
+<string name='sd_browser_empty'>Pasta vazia</string>
+<string name='sd_browser_download'>Download comics</string>
+<string name='screen_browser_go'>Go</string>
+<string name='category_controls_title'>Controles</string>
+<string name='preference_map_actions_title'>Definir controles</string>
+<string name='preference_map_actions_summary'>Definir a ação de controle</string>
+<string name='preference_single_tap_title'>Toque simples</string>
+<string name='preference_double_tap_title'>Toque duplo</string>
+<string name='preference_long_tap_title'>Manter pressionado</string>
+<string name='preference_trackball_up_title'>Trackball para cima</string>
+<string name='preference_trackball_down_title'>Trackball para baixo</string>
+<string name='preference_trackball_left_title'>Trackball para a esquerda</string>
+<string name='preference_trackball_right_title'>Trackball para a direita</string>
+<string name='preference_trackball_center_title'>Trackball central</string>
+<string name='preference_fling_up_title'>Arrastar para cima</string>
+<string name='preference_fling_down_title'>Arrastar para baixo</string>
+<string name='preference_fling_left_title'>Arrastar para a esquerda</string>
+<string name='preference_fling_right_title'>Arrastar para a direita</string>
+<string name='preference_corner_bottom_left_title'>Toque no canto inferior esquerdo</string>
+<string name='preference_corner_bottom_right_title'>Toque no canto inferior direito</string>
+<string name='preference_corner_top_left_title'>Toque no canto superior esquerdo</string>
+<string name='preference_corner_top_right_title'>Toque no canto superior direito</string>
+<string name='preference_back_title'>Voltar</string>
+<string name='preference_volume_up_title'>Volume +</string>
+<string name='preference_volume_down_title'>Volume -</string>
+<string name='preference_control_defaults_title'>Restaurar configurações padrões</string>
+<string name='preference_control_defaults_summary'>Restaura as configurações para seus valores padrões</string>
+<string name='preference_direction_title'>Direção da leitura</string>
+<string name='preference_direction_summary'>Escolhe entre esquerda para direita, ou direita para esquerda</string>
+<string name='preference_auto_rotate_title'>Auto-rotacionar</string>
+<string name='preference_auto_rotate_summary'>Rotaciona a imagem quando muda a orientação do telefone</string>
+<string name='category_visual_title'>Visual</string>
+<string name='preference_transition_mode_title'>Modo de transição</string>
+<string name='preference_transition_mode_summary'>Escolhe a animação ao passar ao mudar as páginas</string>
+<string name='preference_scale_mode_title'>Modo de escala</string>
+<string name='preference_scale_mode_summary'>Escolhe como as imagens serão mostradas na tela</string>
+<string name='preference_show_number_title'>Mostrar número da página</string>
+<string name='preference_show_number_summary'>Mostra rapidamente o número da página no canto da tela</string>
+<string name='preference_invisible_corners_title'>Cantos invisíveis</string>
+<string name='preference_invisible_corners_summary'>Deixa invisíveis os botões dos cantos</string>
+<string name='preference_brigthness_title'>Brilho</string>
+<string name='preference_brigthness_summary'>Ajusta o brilho da tela</string>
+<string name='preference_default_brightness'>Brilho padrão</string>
+<string name='category_memory_title'>Memória</string>
+<string name='preference_load_last_title'>Carregar último comic</string>
+<string name='preference_load_last_summary'>Carregar último comic na inicialização</string>
+<string name='category_support_title'>Suporte</string>
+<string name='preference_manual_title'>Manual do usuário</string>
+<string name='preference_manual_summary'>Abre o manual do usuário no navegador</string>
+<string name='category_about_title'>Sobre</string>
+<string name='preference_acv_listing_title'>Detalhes no Android Market</string>
+<string name='preference_acv_listing_summary'>Abre os detalhes do Droid Comic Viewer no Android Market</string>
+<string name='preference_version_title'>Versão</string>
+<string name='preference_version_summary'>Droid Comic Viewer v</string>
+<string name='preference_contact_title'>Contato</string>
+<string name='preference_contact_summary'>Enviar email para Robot Comics</string>
+<string name='preference_site_title'>Site da web</string>
+<string name='preference_site_summary'>Abre o site do Robot Comics no navegador</string>
+<string name='preference_subscribe_summary'>Receber notícias sobre o ACV e lançamentos de comics</string>
+<string name='category_acv_format_title'>Formato ACV</string>
+<string name='preference_acv_frames_title'>Quadros</string>
+<string name='preference_acv_frames_summary'>Navegação quadro a quadro</string>
+<string name='preference_acv_vibration_title'>Vibrar</string>
+<string name='preference_acv_vibration_summary'>Efeitos de vibração</string>
+<string name='preference_acv_autoplay_title'>Autoplay</string>
+<string name='preference_acv_autoplay_summary'>Habilitar sequências automáticas</string>
+<string name='txt_subscribe_intro'>Assinar nosso boletim de email sobre futuros lançamentos</string>
+<string name='btn_subscribe_submit'>Enviar</string>
+<string name='dialog_subscribe_success_title'>Assinatura em andamento</string>
+<string name='dialog_subscribe_success_text'>Você irá receber um email de ativação em breve.</string>
+<string name='dialog_subscribe_error_title'>Ooops!</string>
+<string name='dialog_subscribe_error_text'>O serviço de boletins está indisponível. Por favor, tente mais tarde.</string>
+<string name='dialog_email_error_title'>Email inválido</string>
+<string name='dialog_email_error_text'>Por favor digite um endereço de email válido.</string>
+<string name='share_app_title'>Leia comics no seu Android!</string>
+<string name='share_app_message'>Dê uma olhada no Droid Comic Viewer, o #1 leitor de comics e mangá para Android http://bit.ly/3dlKI</string>
+<string name='share_screen_title'>Tela do @comic</string>
+<string name='share_screen_message'>Dê uma olhada nesta tela do @comic enviada através do Droid Comic Viewer http://bit.ly/3dlKI5</string>
+</resources>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+<string name='activity_browse_label'>Parcourir les pages</string>
+<string name='activity_sd_browser_label'>Sélectionner une BD sur votre carte SD</string>
+<string name='activity_settings_label'>Paramètres</string>
+<string name='activity_credits_label'>Contributeurs</string>
+<string name='activity_subscribe_label'>Souscrire</string>
+<string name='main_intro'>Appuyez sur <b>Menu</b> pour démarrer</string>
+<string name='item_navigate_title'>Aller à</string>
+<string name='item_navigate_shortcut'>A</string>
+<string name='item_first_title'>Début</string>
+<string name='item_previous_title'>Précédent</string>
+<string name='item_next_title'>Suivant</string>
+<string name='item_previous_screen_title'>Page précédente</string>
+<string name='item_next_screen_title'>Page suivante</string>
+<string name='item_last_title'>Fin</string>
+<string name='item_zoom_title'>Redimensionner</string>
+<string name='item_zoom_shortcut'>R</string>
+<string name='item_zoom_in_title'>Agrandir</string>
+<string name='item_zoom_out_title'>Réduire</string>
+<string name='item_fit_width_title'>Ajuster la largeur</string>
+<string name='item_fit_height_title'>Ajuster la hauteur</string>
+<string name='item_actual_size'>Taille réelle</string>
+<string name='item_rotate_title'>Tourner</string>
+<string name='item_rotate_shortcut'>T</string>
+<string name='item_browse_title'>Naviguer</string>
+<string name='item_browse_shortcut'>N</string>
+<string name='item_share_title'>Partager</string>
+<string name='item_share_shortcut'>P</string>
+<string name='item_share_screen_title'>Partager cette page</string>
+<string name='item_share_app_title'>Recommander</string>
+<string name='item_open_title'>Ouvrir</string>
+<string name='item_open_shortcut'>O</string>
+<string name='item_settings_title'>Paramètres</string>
+<string name='item_settings_shortcut'>P</string>
+<string name='menu_close_title'>Fermer</string>
+<string name='menu_close_shortcut'>F</string>
+<string name='dialog_no_sd_title'>Attention</string>
+<string name='dialog_no_sd_text'>Pas de carte SD trouvée.\n\nVeuillez insérer ou monter une carte SD afin d\'ouvrir une BD.</string>
+<string name='dialog_page_progress_title'>Chargement...</string>
+<string name='dialog_page_progress_text'>Chargement de la page @number. Veuillez patienter...</string>
+<string name='dialog_loading_progress_title'>Chargement...</string>
+<string name='dialog_loading_progress_text'>Chargement de l\'archive de la BD à partir de la carte SD.</string>
+<string name='dialog_load_error_title'>Oups!</string>
+<string name='dialog_load_error_text'>Une erreur s\'est produite pendant le chargement. Si vous avez besoin d\'aide, veuillez contacter support@androidcomics.net.</string>
+<string name='dialog_page_error_title'>Oups!</string>
+<string name='dialog_page_error_text'>Impossible de charger l\'image. Ceci arrive le plus souvent à cause d\'un manque de mémoire interne.\n\nPour les fichiers CBR/RAR, essayez de les extraire dans un répertoire et ouvrez-le avec un appui long.\n\nSinon, fermez ACV et réessayez après quelques instants, cela fonctionne parfois.</string>
+<string name='dialog_flip_controls_title'>Inverser les contrôles?</string>
+<string name='dialog_flip_controls_text'>Inverser les contrôles de navigation pour les adapter au sens de lecture courant?</string>
+<string name='dialog_unavailable_title'>Application non disponible</string>
+<string name='dialog_unavailable_text'>L\'application demandée est soit indisponible soit inaccessible.\n\nVoulez-vous vous inscrire à la lettre d\'informations et être informer des futures versions?</string>
+<string name='sd_browser_back'>Retour au répertoire parent</string>
+<string name='sd_browser_empty'>Répertoire vide</string>
+<string name='sd_browser_download'>Télécharger des BD</string>
+<string name='screen_browser_go'>Go</string>
+<string name='category_controls_title'>Contrôles</string>
+<string name='preference_map_actions_title'>Contrôles personnalisés</string>
+<string name='preference_map_actions_summary'>Définir l\'action de chaque évènement de contrôle</string>
+<string name='preference_single_tap_title'>Toucher simple</string>
+<string name='preference_double_tap_title'>Toucher double</string>
+<string name='preference_long_tap_title'>Appui long</string>
+<string name='preference_trackball_up_title'>Trackball haut</string>
+<string name='preference_trackball_down_title'>Trackball bas</string>
+<string name='preference_trackball_left_title'>Trackball gauche</string>
+<string name='preference_trackball_right_title'>Trackball droite</string>
+<string name='preference_trackball_center_title'>Trackball central</string>
+<string name='preference_fling_up_title'>Glisser haut</string>
+<string name='preference_fling_down_title'>Glisser bas</string>
+<string name='preference_fling_left_title'>Glisser gauche</string>
+<string name='preference_fling_right_title'>Glisser droite</string>
+<string name='preference_corner_bottom_left_title'>Toucher coin bas gauche</string>
+<string name='preference_corner_bottom_right_title'>Toucher coin bas droite</string>
+<string name='preference_corner_top_left_title'>Toucher coin haut gauche</string>
+<string name='preference_corner_top_right_title'>Toucher coin haut droite</string>
+<string name='preference_back_title'>Touche Retour</string>
+<string name='preference_volume_up_title'>Augmenter le volume</string>
+<string name='preference_volume_down_title'>Réduire le volume</string>
+<string name='preference_control_defaults_title'>Paramètres par défaut</string>
+<string name='preference_control_defaults_summary'>Remettre les paramètres d\'action à leur valeur par défaut</string>
+<string name='preference_direction_title'>Sens de lecture</string>
+<string name='preference_direction_summary'>Choisir entre une lecture de gauche à droite ou de droite à gauche</string>
+<string name='preference_auto_rotate_title'>Rotation automatique</string>
+<string name='preference_auto_rotate_summary'>Tourner l\'image quand l\'orientation du téléphone change</string>
+<string name='category_visual_title'>Visuel</string>
+<string name='preference_transition_mode_title'>Mode de transition</string>
+<string name='preference_transition_mode_summary'>Choisir l\'animation pour la transition entre les pages</string>
+<string name='preference_scale_mode_title'>Mise à l\'échelle</string>
+<string name='preference_scale_mode_summary'>Choisir comment les images vont être redimensionnées à l\'écran</string>
+<string name='preference_show_number_title'>Voir le numéro de page</string>
+<string name='preference_show_number_summary'>Affiche brièvement le numéro de la page dans le coin</string>
+<string name='preference_invisible_corners_title'>Coins invisibles</string>
+<string name='preference_invisible_corners_summary'>Rendre les boutons dans les coins invisibles</string>
+<string name='preference_brigthness_title'>Luminosité</string>
+<string name='preference_brigthness_summary'>Ajuster la luminosité de l\'écran</string>
+<string name='category_memory_title'>Mémoire</string>
+<string name='preference_load_last_title'>Charger la dernière BD</string>
+<string name='preference_load_last_summary'>Charger la dernière BD consultée au démarrage</string>
+<string name='category_support_title'>Support</string>
+<string name='preference_manual_title'>Manuel d\'utilisation</string>
+<string name='preference_manual_summary'>Ouvrir le manuel d\'utilisation dans le Navigateur par défaut</string>
+<string name='category_about_title'>A propos</string>
+<string name='preference_acv_listing_title'>Fiche sur le market Android</string>
+<string name='preference_acv_listing_summary'>Ouvrir la fiche d\'ACV sur le market</string>
+<string name='preference_version_title'>Version</string>
+<string name='preference_version_summary'>Droid Comic Viewer v</string>
+<string name='preference_contact_title'>Contacter</string>
+<string name='preference_contact_summary'>Envoyer un message à Robot Comics</string>
+<string name='preference_site_title'>Site web</string>
+<string name='preference_site_summary'>Ouvrir le site de Robot Comics dans le navigateur par défaut</string>
+<string name='preference_subscribe_summary'>Recevoir les nouveautés sur ACV et les sorties de BD mobiles.</string>
+<string name='category_acv_format_title'>Format ACV</string>
+<string name='preference_acv_frames_title'>Cases</string>
+<string name='preference_acv_frames_summary'>Navigation case par case</string>
+<string name='preference_acv_vibration_title'>Vibration</string>
+<string name='preference_acv_vibration_summary'>Vibration et effets d\'écran secoué</string>
+<string name='preference_acv_autoplay_title'>Lecture automatique</string>
+<string name='preference_acv_autoplay_summary'>Activer les séquences de lecture automatique</string>
+<string name='txt_subscribe_intro'>Souscrire à notre lettre d\'informations pour être notifier des futures sorties</string>
+<string name='btn_subscribe_submit'>Soumettre</string>
+<string name='dialog_subscribe_success_title'>Inscription en cours</string>
+<string name='dialog_subscribe_success_text'>Vous allez recevoir un mail d\'activation</string>
+<string name='dialog_subscribe_error_title'>Oups!</string>
+<string name='dialog_subscribe_error_text'>Le service de lettre d\'information est soit inaccessible soit indisponible. Veuillez essayer plus tard.</string>
+<string name='dialog_email_error_title'>Adresse mail invalide</string>
+<string name='dialog_email_error_text'>Veuillez entrer une adresse valide.</string>
+<string name='share_app_title'>Lisez des BD sur votre système Android!</string>
+<string name='share_app_message'>Découvrez Droid Comic Viewer, le lecteur #1 de bandes-dessinées et de manga sur Android http://bit.ly/3dlKI5</string>
+<string name='share_screen_title'>Page tirée de @comic</string>
+<string name='share_screen_message'>Lis cette page grâce à @comic</string>
+</resources>

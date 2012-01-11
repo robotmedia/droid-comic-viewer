@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  		<PreferenceScreen android:key="map_actions"
+			android:title="@string/preference_map_actions_title" android:summary="@string/preference_map_actions_summary">
+			<ListPreference android:key="single_tap"
+				android:title="@string/preference_single_tap_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_single_tap_title"
+				android:defaultValue="next" />
+			<ListPreference android:key="double_tap"
+				android:title="@string/preference_double_tap_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_double_tap_title"
+				android:defaultValue="zoom_in" />
+			<ListPreference android:key="long_tap"
+				android:title="@string/preference_long_tap_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_long_tap_title"
+				android:defaultValue="screen_browser" />
+			<ListPreference android:key="trackball_up"
+				android:title="@string/preference_trackball_up_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_trackball_up_title"
+				android:defaultValue="zoom_in" />
+			<ListPreference android:key="trackball_down"
+				android:title="@string/preference_trackball_down_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_trackball_down_title"
+				android:defaultValue="zoom_out" />
+			<ListPreference android:key="trackball_left"
+				android:title="@string/preference_trackball_left_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_trackball_left_title"
+				android:defaultValue="previous" />
+			<ListPreference android:key="trackball_right"
+				android:title="@string/preference_trackball_right_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_trackball_right_title"
+				android:defaultValue="next" />
+			<ListPreference android:key="trackball_center"
+				android:title="@string/preference_trackball_center_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_trackball_center_title"
+				android:defaultValue="next" />
+			<ListPreference android:key="fling_up"
+				android:title="@string/preference_fling_up_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_fling_up_title"
+				android:defaultValue="menu" />
+			<ListPreference android:key="fling_down"
+				android:title="@string/preference_fling_down_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_fling_down_title"
+				android:defaultValue="none" />
+			<ListPreference android:key="fling_left"
+				android:title="@string/preference_fling_left_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_fling_left_title"
+				android:defaultValue="next" />
+			<ListPreference android:key="fling_right"
+				android:title="@string/preference_fling_right_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_fling_right_title"
+				android:defaultValue="previous" />
+			<ListPreference android:key="corner_bottom_left"
+				android:title="@string/preference_corner_bottom_left_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_corner_bottom_left_title"
+				android:defaultValue="previous" />
+			<ListPreference android:key="corner_bottom_right"
+				android:title="@string/preference_corner_bottom_right_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_corner_bottom_right_title"
+				android:defaultValue="next" />
+			<ListPreference android:key="corner_top_left"
+				android:title="@string/preference_corner_top_left_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_corner_top_left_title"
+				android:defaultValue="none" />
+			<ListPreference android:key="corner_top_right"
+				android:title="@string/preference_corner_top_right_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_corner_top_right_title"
+				android:defaultValue="none" />
+			<ListPreference android:key="back"
+				android:title="@string/preference_back_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_back_title"
+				android:defaultValue="none" />
+			<ListPreference android:key="volume_up"
+				android:title="@string/preference_volume_up_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_volume_up_title"
+				android:defaultValue="previous" />
+			<ListPreference android:key="volume_down"
+				android:title="@string/preference_volume_down_title"
+				android:entries="@array/action_labels" android:entryValues="@array/action_values"
+				android:dialogTitle="@string/preference_volume_down_title"
+				android:defaultValue="next" />
+			<Preference android:key="control_defaults"
+				android:title="@string/preference_control_defaults_title"
+				android:summary="@string/preference_control_defaults_summary">
+			</Preference>
+		</PreferenceScreen>
+		<ListPreference android:key="direction"
+			android:title="@string/preference_direction_title" android:summary="@string/preference_direction_summary"
+			android:entries="@array/direction_labels" android:entryValues="@array/direction_values"
+			android:dialogTitle="@string/preference_direction_title"
+			android:defaultValue="ltr" />
+		<CheckBoxPreference android:key="auto_rotate"
+			android:title="@string/preference_auto_rotate_title" android:summary="@string/preference_auto_rotate_summary"
+			android:defaultValue="false" />
+</PreferenceScreen>

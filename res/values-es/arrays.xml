@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+    <string-array name="transition_mode_labels">
+        <item>Trasladar</item>
+        <item>Difuminar</item>
+        <!--item>Mazo</item-->
+        <item>Ninguno</item>  
+    </string-array>
+
+    <string-array name="scale_mode_labels">
+        <item>Ninguno</item>
+        <item>Ajustar ancho</item>
+        <item>Ajustar alto</item>  
+        <item>Ajustar pantalla</item>
+    </string-array>
+
+    <string-array name="direction_labels">
+        <item>Izquierda a derecha</item>
+        <item>Derecha a izquierda</item>
+    </string-array>
+
+    <string-array name="action_labels">
+        <item>Siguiente</item>
+        <item>Anterior</item>
+        <item>Zoom in</item>  
+        <item>Zoom out</item>
+        <item>Rotar</item>
+        <item>Desplazar arriba</item>        
+        <item>Desplazar abajo</item>       
+        <item>Desplazar izquierda</item>
+        <item>Desplazar derecha</item>      
+        <item>Primera</item>
+        <item>Última</item>
+        <item>Ajustar ancho</item>
+        <item>Ajustar alto</item>  
+        <item>Ajustar pantalla</item>
+        <item>Mostar pantallas</item>
+        <item>Abrir navegador SD</item>
+        <item>Configuración</item>
+        <item>Mostrar menú</item>
+        <item>Cerrar</item>        
+   	    <item>Ninguna</item>
+    </string-array>
+
+</resources>

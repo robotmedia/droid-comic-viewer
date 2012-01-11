@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    
+    <Gallery 
+	    android:id="@+id/gallery"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingTop="15px"
+    	android:paddingBottom="15px"
+    	android:spacing="20px"
+		android:scrollbars="horizontal" 
+		android:scrollbarStyle="outsideInset"/>
+	<EditText android:id="@+id/txt_screen_number"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content" android:inputType="number" android:gravity="center" android:layout_gravity="center" android:minWidth="50px" android:layout_below="@+id/gallery" android:layout_centerHorizontal="true"/>
+	<Button android:id="@+id/btn_screen_browser"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+		android:text="@string/screen_browser_go"
+		 android:layout_gravity="center" android:layout_below="@+id/txt_screen_number" android:layout_centerHorizontal="true"/>
+	
+</RelativeLayout>

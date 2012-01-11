@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+    <string name="activity_browse_label">Hauptbildschirm</string>
+    <string name="activity_sd_browser_label">Wählen Sie ein Comic von der SD Karte</string>
+    <string name="activity_settings_label">Einstellungen</string>
+    <string name="activity_credits_label">Impressum</string>
+
+    <string name="item_navigate_title">Go to</string>
+    <string name="item_navigate_shortcut">G</string>
+    <string name="item_first_title">First</string>
+    <string name="item_previous_title">Previous</string>
+    <string name="item_next_title">Next</string>
+    <string name="item_previous_frame_title">Previous frame</string>
+    <string name="item_next_frame_title">Next frame</string>
+    <string name="item_last_title">Last</string>
+    <string name="item_zoom_title">Zoom</string>
+    <string name="item_zoom_shortcut">Z</string>
+    <string name="item_zoom_in_title">Heranholen</string>
+    <string name="item_zoom_out_title">Weggehen</string>
+    <string name="item_fit_width_title">Passen Breite</string>
+    <string name="item_fit_height_title">Passen Höhe</string>
+    <string name="item_rotate_title">Rotieren</string>
+    <string name="item_rotate_shortcut">R</string>
+    <string name="item_browse_title">Browsen</string>
+    <string name="item_browse_shortcut">B</string>
+    <string name="item_open_title">Öffnen</string>
+    <string name="item_open_shortcut">O</string>
+    <string name="item_settings_title">Einstellungen</string>
+    <string name="item_settings_shortcut">E</string>
+    <string name="menu_close_title">Schließen</string>
+    <string name="menu_close_shortcut">S</string>
+    
+    <string name="dialog_no_sd_title">Achtung</string>
+    <string name="dialog_no_sd_text">Keine Karte gefunden.\n\nBitte setzen Sie die SD Karte ein um Comics zu öffnen.</string>
+    <string name="dialog_page_progress_title">Laden...</string>
+    <string name="dialog_page_progress_text">Lade Bildschirm @number. Bitte warten...</string>
+    <string name="dialog_loading_progress_title">Laden...</string>
+    <string name="dialog_loading_progress_text">Lade Comic-Archiv von der SD Karte.</string>
+    <string name="dialog_load_error_title">Oh!</string>
+    <string name="dialog_load_error_text">An error has occurred while loading the comic. If you need help, please contact support@androidcomics.net.</string>
+    <string name="dialog_page_error_title">Oh!</string>
+    <string name="dialog_page_error_text">Bild laden nicht möglich. Dies kann passieren weil das Bild beschädigt ist oder wegen eines bekannten Android Fehlers. Für Hilfe, schreiben Sie bitte support@androidcomics.net.</string>
+    <string name="dialog_flip_controls_title">Flip controls?</string>
+    <string name="dialog_flip_controls_text">Flip navigation controls to adapt them to current reading direction?</string>
+    
+    <string name="sd_browser_back">Zurück zum übergeordneten Ordner</string>
+    <string name="sd_browser_empty">Leerer Ordner</string>
+    <string name="sd_browser_download">Comics herunterladen</string>
+    
+    <string name="screen_browser_go">Go</string>
+    
+	<string name="category_controls_title">Bedienung</string>
+    <string name="preference_map_actions_title">Bedienungseinstellung</string>
+    <string name="preference_map_actions_summary">Einstellen der Bedienmöglichkeiten</string>   
+    <string name="preference_single_tap_title">Einzelnes Tippen</string>
+    <string name="preference_double_tap_title">Double tap</string>
+    <string name="preference_long_tap_title">Langes Drücken</string>
+    <string name="preference_trackball_up_title">Trackball auf</string>
+    <string name="preference_trackball_down_title">Trackball nach unten</string>
+    <string name="preference_trackball_left_title">Trackball links</string>
+    <string name="preference_trackball_right_title">Trackball rechts</string>
+    <string name="preference_control_defaults_title">Wiederherstellen der Systemeinstellungen</string>
+    <string name="preference_control_defaults_summary">Zurückstellen der Handlungseinstellungen auf die Systemwerte</string>   
+    <string name="preference_direction_title">Leserichtung</string>
+    <string name="preference_direction_summary">Wählen Sie zwischen Links nach Rechts oder Rechts nach Links</string>   
+    <string name="preference_auto_rotate_title">Auto-Rotieren</string>
+    <string name="preference_auto_rotate_summary">Bild rotieren mit Änderung der Telefonausrichtung</string>   
+    <string name="category_visual_title">Visual</string>
+    <string name="preference_transition_mode_title">Übergangsmodus</string>
+    <string name="preference_transition_mode_summary">Wählen Sie die Animation für Bildschirmübergänge</string>
+    <string name="preference_scale_mode_title">Skalierungsmodus</string>
+    <string name="preference_scale_mode_summary">Wählen Sie wie Bilder am Bildschirm skaliert werden</string>   
+    <string name="category_memory_title">Speicher</string>
+    <string name="preference_load_last_title">Laden des letzten Comic</string>
+    <string name="preference_load_last_summary">Laden des zuletzt gesehenen Comics beim Start</string>
+    <string name="preference_acv_listing_summary">Öffnen der Droid Comic Viewer Liste auf dem Android Market</string>  
+    <string name="category_about_title">Über</string>
+    <string name="preference_version_title">Version</string>
+    <string name="preference_version_summary">Droid Comic Viewer v</string>  
+    <string name="preference_site_title">Internetseite</string>
+    <string name="preference_site_summary">Öffnen der Robot Comics Internetseite im Browser</string>  
+</resources>

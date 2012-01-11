@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:settings="http://schemas.android.com/apk/res/net.androidcomics.acv">
+	<net.robotcomics.acv.ui.IconPreferenceScreen
+		android:title="@string/category_visual_title" settings:icon="@android:drawable/ic_menu_gallery">
+		<intent android:action="android.intent.action.MAIN"
+			android:targetPackage="net.androidcomics.acv" android:targetClass="net.robotcomics.acv.settings.VisualSettings" />
+	</net.robotcomics.acv.ui.IconPreferenceScreen>
+	<net.robotcomics.acv.ui.IconPreferenceScreen
+		android:title="@string/category_controls_title" settings:icon="@drawable/ic_settings_accessibility">
+		<intent android:action="android.intent.action.MAIN"
+			android:targetPackage="net.androidcomics.acv" android:targetClass="net.robotcomics.acv.settings.ControlSettings" />
+	</net.robotcomics.acv.ui.IconPreferenceScreen>
+	<net.robotcomics.acv.ui.IconPreferenceScreen
+		android:title="@string/category_memory_title" settings:icon="@drawable/ic_settings_storage">
+		<intent android:action="android.intent.action.MAIN"
+			android:targetPackage="net.androidcomics.acv" android:targetClass="net.robotcomics.acv.settings.StorageSettings" />
+	</net.robotcomics.acv.ui.IconPreferenceScreen>
+	<net.robotcomics.acv.ui.IconPreferenceScreen
+		android:title="@string/category_advanced_title" settings:icon="@drawable/ic_settings_privacy">
+		<intent android:action="android.intent.action.MAIN"
+			android:targetPackage="net.androidcomics.acv" 
+			android:targetClass="net.robotcomics.acv.settings.AdvancedSettings" />
+	</net.robotcomics.acv.ui.IconPreferenceScreen>
+	<net.robotcomics.acv.ui.IconPreferenceScreen
+		android:title="@string/category_support_title" settings:icon="@android:drawable/ic_menu_help">
+		<intent android:action="android.intent.action.MAIN"
+			android:targetPackage="net.androidcomics.acv" android:targetClass="net.robotcomics.acv.settings.SupportSettings" />
+	</net.robotcomics.acv.ui.IconPreferenceScreen>
+	<net.robotcomics.acv.ui.IconPreferenceScreen
+		android:title="@string/category_about_title" settings:icon="@android:drawable/ic_menu_info_details">
+		<intent android:action="android.intent.action.MAIN"
+			android:targetPackage="net.androidcomics.acv" android:targetClass="net.robotcomics.acv.settings.AboutSettings" />
+	</net.robotcomics.acv.ui.IconPreferenceScreen>
+</PreferenceScreen>

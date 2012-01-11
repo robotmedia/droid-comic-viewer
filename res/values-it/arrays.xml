@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+    <string-array name="transition_mode_labels">
+<item>Scorri</item>
+<item>Dissolvenza</item>
+<item>Nessuna</item>
+    </string-array>
+
+    <string-array name="scale_mode_labels">
+<item>Nessuno</item>
+<item>Adatta alla larghezza</item>
+<item>Adatta all\'altezza</item>
+<item>Adatta allo schermo</item>
+    </string-array>
+
+    <string-array name="direction_labels">
+<item>Sinistra-a-destra</item>
+<item>Destra-a-sinistra</item>
+    </string-array>
+
+    <string-array name="action_labels">
+<item>Prossima</item>
+<item>Precedente</item>
+<item>Zoom +</item>
+<item>Zoom -</item>
+<item>Ruota</item>
+<item>Scorri su</item>
+<item>Scorri giù</item>
+<item>Scorri a sinistra</item>
+<item>Scorri a destra</item>
+<item>Prima</item>
+<item>Ultima</item>
+<item>Adatta a larghezza</item>
+<item>Adatta ad altezza </item>
+<item>Adatta allo schermo</item>
+<item>Apri esplora pagine</item>
+<item>Apri esplora SD</item>
+<item>Apri impostazioni</item>
+<item>Mostra menù</item>
+<item>Chiudi</item>
+<item>Niente</item>
+    </string-array>
+
+</resources>

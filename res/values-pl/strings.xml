@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+<string name='activity_browse_label'>Przeglądaj</string>
+<string name='activity_sd_browser_label'>Wybierz komiks z karty SD</string>
+<string name='activity_settings_label'>Ustawienia</string>
+<string name='activity_credits_label'>O autorach</string>
+<string name='activity_subscribe_label'>Subskrypcja</string>
+<string name='main_intro'>Naciśnij <b>Menu</b> by rozpocząć</string>
+<string name='item_navigate_title'>Idź do</string>
+<string name='item_navigate_shortcut'>N</string>
+<string name='item_first_title'>Pierwszy</string>
+<string name='item_previous_title'>Poprzedni</string>
+<string name='item_next_title'>Następny</string>
+<string name='item_previous_screen_title'>Poprzedni</string>
+<string name='item_next_screen_title'>Następny</string>
+<string name='item_last_title'>Ostatni</string>
+<string name='item_zoom_title'>Powiększenie</string>
+<string name='item_zoom_shortcut'>Z</string>
+<string name='item_zoom_in_title'>Powiększ</string>
+<string name='item_zoom_out_title'>Pomniejsz</string>
+<string name='item_fit_width_title'>Dopasuj (szerokość)</string>
+<string name='item_fit_height_title'>Dopasuj (wysokość)</string>
+<string name='item_actual_size'>Oryginalny rozmiar</string>
+<string name='item_rotate_title'>Obróć</string>
+<string name='item_rotate_shortcut'>R</string>
+<string name='item_browse_title'>Przeglądaj</string>
+<string name='item_browse_shortcut'>P</string>
+<string name='item_share_title'>Wyślij do</string>
+<string name='item_share_shortcut'>W</string>
+<string name='item_share_screen_title'>Wyślij ten obraz do</string>
+<string name='item_share_app_title'>Poleć ACV znajomym</string>
+<string name='item_open_title'>Otwórz</string>
+<string name='item_open_shortcut'>O</string>
+<string name='item_settings_title'>Ustawienia</string>
+<string name='item_settings_shortcut'>U</string>
+<string name='menu_close_title'>Zamknij</string>
+<string name='menu_close_shortcut'>X</string>
+<string name='dialog_no_sd_title'>Uwaga</string>
+<string name='dialog_no_sd_text'>Brak karty SD.\n\nWłóż lub udostępnij kartę SD by otworzyć komiksy.</string>
+<string name='dialog_page_progress_title'>Wczytuję...</string>
+<string name='dialog_page_progress_text'>Wczytuję ekran #@number. Cierpliwości...</string>
+<string name='dialog_loading_progress_title'>Wczytuję...</string>
+<string name='dialog_loading_progress_text'>Wczytuję plik komiksu z karty SD.</string>
+<string name='dialog_load_error_title'>Ups!</string>
+<string name='dialog_load_error_text'>Wystąpił błąd podczas wczytywania. Jeśli potrzebujesz pomocy, napisz do support@androidcomics.net.</string>
+<string name='dialog_page_error_title'>Ups!</string>
+<string name='dialog_page_error_text'>Nieudane wczytywanie obrazu. Ten problem występuje z powodu braku dostępnej pamięci.\n\nDla plików CBR/RAR, spróbuj wypakować ich zawartość do folderu i otworzyć folder poprzez długie przyciśnięcie.\n\nW przypadku innych formatów, zamknięcie ACV i ponowne uruchomienie programu po odrobinie przerwy może pomóc.</string>
+<string name='dialog_flip_controls_title'>Odwrócić sterowanie?</string>
+<string name='dialog_flip_controls_text'>Odwróć sterowanie by lepiej odzwierciedlić aktualne ustawienia czytania?</string>
+<string name='dialog_unavailable_title'>Aplikacja niedostępna</string>
+<string name='dialog_unavailable_text'>Aplikacja której szukasz jest aktualnie niedostępna.\n\nCzy chcesz się zasubskrybować do naszego biuletynu i otrzymywać informacje o nadchodzących nowościach?</string>
+<string name='sd_browser_back'>Powrót folder wyżej</string>
+<string name='sd_browser_empty'>Pusty folder</string>
+<string name='sd_browser_download'>Pobierz komiksy</string>
+<string name='screen_browser_go'>Idź do</string>
+<string name='category_controls_title'>Sterowanie</string>
+<string name='preference_map_actions_title'>Własne sterowanie</string>
+<string name='preference_map_actions_summary'>Ustaw funkcje dla każdego elementu sterowania</string>
+<string name='preference_single_tap_title'>Przyciśnięcie</string>
+<string name='preference_single_tap_summary'>Ustaw funkcję dla przyciśnięcia</string>
+<string name='preference_double_tap_title'>Podwójne przyciśnięcie</string>
+<string name='preference_double_tap_summary'>Ustaw funkcję dla podwójnego przyciśnięcia</string>
+<string name='preference_long_tap_title'>Długie przyciśnięcie</string>
+<string name='preference_long_tap_summary'>Ustaw funkcję dla długiego przyciśnięcia</string>
+<string name='preference_trackball_up_title'>Trackball w górę</string>
+<string name='preference_trackball_up_summary'>Ustaw funkcję dla trackballa w górę</string>
+<string name='preference_trackball_down_title'>Trackball w dół</string>
+<string name='preference_trackball_down_summary'>Ustaw funkcję dla trackballa w dół</string>
+<string name='preference_trackball_left_title'>Trackball w lewo</string>
+<string name='preference_trackball_left_summary'>Ustaw funkcję dla trackballa w lewo</string>
+<string name='preference_trackball_right_title'>Trackball w prawo</string>
+<string name='preference_trackball_right_summary'>Ustaw funkcję dla trackballa w prawo</string>
+<string name='preference_trackball_center_title'>Przyciśnięcie trackballa</string>
+<string name='preference_trackball_center_summary'>Ustaw funkcję dla przyciśnięcia trackballa</string>
+<string name='preference_fling_up_title'>Przesunięcie w górę</string>
+<string name='preference_fling_up_summary'>Ustaw funkcję dla przesunięcia w górę</string>
+<string name='preference_fling_down_title'>Przesunięcie w dół</string>
+<string name='preference_fling_down_summary'>Ustaw funkcję dla przesunięcia w dół</string>
+<string name='preference_fling_left_title'>Przesunięcie w lewo</string>
+<string name='preference_fling_left_summary'>Ustaw funkcję dla przesunięcia w lewo</string>
+<string name='preference_fling_right_title'>Przesunięcie w prawo</string>
+<string name='preference_fling_right_summary'>Ustaw funkcję dla przesunięcia w prawo</string>
+<string name='preference_corner_bottom_left_title'>Przyciśnięcie - dolny lewy róg</string>
+<string name='preference_corner_bottom_left_summary'>Ustaw funkcję dla przyciśnięcia w lewym dolnym rogu</string>
+<string name='preference_corner_bottom_right_title'>Przyciśnięcie - dolny prawy róg</string>
+<string name='preference_corner_bottom_right_summary'>Ustaw funkcję dla przyciśnięcia w prawym dolnym rogu</string>
+<string name='preference_corner_top_left_title'>Przyciśnięcie - górny lewy róg</string>
+<string name='preference_corner_top_left_summary'>Ustaw funkcję dla przyciśnięcia w lewym górnym rogu</string>
+<string name='preference_corner_top_right_title'>Przyciśnięcie - górny prawy róg</string>
+<string name='preference_corner_top_right_summary'>Ustaw funkcję dla przyciśnięcia w prawym górnym rogu</string>
+<string name='preference_back_title'>Powrót</string>
+<string name='preference_back_summary'>Ustaw funkcję przycisku powrotu</string>
+<string name='preference_volume_up_title'>Głośniej</string>
+<string name='preference_volume_up_summary'>Ustaw funkcję pogłaśniania</string>
+<string name='preference_volume_down_title'>Ciszej</string>
+<string name='preference_volume_down_summary'>Ustaw funkcję wyciszania</string>
+<string name='preference_control_defaults_title'>Przywróć domyślne</string>
+<string name='preference_control_defaults_summary'>Przywróc wartości domyślne ustawień funkcji</string>
+<string name='preference_direction_title'>Kierunek czytania</string>
+<string name='preference_direction_summary'>Wybierz pomiędzy prawo-lewo lub lewo-prawo</string>
+<string name='preference_auto_rotate_title'>Autorotacja</string>
+<string name='preference_auto_rotate_summary'>Obróć obraz wraz ze zmianą położenia telefonu</string>
+<string name='category_visual_title'>Ustawienia obrazu</string>
+<string name='preference_transition_mode_title'>Tryb przejścia</string>
+<string name='preference_transition_mode_summary'>Wybierz animację zmiany ekranu</string>
+<string name='preference_scale_mode_title'>Tryb skali</string>
+<string name='preference_scale_mode_summary'>Wybierz sposób skalowania obrazów na ekranie</string>
+<string name='preference_show_number_title'>Pokaż numer ekranu</string>
+<string name='preference_show_number_summary'>Wyświetl na chwilę numer ekranu w rogu ekranu</string>
+<string name='preference_invisible_corners_title'>Niewidzialne narożniki</string>
+<string name='preference_invisible_corners_summary'>Ukryj przyciski w narożnikach</string>
+<string name='preference_brigthness_title'>Jasność</string>
+<string name='preference_brigthness_summary'>Ustaw jasność ekranu</string>
+<string name='category_memory_title'>Pamięć</string>
+<string name='preference_load_last_title'>Wczytaj ostatni komiks</string>
+<string name='preference_load_last_summary'>Wczytaj ostatnio otwarty komiks przy uruchomieniu aplikacji</string>
+<string name='category_support_title'>Pomoc</string>
+<string name='preference_manual_title'>Podręcznik użytkownika</string>
+<string name='preference_manual_summary'>Otwórz podręcznik użytkownika w domyślnej przeglądarce</string>
+<string name='category_about_title'>O programie</string>
+<string name='preference_acv_listing_title'>Opis w Android Market</string>
+<string name='preference_acv_listing_summary'>Otwórz opis Droid Comic Viewer w witrynie Android Market</string>
+<string name='preference_version_title'>Wersja</string>
+<string name='preference_version_summary'>Droid Comic Viewer wersja</string>
+<string name='preference_contact_title'>Kontakt</string>
+<string name='preference_contact_summary'>Wyślij e-maila do Robot Comics</string>
+<string name='preference_site_title'>Strona domowa</string>
+<string name='preference_site_summary'>Otwórz stronę domową Robot Comics w domyślnej przeglądarce</string>
+<string name='preference_subscribe_summary'>Otrzymuj wiadomości o ACV i nowych komiksach na telefon</string>
+<string name='category_acv_format_title'>Format ACV</string>
+<string name='preference_acv_frames_title'>Klatki</string>
+<string name='preference_acv_frames_summary'>Nawigacja klatka po klatce</string>
+<string name='preference_acv_vibration_title'>Wibracja</string>
+<string name='preference_acv_vibration_summary'>Efekty wibracji i przechylania ekranu</string>
+<string name='preference_acv_autoplay_title'>Autoodtwarzanie</string>
+<string name='preference_acv_autoplay_summary'>Włącz sekwencje autoodtwarzania</string>
+<string name='txt_subscribe_intro'>Zapisz się do naszego biuletynu by otrzymywać powiadomienia o nowościach.</string>
+<string name='btn_subscribe_submit'>Wyślij</string>
+<string name='dialog_subscribe_success_title'>Subskrypcja w toku</string>
+<string name='dialog_subscribe_success_text'>Wkrótce otrzymasz aktywacyjnego e-maila.</string>
+<string name='dialog_subscribe_error_title'>Ups!</string>
+<string name='dialog_subscribe_error_text'>Biuletyn jest niedostępny lub nieosiągalny. Spróbuj ponownie później.</string>
+<string name='dialog_email_error_title'>Niepoprawny adres e-mail.</string>
+<string name='dialog_email_error_text'>Wpisz poprawny adres e-mail.</string>
+<string name='share_app_title'>Czytaj komiksy w systemie Android!</string>
+<string name='share_app_message'>Wypróbuj Droid Comic Viewer, najpopularniejszą aplikację komiksową dla Androida http://bit.ly/3dlKI5</string>
+<string name='share_screen_title'>Ekran z @comic</string>
+<string name='share_screen_message'>Obejrzyj ten ekran z @comic wysłany za pośrednictwem Droid Comic Viewer http://bit.ly/3dlKI5</string>
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+    <string-array name="transition_mode_labels">
+<item>Mover</item>
+<item>Esmaecer</item>
+<item>Nenhum</item>
+    </string-array>
+
+    <string-array name="scale_mode_labels">
+<item>Nenhum</item>
+<item>Ajustar à largura</item>
+<item>Ajustar à altura</item>
+<item>Ajustar à tela</item>
+    </string-array>
+
+    <string-array name="direction_labels">
+<item>Esquerda para direita</item>
+<item>Direita para esquerda</item>
+    </string-array>
+
+    <string-array name="action_labels">
+<item>Próximo</item>
+<item>Anterior</item>
+<item>Zoom in</item>
+<item>Zoom out</item>
+<item>Rotacionar</item>
+<item>Deslizar para cima</item>
+<item>Deslizar para baixo</item>
+<item>Deslizar para esquerda</item>
+<item>Deslizar para direita</item>
+<item>Primeira</item>
+<item>Última</item>
+<item>Ajustar à largura</item>
+<item>Ajustar à altura</item>
+<item>Ajustar à tela</item>
+<item>Abrir navegador de páginas</item>
+<item>Abrir SD</item>
+<item>Abrir configurações</item>
+<item>Menu</item>
+<item>Fechar</item>
+<item>Nenhum</item>
+    </string-array>
+
+</resources>

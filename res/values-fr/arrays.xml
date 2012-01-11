@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+    <string-array name="transition_mode_labels">
+<item>Translation</item>
+<item>Fondu</item>
+<item>Aucun</item>
+    </string-array>
+
+    <string-array name="scale_mode_labels">
+<item>Aucun</item>
+<item>Ajuster la largeur</item>
+<item>Ajuster la hauteur</item>
+<item>Ajuster à l\'écran</item>
+    </string-array>
+
+    <string-array name="direction_labels">
+<item>De gauche à droite</item>
+<item>De droite à gauche</item>
+    </string-array>
+
+    <string-array name="action_labels">
+<item>Suivant</item>
+<item>Précédent</item>
+<item>Agrandir</item>
+<item>Réduire</item>
+<item>Tourner</item>
+<item>Défiler vers le haut</item>
+<item>Défiler vers le bas</item>
+<item>Défiler vers la gauche</item>
+<item>Défiler vers la droite</item>
+<item>Début</item>
+<item>Fin</item>
+<item>Ajuster la largeur</item>
+<item>Ajuster la hauteur</item>
+<item>Ajuster à l\'écran</item>
+<item>Ouvrir l\'affichage des pages</item>
+<item>Ouvrir le navigateur SD</item>
+<item>Ouvrir les paramètres</item>
+<item>Afficher le menu</item>
+<item>Fermer</item>
+<item>Aucun</item>
+    </string-array>
+
+</resources>

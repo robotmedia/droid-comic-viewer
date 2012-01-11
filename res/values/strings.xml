@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2009 Robot Media SL
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+    <string name="activity_browse_label">Browse screens</string>
+    <string name="activity_sd_browser_label">Select a comic from your SD card</string>
+    <string name="activity_settings_label">Settings</string>
+    <string name="activity_credits_label">Credits</string>
+    <string name="activity_subscribe_label">Subscribe</string>
+
+	<string name="main_intro">Press <b>Menu</b> or fling up to start</string>
+    <string name="item_navigate_title">Go to</string>
+    <string name="item_navigate_shortcut">G</string>
+    <string name="item_first_title">First</string>
+    <string name="item_previous_title">Previous</string>
+    <string name="item_next_title">Next</string>
+    <string name="item_previous_screen_title">Previous screen</string>
+    <string name="item_next_screen_title">Next screen</string>
+    <string name="item_last_title">Last</string>
+    <string name="item_zoom_title">Zoom</string>
+    <string name="item_zoom_in_title">Zoom in</string>
+    <string name="item_zoom_out_title">Zoom out</string>
+    <string name="item_fit_width_title">Fit width</string>
+    <string name="item_fit_height_title">Fit height</string>
+    <string name="item_actual_size">Actual size</string>
+    <string name="item_rotate_title">Rotate</string>
+    <string name="item_browse_title">Browse</string>
+    <string name="item_share_title">Share</string>
+    <string name="item_share_screen_title">Share this screen</string>
+    <string name="item_set_as_title">Set as</string>
+    <string name="item_share_app_title">Recommend ACV</string>
+    <string name="item_open_title">Open</string>
+    <string name="item_settings_title">Settings</string>
+    <string name="menu_close_title">Close</string>
+    
+    <string name="dialog_no_sd_title">Warning</string>
+    <string name="dialog_no_sd_text">No SD card was found.\n\nPlease insert or mount your SD card to open comics.</string>
+    <string name="dialog_page_progress_title">Loading...</string>
+    <string name="dialog_page_progress_text">Loading screen @number. Please wait...</string>
+    <string name="dialog_loading_progress_title">Loading...</string>
+    <string name="dialog_loading_progress_text">Loading comic archive from SD card.</string>
+    <string name="dialog_load_error_title">Oops!</string>
+    <string name="dialog_load_error_text">An error has occurred while loading. If you need help, please contact support@androidcomics.net.</string>
+    <string name="dialog_page_error_title">Oops!</string>
+	<string name="dialog_page_error_text">Unable to load image. This generally happens because of an out of memory error.\n\nFor CBR/RAR files, try extracting into a folder and open the folder with a long tap.\n\nFor the rest, closing ACV and trying again after a while might help.</string>
+    <string name="dialog_flip_controls_title">Flip controls?</string>
+    <string name="dialog_flip_controls_text">Flip navigation controls to adapt them to current reading direction?</string>
+    <string name="dialog_unavailable_title">App unavailable</string>
+    <string name="dialog_unavailable_text">The requested app is either not yet available or unreacheable.\n\nWould you like to subscribe to our newsletter and be notified of future releases?</string>
+    
+    <string name="sd_browser_back">Back to parent folder</string>
+    <string name="sd_browser_empty">Empty folder</string>
+    <string name="sd_browser_download">Download comics</string>
+    
+    <string name="screen_browser_go">Go</string>
+    
+	<string name="category_controls_title">Controls</string>
+    <string name="preference_map_actions_title">Custom controls</string>
+    <string name="preference_map_actions_summary">Set the action of each control event</string>   
+    <string name="preference_single_tap_title">Single tap</string>
+    <string name="preference_double_tap_title">Double tap</string>
+    <string name="preference_long_tap_title">Long press</string>
+    <string name="preference_trackball_up_title">Trackball up</string>
+    <string name="preference_trackball_down_title">Trackball down</string>
+    <string name="preference_trackball_left_title">Trackball left</string>
+    <string name="preference_trackball_right_title">Trackball right</string>
+    <string name="preference_trackball_center_title">Trackball center</string>
+    <string name="preference_fling_up_title">Fling up</string>
+    <string name="preference_fling_down_title">Fling down</string>
+    <string name="preference_fling_left_title">Fling left</string>
+    <string name="preference_fling_right_title">Fling right</string>
+    <string name="preference_corner_bottom_left_title">Bottom left corner tap</string>
+    <string name="preference_corner_bottom_right_title">Bottom right corner tap</string>
+    <string name="preference_corner_top_left_title">Top left corner tap</string>
+    <string name="preference_corner_top_right_title">Top right corner tap</string>
+    <string name="preference_back_title">Back</string>
+    <string name="preference_volume_up_title">Volume up</string>
+    <string name="preference_volume_down_title">Volume down</string>
+    <string name="preference_control_defaults_title">Restore defaults</string>
+    <string name="preference_control_defaults_summary">Reset action settings to default values</string>   
+    <string name="preference_direction_title">Reading direction</string>
+    <string name="preference_direction_summary">Choose between left-to-right or right-to-left</string>   
+    <string name="preference_auto_rotate_title">Auto-rotate</string>
+    <string name="preference_auto_rotate_summary">Rotate image when phone orientation changes</string>   
+    <string name="category_visual_title">Visual</string>
+    <string name="preference_transition_mode_title">Transition mode</string>
+    <string name="preference_transition_mode_summary">Choose the animation for screen transitions</string>
+    <string name="preference_scale_mode_title">Scale mode</string>
+    <string name="preference_scale_mode_summary">Choose how images will be scaled on the screen</string>   
+    <string name="preference_show_number_title">Show screen number</string>
+    <string name="preference_show_number_summary">Briefly shows the screen number in a corner</string>   
+    <string name="preference_invisible_corners_title">Invisible corners</string>
+    <string name="preference_invisible_corners_summary">Make corner buttons invisible</string>
+    <string name="preference_brigthness_title">Brightness</string>
+    <string name="preference_brigthness_summary">Adjust screen brightness</string>
+    <string name="preference_default_brightness">Default brightness</string>
+ 
+    <string name="category_memory_title">History</string>
+    <string name="preference_load_last_title">Load last comic</string>
+    <string name="preference_load_last_summary">Load last viewed comic on startup</string>
+    <string name="preference_clear_history_title">Clear history</string>
+    <string name="preference_clear_history_summary">Clear all viewing history</string>
+ 
+    <string name="category_support_title">Support</string>
+    <string name="preference_low_memory_title">Low memory mode</string>
+    <string name="preference_low_memory_summary">Disable preloading and transitions</string>  
+    <string name="preference_manual_title">User manual</string>
+    <string name="preference_manual_summary">Open the user manual in the Browser</string>
+    <string name="preference_report_problem_title">Report problem</string>
+    <string name="preference_report_problem_summary">Report a problem through Bug Reporter</string>
+    
+    <string name="dialog_bug_reporter_title"><b>Bug Reporter</b> required</string>
+    <string name="dialog_bug_reporter_text">This feature requires the <b>Bug Reporter</b> app.\n\nOpen the Market to install it?</string>    
+    
+    <string name="category_about_title">About</string>
+    <string name="preference_acv_listing_title">Android Market listing</string>
+    <string name="preference_acv_listing_summary">Open Droid Comic Viewer listing on the Android Market</string>  
+    <string name="preference_version_title">Version</string>
+    <string name="preference_version_summary">Droid Comic Viewer v</string>  
+    <string name="preference_contact_title">Contact</string>
+    <string name="preference_contact_summary">Email Robot Comics</string>                       
+    <string name="preference_site_title">Website</string>
+    <string name="preference_site_summary">Open Robot Comics\' website in the Browser</string>                       
+    <string name="preference_subscribe_summary">Receive news about ACV and mobile comics releases</string>                       
+    <string name="category_acv_format_title">ACV format</string>
+    <string name="preference_acv_frames_title">Frames</string>
+    <string name="preference_acv_frames_summary">Frame by frame navigation</string>
+    <string name="preference_acv_vibration_title">Vibration</string>
+    <string name="preference_acv_vibration_summary">Vibration and screen tilt effects</string>
+    <string name="preference_acv_autoplay_title">Autoplay</string>
+    <string name="preference_acv_autoplay_summary">Enable autoplay sequences</string>
+    
+    <!-- Advanced preferences -->
+    <string name="category_advanced_title">Advanced</string>
+    <string name="preference_max_image_width_title">Max image width</string>
+    <string name="preference_max_image_width_dialog_title">Max image width</string>
+    <string name="preference_max_image_width_dialog_message">Set the maximum image width. Wider images will be downscaled.</string>
+    <string name="preference_max_image_height_title">Max image height</string>
+    <string name="preference_max_image_height_dialog_title">Max image height</string>
+    <string name="preference_max_image_height_dialog_message">Set the maximum image height. Taller images will be downscaled.</string>
+
+	<!-- Subscribe -->
+    <string name="txt_subscribe_intro">Subscribe to our email newsletter to be notified of future releases.</string>
+    <string name="btn_subscribe_submit">Submit</string>
+   	<string name="dialog_subscribe_success_title">Subscription in process</string>
+    <string name="dialog_subscribe_success_text">You will receive an activation email shortly.</string>
+    <string name="dialog_subscribe_error_title">Ooops!</string>
+    <string name="dialog_subscribe_error_text">The newsletter service is either unreachable or unavailable. Please try again later.</string>
+	<string name="dialog_email_error_title">Invalid email</string>
+    <string name="dialog_email_error_text">Please enter a valid email address.</string>
+
+	<!-- Share -->
+    <string name="share_app_title">Read comics in your Android!</string>
+    <string name="share_app_message">Check out Droid Comic Viewer, the #1 comics and manga reader for Android http://bit.ly/3dlKI5</string>
+    <string name="share_screen_title">Screen from @comic</string>
+    <string name="share_screen_message">Check out this screen from @comic sent from Droid Comic Viewer http://bit.ly/3dlKI5</string>
+
+	<!-- Changelog -->
+	<string name="dialog_changelog_title">Changelog</string>
+	<string name="changelog_english_only">For practical purposes the changelog is only available in English. Sorry for any inconvenience.</string>
+	
+</resources>
