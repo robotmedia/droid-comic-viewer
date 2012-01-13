@@ -30,14 +30,14 @@ import net.robotmedia.acv.logic.SetComicScreenAsTask;
 import net.robotmedia.acv.logic.ShareViewTask;
 import net.robotmedia.acv.logic.TrackingManager;
 import net.robotmedia.acv.provider.HistoryManager;
-import net.robotmedia.acv.ui.settings.SettingsActivity;
+import net.robotmedia.acv.ui.settings.SettingsActivityPostHC;
+import net.robotmedia.acv.ui.settings.SettingsActivityPreHC;
 import net.robotmedia.acv.ui.widget.ComicView;
 import net.robotmedia.acv.ui.widget.ComicViewListener;
 import net.robotmedia.acv.ui.widget.DialogFactory;
 import net.robotmedia.acv.utils.FileUtils;
-import net.robotmedia.acv.utils.Reflect;
 import net.robotmedia.acv.utils.MathUtils;
-
+import net.robotmedia.acv.utils.Reflect;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -48,21 +48,22 @@ import android.content.res.Configuration;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.GestureDetector.OnGestureListener;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -996,8 +997,11 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	}
 	
 	private void startSettingsActivity() {
-		Intent myIntent = new Intent(this, SettingsActivity.class);
-		startActivityForResult(myIntent, Constants.SETTINGS_CODE);
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+			startActivityForResult(new Intent(this, SettingsActivityPreHC.class), Constants.SETTINGS_CODE);
+		} else {
+			startActivityForResult(new Intent(this, SettingsActivityPostHC.class), Constants.SETTINGS_CODE);
+		}
 	}
 	
 	private void startSubscribeActivity() {

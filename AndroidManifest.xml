@@ -51,8 +51,10 @@
 		<activity android:name="net.robotmedia.acv.ui.SDBrowserActivity" android:label="@string/activity_sd_browser_label"
 			android:screenOrientation="behind">
 		</activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.SettingsActivity" android:label="@string/activity_settings_label">
+		<activity android:name="net.robotmedia.acv.ui.settings.SettingsActivityPreHC" android:label="@string/activity_settings_label">
 		</activity>
+		<activity android:name="net.robotmedia.acv.ui.settings.SettingsActivityPostHC" android:label="@string/activity_settings_label">
+        </activity>
 		<activity android:name="net.robotmedia.acv.ui.settings.VisualSettingsActivity" android:label="@string/category_visual_title">
 		</activity>
 		<activity android:name="net.robotmedia.acv.ui.settings.ControlSettingsActivity" android:label="@string/category_controls_title">

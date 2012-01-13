@@ -21,10 +21,10 @@ import net.robotmedia.acv.logic.TrackingManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
-public class ExtendedPreferenceActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+public class ExtendedPreferenceFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
 
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
 	
@@ -37,7 +37,7 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 	}
 	
 	private void showValues() {
-		final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
 		for (String key : showValueOnSummaryKeys) {
 			final String value = sharedPreferences.getString(key, "");
 			final Preference preference = this.findPreference(key);
@@ -49,30 +49,30 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 	public void onStart()
 	{
 	   super.onStart();
-	   TrackingManager.onStart(this);
-	   TrackingManager.pageView(String.valueOf(this.getTitle()));
+	   TrackingManager.onStart(this.getActivity());
+	   TrackingManager.pageView(String.valueOf(this.getActivity().getTitle()));
 	}
 	
 	@Override
 	public void onStop()
 	{
 	   super.onStop();
-	   TrackingManager.onStop(this);
+	   TrackingManager.onStop(this.getActivity());
 	}
 	
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		showValues();
 		// Set up a listener whenever a key changes
-		PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+		PreferenceManager.getDefaultSharedPreferences(this.getActivity()).registerOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		super.onPause();
 		// Unregister the listener whenever a key changes
-		PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+		PreferenceManager.getDefaultSharedPreferences(this.getActivity()).unregisterOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override

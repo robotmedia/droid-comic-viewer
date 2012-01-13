@@ -30,9 +30,8 @@
 			android:summary="@string/preference_version_summary">
 		</Preference>
 		<Preference android:key="credits" android:title="@string/activity_credits_label">
-				<intent
-                  android:action="android.intent.action.MAIN"
-                 android:targetPackage="net.androidcomics.acv"
-                  android:targetClass="net.androidcomics.acv.Credits" />
+				<intent android:action="android.intent.action.MAIN"
+                        android:targetPackage="net.androidcomics.acv"
+                        android:targetClass="net.robotmedia.acv.ui.CreditsActivity" />
 		</Preference>
 </PreferenceScreen>
