@@ -25,9 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import de.innosystec.unrar.Archive;
-import de.innosystec.unrar.rarfile.FileHeader;
-import de.innosystec.unrar.unpack.decode.Compress;
+import com.github.junrar.Archive;
+import com.github.junrar.rarfile.FileHeader;
+import com.github.junrar.unpack.decode.Compress;
 
 import net.robotmedia.acv.logic.TrackingManager;
 import net.robotmedia.acv.utils.FileUtils;

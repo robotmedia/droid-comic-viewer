@@ -30,28 +30,28 @@ import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
 import net.robotmedia.acv.Constants;
 import net.robotmedia.acv.utils.FileUtils;
 import net.robotmedia.acv.utils.StringUtils;
-import net.robotmedia.acv.utils.MathUtils;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Picture;
 import android.graphics.Rect;
-import android.graphics.Bitmap.Config;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.webkit.WebView.PictureListener;
+import android.webkit.WebViewClient;
 
 public class ACVComic extends Comic {
 
