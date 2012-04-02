@@ -22,5 +22,4 @@
     <string name="site_url">http://www.robotcomics.net/?utm_source=android&amp;utm_medium=site_link&amp;utm_campaign=acv</string>
     <string name="contact_uri">mailto:contact@robotcomics.net</string>
     <string name="manual_uri">http://www.robotcomics.net/android-comic-viewer/user-manual/?utm_source=android&amp;utm_medium=user_manual_link&amp;utm_campaign=acv</string>	
-    <string name="flurry_key"></string>
 </resources>

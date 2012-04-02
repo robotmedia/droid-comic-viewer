@@ -16,3 +16,4 @@ gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
+res/values/private_s.xml
