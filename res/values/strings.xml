@@ -63,7 +63,8 @@
     
     <string name="sd_browser_back">Back to parent folder</string>
     <string name="sd_browser_empty">Empty folder</string>
-    <string name="sd_browser_download">Download comics</string>
+    <string name="sd_browser_open">OPEN</string>
+    <string name="sd_browser_recent">RECENT</string>
     
     <string name="screen_browser_go">Go</string>
     

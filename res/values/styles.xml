@@ -28,9 +28,13 @@
 		<item name="android:textSize">10sp</item>
 		<item name="android:textColor">#CCC</item>
 	</style>
-	
+
 	<style name="Theme.image2">
 		<item name="android:padding">1px</item>
 	</style>
 
+	<style name="Theme.tabWidget">
+		<item name="android:gravity">fill_horizontal|center_vertical</item>
+		<item name="android:divider">@android:drawable/divider_horizontal_bright</item>
+	</style>
 </resources>

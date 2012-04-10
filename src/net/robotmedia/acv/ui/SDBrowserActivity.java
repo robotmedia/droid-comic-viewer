@@ -17,51 +17,192 @@ package net.robotmedia.acv.ui;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.Constants;
 import net.robotmedia.acv.logic.PreferencesController;
 import net.robotmedia.acv.utils.FileUtils;
-
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ListActivity;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
+import android.app.*;
+import android.content.*;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.view.*;
+import android.widget.*;
+import android.widget.TabHost.OnTabChangeListener;
 
-public class SDBrowserActivity extends ListActivity {
+public class SDBrowserActivity extends TabActivity {
+
+	private static final int NO_SD = 3;
+	private static final String TAB_BROWSER = "tab_browser";
+	private static final String TAB_RECENT = "tab_recent";
+
+	private static HashMap<String, Integer> supportedExtensions = null;
+	private TabHost tabHost;
+	private FrameLayout tabBrowser, tabRecent;
+	private ListView browserListView;
+	private ListView recentListView;
+	private TextView recentTextViewEmpty;
+	private LayoutInflater mInflater;
+	private PreferencesController preferencesController;
+
+	private void changeDirectory(File directory) {
+		this.setTitle(directory.getName());
+		preferencesController.savePreference(Constants.COMICS_PATH_KEY, directory.getAbsolutePath());
+		browserListView.setAdapter(new ListAdapter(SDBrowserActivity.this, directory, R.layout.sd_item_empty));
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		supportedExtensions = Constants.getSupportedExtensions(this);
+		preferencesController = new PreferencesController(this);
+
+		setContentView(R.layout.sd_browser);
+
+		tabHost = getTabHost();
+		tabBrowser = (FrameLayout) findViewById(R.id.sdBrowserTabBrowser);
+		tabRecent = (FrameLayout) findViewById(R.id.sdBrowserTabRecent);
+
+		tabHost.addTab(tabHost.newTabSpec(TAB_BROWSER).setIndicator(getIndicator(R.string.sd_browser_open)).setContent(R.id.sdBrowserTabBrowser));
+		tabHost.addTab(tabHost.newTabSpec(TAB_RECENT).setIndicator(getIndicator(R.string.sd_browser_recent)).setContent(R.id.sdBrowserTabRecent));
+
+		tabHost.setCurrentTab(0);
+
+		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+			@Override
+			public void onTabChanged(String tabId) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		String storageState = Environment.getExternalStorageState();
+		if (Environment.MEDIA_MOUNTED.equals(storageState)) {
+
+			Intent intent = getIntent();
+			String comicsPath = intent.getStringExtra(Constants.COMICS_PATH_KEY);
+			File directory;
+			if (comicsPath != null) { // TODO simplify
+				directory = new File(comicsPath);
+				if (!directory.isDirectory()) {
+					directory = Environment.getExternalStorageDirectory();
+				}
+			} else {
+				directory = Environment.getExternalStorageDirectory();
+			}
+
+			mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+			browserListView = (ListView) tabBrowser.findViewById(android.R.id.list);
+
+			changeDirectory(directory);
+			browserListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+				public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+					File file = (File) parent.getItemAtPosition(position);
+					if ((file != null) && (file.isDirectory())) {
+						String[] images = file.list(new FilenameFilter() {
+							public boolean accept(File dir, String filename) {
+								String ext = FileUtils.getFileExtension(filename);
+								return FileUtils.isImage(ext);
+							}
+						});
+						if (images.length > 0) {
+							setResultAndFinish(file);
+							return true;
+						}
+					}
+					return false;
+				}
+			});
+			browserListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					File file = (File) parent.getItemAtPosition(position);
+					if (file.isDirectory()) {
+						changeDirectory(file);
+					} else if (file.exists()) {
+						setResultAndFinish(file);
+					}
+				}
+			});
+
+		} else {
+			showDialog(NO_SD);
+		}
+	}
+	
+	protected ViewGroup getIndicator(int resourceId) {
+		return getIndicator(getString(resourceId));
+	}
+	
+	protected ViewGroup getIndicator(String text) {
+		LayoutInflater inflater = getLayoutInflater();
+		ViewGroup indicator = (ViewGroup) inflater.inflate(R.layout.sd_browser_tab, null);
+		TextView label = (TextView) indicator.findViewById(R.id.sd_browser_tab_title);
+		label.setText(text); // TODO custom font
+		return indicator;
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case NO_SD:
+			return new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_menu_info_details).setTitle(R.string.dialog_no_sd_title)
+					.setMessage(R.string.dialog_no_sd_text).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							SDBrowserActivity.this.setResult(RESULT_CANCELED);
+							SDBrowserActivity.this.finish();
+						}
+					}).create();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		int code = event.getKeyCode();
+		if (code == KeyEvent.KEYCODE_BACK) {
+			finish();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private void setResultAndFinish(File file) {
+		Intent result = new Intent();
+		String absolutePath = file.getAbsolutePath();
+		result.putExtra(Constants.COMIC_PATH_KEY, absolutePath);
+		setResult(RESULT_OK, result);
+		finish();
+	}
 
 	public class ListAdapter extends BaseAdapter {
 
 		ArrayList<File> contents = new ArrayList<File>();
 		private File current;
+		private View emptyView;
+		private boolean isEmpty;
 
-		public ListAdapter(Context context, File current) {
+		public ListAdapter(Context context, File current, int emptyResourceId) {
 			this.current = current;
+
+			if (emptyResourceId != 0) {
+				LayoutInflater inflater = getLayoutInflater();
+				emptyView = inflater.inflate(emptyResourceId, null);
+			} else {
+				TextView t = new TextView(context);
+				t.setText(R.string.sd_browser_empty);
+				emptyView = t;
+			}
+
 			filterContents();
 		}
 
 		private void filterContents() {
 			String[] allContents = current.list();
-			TreeMap<String, File> auxContents = new TreeMap<String, File>();
+			TreeMap<String, File> filteredContents = new TreeMap<String, File>();
 			contents = new ArrayList<File>();
 			File parent = current.getParentFile();
 			if (parent != null) {
@@ -75,25 +216,34 @@ public class SDBrowserActivity extends ListActivity {
 						String extension = FileUtils.getFileExtension(contentName);
 						if (supportedExtensions.containsKey(extension.toLowerCase())) {
 							File contentFile = new File(path, contentName);
-							auxContents.put(contentFile.getName().toLowerCase(), contentFile);
+							filteredContents.put(contentFile.getName().toLowerCase(), contentFile);
 						} else {
 							File contentFile = new File(path, contentName);
 							if (contentFile.isDirectory()) {
-								auxContents.put(contentFile.getName().toLowerCase(), contentFile);
+								filteredContents.put(contentFile.getName().toLowerCase(), contentFile);
 							}
 						}
 					}
 				}
 			}
-			contents.addAll(auxContents.values());
+			isEmpty = (filteredContents.size() == 0);
+			contents.addAll(filteredContents.values());
 		}
 
 		public int getCount() {
-			return contents.size();
+			if (isEmpty) {
+				return contents.size() + 1;
+			} else {
+				return contents.size();
+			}
 		}
 
-		public Object getItem(int position) {
-			return contents.get(position);
+		public File getItem(int position) {
+			if (position < contents.size()) {
+				return contents.get(position);
+			} else {
+				return null;
+			}
 		}
 
 		public long getItemId(int position) {
@@ -101,13 +251,18 @@ public class SDBrowserActivity extends ListActivity {
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {
-			if (position == 0 && current.getParent() != null) { // First element
-				TextView textView = (TextView) mInflater.inflate(
-						android.R.layout.simple_list_item_1, parent, false);
+			// First element
+			if (position == 0 && current.getParent() != null) {
+				TextView textView = (TextView) mInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
 				textView.setText(R.string.sd_browser_back);
 				textView.setTag("back");
 				return textView;
 			} else {
+
+				if (isEmpty) {
+					return emptyView;
+				}
+
 				ViewHolder holder;
 				if (convertView == null || !(convertView.getTag() instanceof ViewHolder)) {
 					convertView = mInflater.inflate(R.layout.sd_item, parent, false);
@@ -116,7 +271,7 @@ public class SDBrowserActivity extends ListActivity {
 					holder.icon = (ImageView) convertView.findViewById(R.id.sd_item_icon);
 					holder.name = (TextView) convertView.findViewById(R.id.sd_item_name);
 					holder.size = (TextView) convertView.findViewById(R.id.sd_item_size);
-					
+
 					convertView.setTag(holder);
 				} else {
 					holder = (ViewHolder) convertView.getTag();
@@ -152,139 +307,4 @@ public class SDBrowserActivity extends ListActivity {
 		TextView name;
 		TextView size;
 	}
-	
-	private static final int NO_SD = 3;
-
-	private static HashMap<String, Integer> supportedExtensions = null;
-	private ListView listView;
-	private LayoutInflater mInflater;
-	private PreferencesController preferencesController;
-
-	private void changeDirectory(File directory) {
-		this.setTitle(directory.getName());
-		preferencesController.savePreference(Constants.COMICS_PATH_KEY, directory.getAbsolutePath());
-		listView.setAdapter(new ListAdapter(SDBrowserActivity.this, directory));
-	}
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.sd_browser);
-		supportedExtensions = Constants.getSupportedExtensions(this);
-		preferencesController = new PreferencesController(this);
-		
-		String storageState = Environment.getExternalStorageState();
-		if (Environment.MEDIA_MOUNTED.equals(storageState)) {
-			
-	        Intent intent = getIntent();
-	        String comicsPath = intent.getStringExtra(Constants.COMICS_PATH_KEY);
-	        File directory;
-			if (comicsPath != null) {
-				directory = new File(comicsPath);
-				if (!directory.isDirectory()) {
-					directory = Environment.getExternalStorageDirectory();
-				}
-			} else {
-				directory = Environment.getExternalStorageDirectory();
-			}
-
-			mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-			Button btn_download = (Button) findViewById(R.id.btn_download);
-			btn_download.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					Intent intent = new Intent(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse(getString(R.string.market_uri)));
-					startActivity(intent);
-				}
-			});
-			Button btn_cancel = (Button) findViewById(R.id.btn_cancel);
-			btn_cancel.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					finish();
-				}
-			});
-			listView = getListView();
-			changeDirectory(directory);
-			listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-				public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-					File file = (File) parent.getItemAtPosition(position);
-					if ((file != null) && (file.isDirectory())) {
-						String[] images = file.list(new FilenameFilter() {
-							public boolean accept(File dir, String filename) {
-								String ext = FileUtils.getFileExtension(filename);
-								return FileUtils.isImage(ext);
-							}});
-						if (images.length > 0) {
-							setResultAndFinish(file);
-							return true;							
-						}
-					}
-					return false;
-				}
-			});
-			listView
-					.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-						public void onItemClick(AdapterView<?> parent,
-								View view, int position, long id) {
-							File file = (File) parent
-									.getItemAtPosition(position);
-							if (file.isDirectory()) {
-								changeDirectory(file);
-							} else {
-								setResultAndFinish(file);
-							}
-						}
-					});
-		} else {
-			showDialog(NO_SD);
-		}
-	}
-
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		switch (id) {
-		case NO_SD:
-			return new AlertDialog.Builder(this).setIcon(
-					android.R.drawable.ic_menu_info_details).setTitle(
-					R.string.dialog_no_sd_title).setMessage(
-					R.string.dialog_no_sd_text).setPositiveButton(
-					android.R.string.ok, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog,
-								int whichButton) {
-							SDBrowserActivity.this.setResult(RESULT_CANCELED);
-							SDBrowserActivity.this.finish();
-						}
-					}).create();
-		}
-		return null;
-	}
-	
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		int code = event.getKeyCode();
-		if (code == KeyEvent.KEYCODE_BACK) {
-			if (listView.findViewWithTag("back") != null) {
-				// FIXME: Assumes the back option will be at the beginning
-				File file = (File) listView.getItemAtPosition(0);
-				if (file != null && file.isDirectory()) { 
-					changeDirectory(file);
-					return true;
-				}
-			}
-		}
-		return super.onKeyDown(keyCode, event);
-	}
-		
-	private void setResultAndFinish(File file) {
-		Intent result = new Intent();
-		String absolutePath = file.getAbsolutePath();
-		result.putExtra(Constants.COMIC_PATH_KEY, absolutePath);
-		setResult(RESULT_OK, result);
-		finish();
-	}
-	
 }

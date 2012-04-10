@@ -18,7 +18,7 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="8px"
+    android:padding="8dp"
     >
     
     <ImageView android:id="@+id/sd_item_icon"

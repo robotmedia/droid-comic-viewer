@@ -14,41 +14,51 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent">
-    
-    <FrameLayout
-        android:layout_width="fill_parent" 
-        android:layout_height="0dip"
-        android:layout_weight="1" >
-		  <ListView android:id="@android:id/list"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"/>
-		  <TextView android:id="@android:id/empty"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:padding="15px"
-		        android:text="@string/sd_browser_empty"/>          
-    </FrameLayout>
-
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
     <LinearLayout
-		android:orientation="horizontal"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-	    <Button
-	    	android:layout_weight="1"
-	        android:id="@+id/btn_download"
+        android:id="@+id/sdBrowserTabHostContent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+    	<TabWidget
+	        android:id="@android:id/tabs"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:text="@string/sd_browser_download" />
-	    <Button
-	    	android:id="@+id/btn_cancel"
-	    	android:layout_weight="1"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@android:string/cancel" />
-	 </LinearLayout>
-
-</LinearLayout>
+	        style="@style/Theme.tabWidget"
+	        />
+    	<FrameLayout
+    	    android:id="@android:id/tabcontent"
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="fill_parent"
+    	    >
+    	    <FrameLayout
+    	        android:id="@+id/sdBrowserTabBrowser"
+		        android:layout_width="fill_parent" 
+		        android:layout_height="fill_parent"
+		        >
+				<ListView android:id="@android:id/list"
+				      android:layout_width="fill_parent"
+				      android:layout_height="wrap_content"/>
+		    </FrameLayout>
+		    <FrameLayout
+    	        android:id="@+id/sdBrowserTabRecent"
+		        android:layout_width="fill_parent" 
+		        android:layout_height="fill_parent"
+		        >
+				<ListView android:id="@android:id/list"
+				      android:layout_width="fill_parent"
+				      android:layout_height="wrap_content"/>
+				<TextView android:id="@android:id/empty"
+				      android:layout_width="fill_parent"
+				      android:layout_height="wrap_content"
+				      android:padding="15dp"
+				      android:text="@string/sd_browser_empty"/>
+		    </FrameLayout>
+    	</FrameLayout>
+    </LinearLayout>
+</TabHost>

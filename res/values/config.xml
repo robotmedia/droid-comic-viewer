@@ -17,7 +17,6 @@
 <resources>
     <string name="app_name">ACV</string>
     <string name="credits"><b>Lead developer</b>\nHermes Pique\n\n<b>Additional development</b>\nGuillermo Lechuga\n\n<b>High-res launcher icon</b>\nblunden\n\n<b>SD browser icons</b>\nMark James (famfamfam)\n\n<b>Beta testing</b>\nTorX (2)\nTran Lan (2)\nThomas Nixon (2)\nMichael Charlton (1)\n\n<b>Translation</b>\nDavide Borin (Italian)\nClimbatize (French)\nMichał \'Vesper\' Dziewoński (Polish)\nFelippe Montez (Portuguese)</string>
-    <string name="market_uri">market://search?q=Robot%20Comics</string>
     <string name="acv_uri">market://search?q=pname:net.androidcomics.acv</string>
     <string name="site_url">http://www.robotcomics.net/?utm_source=android&amp;utm_medium=site_link&amp;utm_campaign=acv</string>
     <string name="contact_uri">mailto:contact@robotcomics.net</string>
