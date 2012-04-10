@@ -61,15 +61,17 @@ public class SDBrowserActivity extends TabActivity {
 		tabBrowser = (FrameLayout) findViewById(R.id.sdBrowserTabBrowser);
 		tabRecent = (FrameLayout) findViewById(R.id.sdBrowserTabRecent);
 
-		tabHost.addTab(tabHost.newTabSpec(TAB_BROWSER).setIndicator(getIndicator(R.string.sd_browser_open)).setContent(R.id.sdBrowserTabBrowser));
-		tabHost.addTab(tabHost.newTabSpec(TAB_RECENT).setIndicator(getIndicator(R.string.sd_browser_recent)).setContent(R.id.sdBrowserTabRecent));
+		tabHost.addTab(tabHost.newTabSpec(TAB_BROWSER).setIndicator(getIndicator(R.string.sd_browser_open))
+				.setContent(R.id.sdBrowserTabBrowser));
+		tabHost.addTab(tabHost.newTabSpec(TAB_RECENT).setIndicator(getIndicator(R.string.sd_browser_recent))
+				.setContent(R.id.sdBrowserTabRecent));
 
 		tabHost.setCurrentTab(0);
 
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 			@Override
 			public void onTabChanged(String tabId) {
-				if(tabId.contentEquals(TAB_RECENT)) {
+				if (tabId.contentEquals(TAB_RECENT)) {
 					setTitle("");
 				} else {
 					setTitle(currentDirectory.getName());
@@ -126,20 +128,20 @@ public class SDBrowserActivity extends TabActivity {
 			});
 
 			changeDirectory(directory);
-			
+
 			// Setup recent items list
 			recentListView = (ListView) tabRecent.findViewById(android.R.id.list);
 			recentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					File f = new File((String) parent.getItemAtPosition(position));
-					if (f.exists() && !f.isDirectory()) {
-						setResultAndFinish(f);
+					File file = new File((String) parent.getItemAtPosition(position));
+					if (file.exists()) {
+						setResultAndFinish(file);
 					}
 				}
 			});
 			recentListView.setAdapter(new RecentListAdapter(this, R.layout.sd_item_empty));
-			
+
 		} else {
 			showDialog(NO_SD);
 		}
@@ -151,11 +153,11 @@ public class SDBrowserActivity extends TabActivity {
 		preferencesController.savePreference(Constants.COMICS_PATH_KEY, directory.getAbsolutePath());
 		browserListView.setAdapter(new ListAdapter(SDBrowserActivity.this, directory, R.layout.sd_item_empty));
 	}
-	
+
 	protected ViewGroup getIndicator(int resourceId) {
 		return getIndicator(getString(resourceId));
 	}
-	
+
 	protected ViewGroup getIndicator(String text) {
 		ViewGroup indicator = (ViewGroup) mInflater.inflate(R.layout.sd_browser_tab, null);
 		TextView label = (TextView) indicator.findViewById(R.id.sd_browser_tab_title);
@@ -396,7 +398,7 @@ public class SDBrowserActivity extends TabActivity {
 			return convertView;
 		}
 	}
-	
+
 	static class ViewHolder {
 		ImageView icon;
 		TextView name;
