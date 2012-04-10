@@ -37,6 +37,7 @@ public class SDBrowserActivity extends TabActivity {
 	private static final String TAB_BROWSER = "tab_browser";
 	private static final String TAB_RECENT = "tab_recent";
 
+	private File currentDirectory;
 	private static HashMap<String, Integer> supportedExtensions = null;
 	private TabHost tabHost;
 	private FrameLayout tabBrowser, tabRecent;
@@ -45,12 +46,6 @@ public class SDBrowserActivity extends TabActivity {
 	private TextView recentTextViewEmpty;
 	private LayoutInflater mInflater;
 	private PreferencesController preferencesController;
-
-	private void changeDirectory(File directory) {
-		this.setTitle(directory.getName());
-		preferencesController.savePreference(Constants.COMICS_PATH_KEY, directory.getAbsolutePath());
-		browserListView.setAdapter(new ListAdapter(SDBrowserActivity.this, directory, R.layout.sd_item_empty));
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +68,11 @@ public class SDBrowserActivity extends TabActivity {
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 			@Override
 			public void onTabChanged(String tabId) {
-				// TODO Auto-generated method stub
-				
+				if(tabId.contentEquals(TAB_RECENT)) {
+					setTitle("");
+				} else {
+					setTitle(currentDirectory.getName());
+				}
 			}
 		});
 		
@@ -132,6 +130,13 @@ public class SDBrowserActivity extends TabActivity {
 		} else {
 			showDialog(NO_SD);
 		}
+	}
+
+	private void changeDirectory(File directory) {
+		currentDirectory = directory;
+		this.setTitle(directory.getName());
+		preferencesController.savePreference(Constants.COMICS_PATH_KEY, directory.getAbsolutePath());
+		browserListView.setAdapter(new ListAdapter(SDBrowserActivity.this, directory, R.layout.sd_item_empty));
 	}
 	
 	protected ViewGroup getIndicator(int resourceId) {
