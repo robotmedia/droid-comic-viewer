@@ -22,6 +22,7 @@ import java.util.*;
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.Constants;
 import net.robotmedia.acv.logic.PreferencesController;
+import net.robotmedia.acv.provider.HistoryManager;
 import net.robotmedia.acv.utils.FileUtils;
 import android.app.*;
 import android.content.*;
@@ -43,7 +44,6 @@ public class SDBrowserActivity extends TabActivity {
 	private FrameLayout tabBrowser, tabRecent;
 	private ListView browserListView;
 	private ListView recentListView;
-	private TextView recentTextViewEmpty;
 	private LayoutInflater mInflater;
 	private PreferencesController preferencesController;
 
@@ -55,6 +55,7 @@ public class SDBrowserActivity extends TabActivity {
 		preferencesController = new PreferencesController(this);
 
 		setContentView(R.layout.sd_browser);
+		mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		tabHost = getTabHost();
 		tabBrowser = (FrameLayout) findViewById(R.id.sdBrowserTabBrowser);
@@ -75,10 +76,11 @@ public class SDBrowserActivity extends TabActivity {
 				}
 			}
 		});
-		
+
 		String storageState = Environment.getExternalStorageState();
 		if (Environment.MEDIA_MOUNTED.equals(storageState)) {
 
+			// Setup file list
 			Intent intent = getIntent();
 			String comicsPath = intent.getStringExtra(Constants.COMICS_PATH_KEY);
 			File directory;
@@ -91,11 +93,7 @@ public class SDBrowserActivity extends TabActivity {
 				directory = Environment.getExternalStorageDirectory();
 			}
 
-			mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
 			browserListView = (ListView) tabBrowser.findViewById(android.R.id.list);
-
-			changeDirectory(directory);
 			browserListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 				public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -127,6 +125,21 @@ public class SDBrowserActivity extends TabActivity {
 				}
 			});
 
+			changeDirectory(directory);
+			
+			// Setup recent items list
+			recentListView = (ListView) tabRecent.findViewById(android.R.id.list);
+			recentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					File f = new File((String) parent.getItemAtPosition(position));
+					if (f.exists() && !f.isDirectory()) {
+						setResultAndFinish(f);
+					}
+				}
+			});
+			recentListView.setAdapter(new RecentListAdapter(this, R.layout.sd_item_empty));
+			
 		} else {
 			showDialog(NO_SD);
 		}
@@ -144,8 +157,7 @@ public class SDBrowserActivity extends TabActivity {
 	}
 	
 	protected ViewGroup getIndicator(String text) {
-		LayoutInflater inflater = getLayoutInflater();
-		ViewGroup indicator = (ViewGroup) inflater.inflate(R.layout.sd_browser_tab, null);
+		ViewGroup indicator = (ViewGroup) mInflater.inflate(R.layout.sd_browser_tab, null);
 		TextView label = (TextView) indicator.findViewById(R.id.sd_browser_tab_title);
 		label.setText(text); // TODO custom font
 		return indicator;
@@ -307,6 +319,84 @@ public class SDBrowserActivity extends TabActivity {
 
 	}
 
+	// TODO refactor both list adapters
+	public class RecentListAdapter extends BaseAdapter {
+		ArrayList<String> contents = new ArrayList<String>();
+		private View emptyView;
+		private boolean isEmpty;
+
+		public RecentListAdapter(Context context, int emptyResourceId) {
+			if (emptyResourceId != 0) {
+				LayoutInflater inflater = getLayoutInflater();
+				emptyView = inflater.inflate(emptyResourceId, null);
+			} else {
+				TextView t = new TextView(context);
+				t.setText(R.string.sd_browser_empty);
+				emptyView = t;
+			}
+
+			populate();
+		}
+
+		private void populate() {
+			contents.clear();
+			List<String> lastFiles = HistoryManager.getInstance(SDBrowserActivity.this).getRecentFiles();
+			contents.addAll(lastFiles);
+		}
+
+		public int getCount() {
+			return contents.size();
+		}
+
+		public String getItem(int position) {
+			return contents.get(position);
+		}
+
+		public long getItemId(int position) {
+			return position;
+		}
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+			if (isEmpty) {
+				return emptyView;
+			}
+
+			ViewHolder holder;
+			if (convertView == null || !(convertView.getTag() instanceof ViewHolder)) {
+				convertView = mInflater.inflate(R.layout.sd_item, parent, false);
+				holder = new ViewHolder();
+
+				holder.icon = (ImageView) convertView.findViewById(R.id.sd_item_icon);
+				holder.name = (TextView) convertView.findViewById(R.id.sd_item_name);
+				holder.size = (TextView) convertView.findViewById(R.id.sd_item_size);
+
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+
+			File file = new File(contents.get(position));
+			String name = file.getName();
+			String extension = FileUtils.getFileExtension(name);
+			int iconId;
+			if (supportedExtensions.containsKey(extension)) {
+				iconId = supportedExtensions.get(extension);
+			} else {
+				iconId = R.drawable.folder;
+			}
+			holder.icon.setImageResource(iconId);
+			holder.name.setText(name);
+			if (file.isDirectory()) {
+				holder.size.setVisibility(View.GONE);
+			} else {
+				holder.size.setVisibility(View.VISIBLE);
+				long size = file.length() / 1024;
+				holder.size.setText(String.valueOf(size) + " KB");
+			}
+			return convertView;
+		}
+	}
+	
 	static class ViewHolder {
 		ImageView icon;
 		TextView name;

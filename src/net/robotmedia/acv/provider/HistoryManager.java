@@ -16,6 +16,7 @@
 package net.robotmedia.acv.provider;
 
 import java.io.File;
+import java.util.List;
 
 import android.content.Context;
 
@@ -64,6 +65,10 @@ public class HistoryManager {
 	
 	public String getLast() {
 		return mDB.selectMostRecentFile();
+	}
+	
+	public List<String> getRecentFiles() {
+		return mDB.getRecentFiles();
 	}
 	
 }

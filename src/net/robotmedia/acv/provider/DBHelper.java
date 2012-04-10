@@ -15,7 +15,7 @@
  ******************************************************************************/
 package net.robotmedia.acv.provider;
 
-import java.util.Date;
+import java.util.*;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -105,6 +105,23 @@ public class DBHelper {
 		   } else {
 			   return null;
 		   }
+	   }
+
+	   public List<String> getRecentFiles() {
+		   ArrayList<String> files = new ArrayList<String>();
+
+		   Cursor cursor = mDB.query(DBOpenHelper.FILES_TABLE, new String[] { DBOpenHelper.PATH_COLUMN }, 
+		  	        null, null, null, null, DBOpenHelper.OPENED_COLUMN + " desc", "10");
+		   if (cursor.moveToFirst()) {
+			   do {
+				   String path = cursor.getString(0);
+				   files.add(path);
+			   } while(cursor.moveToNext());
+
+			   cursor.close();
+		   }
+
+		   return files;
 	   }
 	
 }

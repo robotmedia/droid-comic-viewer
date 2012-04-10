@@ -53,11 +53,6 @@
 				<ListView android:id="@android:id/list"
 				      android:layout_width="fill_parent"
 				      android:layout_height="wrap_content"/>
-				<TextView android:id="@android:id/empty"
-				      android:layout_width="fill_parent"
-				      android:layout_height="wrap_content"
-				      android:padding="15dp"
-				      android:text="@string/sd_browser_empty"/>
 		    </FrameLayout>
     	</FrameLayout>
     </LinearLayout>
