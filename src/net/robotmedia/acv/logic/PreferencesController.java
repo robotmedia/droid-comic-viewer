@@ -43,14 +43,16 @@ public class PreferencesController {
 	@SuppressWarnings("deprecation")
 	public void legacy() {
 		File legacyTempPath = new File(Environment.getExternalStorageDirectory(), Constants.LEGACY_TEMP_PATH);
-		String[] files = legacyTempPath.list();
-		if (files != null) {
-			for (int i = 0; i < files.length; i++) {
-				File file = new File(legacyTempPath, files[i]);
-				file.delete();
+		if(legacyTempPath.exists()) {
+			String[] files = legacyTempPath.list();
+			if (files != null) {
+				for (int i = 0; i < files.length; i++) {
+					File file = new File(legacyTempPath, files[i]);
+					file.delete();
+				}
 			}
+			legacyTempPath.delete();
 		}
-		legacyTempPath.delete();
 		
 		Editor editor = preferences.edit();
 		if (preferences.contains(Constants.LEGACY_FLING_ENABLED_KEY)) {
