@@ -87,8 +87,11 @@ public class DBHelper {
 	   public int selectFileBookmark(final String path) {
 		   final Cursor cursor = mDB.query(DBOpenHelper.FILES_TABLE, new String[] { DBOpenHelper.BOOKMARK_COLUMN }, DBOpenHelper.PATH_COLUMN + " = ? ", new String[] { path }, null, null, null);
 		   if (cursor.moveToFirst()) {
-			   return cursor.getInt(0);
+			   int bookmark = cursor.getInt(0);
+			   cursor.close();
+			   return bookmark;
 		   } else {
+			   cursor.close();
 			   return 0;
 		   }
 	   }
@@ -101,8 +104,11 @@ public class DBHelper {
 		   Cursor cursor = mDB.query(DBOpenHelper.FILES_TABLE, new String[] { DBOpenHelper.PATH_COLUMN }, 
 		  	        null, null, null, null, DBOpenHelper.OPENED_COLUMN + " desc", "1");
 		   if (cursor.moveToFirst()) {
-			   return cursor.getString(0);
+			   String file = cursor.getString(0);
+			   cursor.close();
+			   return file;
 		   } else {
+			   cursor.close();
 			   return null;
 		   }
 	   }
@@ -118,9 +124,9 @@ public class DBHelper {
 				   files.add(path);
 			   } while(cursor.moveToNext());
 
-			   cursor.close();
 		   }
 
+		   cursor.close();
 		   return files;
 	   }
 	
