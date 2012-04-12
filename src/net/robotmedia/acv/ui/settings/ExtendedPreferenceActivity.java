@@ -52,7 +52,7 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.settings_pre_hc);
+		setContentView(R.layout.settings);
 		
 		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
 		View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
