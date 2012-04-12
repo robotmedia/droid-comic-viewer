@@ -17,23 +17,17 @@ package net.robotmedia.acv.ui;
 
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.comic.Comic;
+import net.robotmedia.acv.logic.AdsManager;
 import net.robotmedia.acv.logic.PreferencesController;
 import net.robotmedia.acv.utils.MathUtils;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Gallery;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -182,5 +176,13 @@ public class BrowseActivity extends ExtendedActivity {
 			}
         	
         });
+        
+        View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
+        RelativeLayout root = (RelativeLayout) findViewById(R.id.pickScreenRoot);
+        if(ad != null) {
+        	RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+        	lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        	root.addView(ad, lp);
+        }
     }
 }

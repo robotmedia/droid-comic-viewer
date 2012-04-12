@@ -14,58 +14,112 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/item_navigate" android:title="@string/item_navigate_title"
-		android:alphabeticShortcut="@string/item_navigate_shortcut"
-		android:visible="false" android:icon="@android:drawable/ic_menu_directions">
-		<menu>
-			<group>
-				<item android:id="@+id/item_first" android:title="@string/item_first_title" />
-				<item android:id="@+id/item_previous_screen" android:title="@string/item_previous_screen_title" />
-				<item android:id="@+id/item_previous" android:title="@string/item_previous_title" />
-				<item android:id="@+id/item_next" android:title="@string/item_next_title" />
-				<item android:id="@+id/item_next_screen" android:title="@string/item_next_screen_title" />
-				<item android:id="@+id/item_last" android:title="@string/item_last_title" />
-			</group>
-		</menu>
-	</item>
-	<item android:id="@+id/item_zoom" android:title="@string/item_zoom_title"
-		android:visible="false" android:alphabeticShortcut="@string/item_zoom_shortcut"
-		android:icon="@android:drawable/ic_menu_search">
-		<menu>
-			<group>
-				<item android:id="@+id/item_zoom_in" android:title="@string/item_zoom_in_title" />
-				<item android:id="@+id/item_zoom_out" android:title="@string/item_zoom_out_title" />
-				<item android:id="@+id/item_fit_width" android:title="@string/item_fit_width_title" />
-				<item android:id="@+id/item_fit_height" android:title="@string/item_fit_height_title" />
-				<item android:id="@+id/item_actual_size" android:title="@string/item_actual_size" />
-			</group>
-		</menu>
-	</item>
-	<item android:id="@+id/item_rotate" android:title="@string/item_rotate_title"
-		android:visible="false" android:icon="@android:drawable/ic_menu_always_landscape_portrait"
-		android:alphabeticShortcut="@string/item_rotate_shortcut" />
-	<item android:id="@+id/item_browse" android:title="@string/item_browse_title"
-		android:visible="false" android:icon="@android:drawable/ic_menu_gallery"
-		android:alphabeticShortcut="@string/item_browse_shortcut" />
-	<item android:id="@+id/item_share" android:title="@string/item_share_title"
-		android:icon="@android:drawable/ic_menu_share"
-		android:alphabeticShortcut="@string/item_share_shortcut">
-		<menu>
-			<group>
-				<item android:id="@+id/item_share_screen" android:title="@string/item_share_screen_title" />
-				<item android:id="@+id/item_set_as" android:title="@string/item_set_as_title" />
-				<item android:id="@+id/item_share_app" android:title="@string/item_share_app_title" />
-			</group>
-		</menu>	
-	</item>
-	<item android:id="@+id/item_open" android:title="@string/item_open_title"
-		android:icon="@drawable/ic_menu_archive"
-		android:alphabeticShortcut="@string/item_open_shortcut" />
-	<item android:id="@+id/item_settings" android:title="@string/item_settings_title"
-		android:icon="@android:drawable/ic_menu_preferences"
-		android:alphabeticShortcut="@string/item_settings_shortcut" />
-	<item android:id="@+id/menu_close" android:title="@string/menu_close_title"
-		android:icon="@android:drawable/ic_menu_close_clear_cancel"
-		android:alphabeticShortcut="@string/menu_close_shortcut" />	
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_menu">
+
+    <item
+        android:id="@+id/item_navigate"
+        android:alphabeticShortcut="@string/item_navigate_shortcut"
+        android:icon="@android:drawable/ic_menu_directions"
+        android:title="@string/item_navigate_title"
+        android:visible="false">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/item_first"
+                    android:title="@string/item_first_title"/>
+                <item
+                    android:id="@+id/item_previous_screen"
+                    android:title="@string/item_previous_screen_title"/>
+                <item
+                    android:id="@+id/item_previous"
+                    android:title="@string/item_previous_title"/>
+                <item
+                    android:id="@+id/item_next"
+                    android:title="@string/item_next_title"/>
+                <item
+                    android:id="@+id/item_next_screen"
+                    android:title="@string/item_next_screen_title"/>
+                <item
+                    android:id="@+id/item_last"
+                    android:title="@string/item_last_title"/>
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/item_zoom"
+        android:alphabeticShortcut="@string/item_zoom_shortcut"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/item_zoom_title"
+        android:visible="false">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/item_zoom_in"
+                    android:title="@string/item_zoom_in_title"/>
+                <item
+                    android:id="@+id/item_zoom_out"
+                    android:title="@string/item_zoom_out_title"/>
+                <item
+                    android:id="@+id/item_fit_width"
+                    android:title="@string/item_fit_width_title"/>
+                <item
+                    android:id="@+id/item_fit_height"
+                    android:title="@string/item_fit_height_title"/>
+                <item
+                    android:id="@+id/item_actual_size"
+                    android:title="@string/item_actual_size"/>
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/item_rotate"
+        android:alphabeticShortcut="@string/item_rotate_shortcut"
+        android:icon="@android:drawable/ic_menu_always_landscape_portrait"
+        android:title="@string/item_rotate_title"
+        android:visible="false"/>
+    <item
+        android:id="@+id/item_browse"
+        android:alphabeticShortcut="@string/item_browse_shortcut"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="@string/item_browse_title"
+        android:visible="false"/>
+    <item
+        android:id="@+id/item_share"
+        android:alphabeticShortcut="@string/item_share_shortcut"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/item_share_title"
+        >
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/item_share_screen"
+                    android:title="@string/item_share_screen_title"/>
+                <item
+                    android:id="@+id/item_set_as"
+                    android:title="@string/item_set_as_title"/>
+                <item
+                    android:id="@+id/item_share_app"
+                    android:title="@string/item_share_app_title"/>
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/item_open"
+        android:alphabeticShortcut="@string/item_open_shortcut"
+        android:icon="@drawable/ic_menu_archive"
+        android:title="@string/item_open_title"/>
+    <item
+        android:id="@+id/item_settings"
+        android:alphabeticShortcut="@string/item_settings_shortcut"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/item_settings_title"
+        />
+    <item
+        android:id="@+id/menu_close"
+        android:alphabeticShortcut="@string/menu_close_shortcut"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/menu_close_title"
+        />
+
 </menu>

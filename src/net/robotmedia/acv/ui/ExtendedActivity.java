@@ -18,9 +18,10 @@ package net.robotmedia.acv.ui;
 import java.util.HashSet;
 
 import net.robotmedia.acv.logic.TrackingManager;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.os.*;
 
 public class ExtendedActivity extends Activity {
 
@@ -32,24 +33,31 @@ public class ExtendedActivity extends Activity {
 	private final static int RESULT_KAMIKAZE = 888;
 
 	private boolean canBeKilledByChild = true;
-	
-	private HashSet<AsyncTask<?, ?, ?>> mTasks = new HashSet<AsyncTask<?,?,?>>();
-	
+
+	private HashSet<AsyncTask<?, ?, ?>> mTasks = new HashSet<AsyncTask<?, ?, ?>>();
+
+	protected ActionBar mActionBar;
+	protected Runnable mHideActionBarRunnable = new Runnable() {
+		@Override
+		public void run() {
+			hideActionBar();
+		}
+	};
+	protected Handler mHandler;
+
 	@Override
-	public void onStart()
-	{
-	   super.onStart();
-	   TrackingManager.onStart(this);
-	   TrackingManager.pageView(String.valueOf(this.getTitle()));
+	public void onStart() {
+		super.onStart();
+		TrackingManager.onStart(this);
+		TrackingManager.pageView(String.valueOf(this.getTitle()));
 	}
-	
+
 	@Override
-	public void onStop()
-	{
-	   super.onStop();
-	   TrackingManager.onStop(this);
+	public void onStop() {
+		super.onStop();
+		TrackingManager.onStop(this);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -59,18 +67,76 @@ public class ExtendedActivity extends Activity {
 			}
 		}
 	}
-	
+
 	@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	super.onActivityResult(requestCode, resultCode, data);
-    	if (canBeKilledByChild) {
-	        if (resultCode == RESULT_DIE) {
-	        	finish();
-	        } else if (resultCode == RESULT_KAMIKAZE) {
-	        	setResult(RESULT_KAMIKAZE);
-	        	finish();
-	        }
-    	}
-    }
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (canBeKilledByChild) {
+			if (resultCode == RESULT_DIE) {
+				finish();
+			} else if (resultCode == RESULT_KAMIKAZE) {
+				setResult(RESULT_KAMIKAZE);
+				finish();
+			}
+		}
+	}
+
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+
+		Looper looper = Looper.getMainLooper();
+		mHandler = new Handler(looper);
+
+		if (isHoneyComb()) {
+			mActionBar = getActionBar();
+			if (mActionBar != null) {
+				mActionBar.setDisplayShowHomeEnabled(false);
+				mActionBar.setDisplayShowTitleEnabled(false);
+				mActionBar.setDisplayHomeAsUpEnabled(false);
+				mActionBar.setDisplayShowCustomEnabled(true);
+				mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			}
+
+			hideActionBar();
+		}
+	}
+
+	protected void showActionBar() {
+		if (isHoneyComb()) {
+			mActionBar.show();
+		}
+	}
+
+	protected void hideActionBar() {
+		if (isHoneyComb()) {
+			mActionBar.hide();
+		}
+	}
+
+	protected void hideActionBarDelayed() {
+		if (isHoneyComb()) {
+			mHandler.removeCallbacks(mHideActionBarRunnable);
+			mHandler.postDelayed(mHideActionBarRunnable, 7000);
+		}
+	}
+	
+	// Return true if the action bar ends up being shown
+	protected boolean toggleControls() {
+		if(isHoneyComb()) {
+			mHandler.removeCallbacks(mHideActionBarRunnable);
+			if(mActionBar.isShowing()) {
+				mActionBar.hide();
+			} else {
+				mActionBar.show();
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected boolean isHoneyComb() {
+		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+	}
 
 }

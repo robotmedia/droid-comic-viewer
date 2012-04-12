@@ -15,61 +15,119 @@
   limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="net.androidcomics.acv" android:versionName="1.4"
-	android:versionCode="41">
-	<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="5" />
-	<supports-screens 
-		android:largeScreens="true"
-		android:normalScreens="true" 
-		android:smallScreens="true" 
-		anyDensity="false" />
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.VIBRATE" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<application android:icon="@drawable/icon" android:label="@string/app_name" android:name="net.robotmedia.acv.ACVApplication">
-		<activity android:name="net.robotmedia.acv.ui.ComicViewerActivity" android:label="@string/app_name"
-			android:screenOrientation="nosensor">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW"></action>
-				<category android:name="android.intent.category.DEFAULT"></category>
-				<data android:mimeType="application/x-cbr" android:scheme="file"></data>
-				<data android:mimeType="application/x-cbz" android:scheme="file"></data>
-				<data android:mimeType="application/x-acv" android:scheme="file"></data>
-			</intent-filter>
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.BrowseActivity" android:label="@string/activity_browse_label"
-			android:screenOrientation="behind" android:theme="@android:style/Theme.Dialog">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.CreditsActivity" android:label="@string/activity_credits_label"
-			android:screenOrientation="behind" android:theme="@android:style/Theme.Dialog">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.SDBrowserActivity" android:label="@string/activity_sd_browser_label"
-			android:screenOrientation="behind">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.SettingsActivityPreHC" android:label="@string/activity_settings_label">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.SettingsActivityPostHC" android:label="@string/activity_settings_label">
+    package="net.androidcomics.acv"
+    android:versionCode="42"
+    android:versionName="1.4.1" >
+
+    <uses-sdk
+        android:minSdkVersion="4"
+        android:targetSdkVersion="13" />
+
+    <supports-screens
+        anyDensity="false"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name="net.robotmedia.acv.ACVApplication"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        >
+        <activity
+            android:name="net.robotmedia.acv.ui.ComicViewerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Theme"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" >
+                </action>
+
+                <category android:name="android.intent.category.DEFAULT" >
+                </category>
+
+                <data
+                    android:mimeType="application/x-cbr"
+                    android:scheme="file" >
+                </data>
+                <data
+                    android:mimeType="application/x-cbz"
+                    android:scheme="file" >
+                </data>
+                <data
+                    android:mimeType="application/x-acv"
+                    android:scheme="file" >
+                </data>
+            </intent-filter>
         </activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.VisualSettingsActivity" android:label="@string/category_visual_title">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.ControlSettingsActivity" android:label="@string/category_controls_title">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.StorageSettingsActivity" android:label="@string/category_memory_title">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.SupportSettingsActivity" android:label="@string/category_support_title">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.AboutSettingsActivity" android:label="@string/category_about_title">
-		</activity>
-		<activity android:name="net.robotmedia.acv.ui.settings.AdvancedSettingsActivity" 
-			android:label="@string/category_about_title" >
-		</activity>
-		<activity android:label="@string/activity_subscribe_label"
-			android:screenOrientation="behind" android:theme="@android:style/Theme.Dialog"
-			android:name="net.robotmedia.acv.ui.SubscribeActivity" />
+        <activity
+            android:name="net.robotmedia.acv.ui.BrowseActivity"
+            android:label="@string/activity_browse_label"
+            >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.CreditsActivity"
+            android:label="@string/activity_credits_label"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.SDBrowserActivity"
+            android:label="@string/activity_sd_browser_label"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.settings.SettingsActivityPreHC"
+            android:label="@string/activity_settings_label" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.settings.SettingsActivityPostHC"
+            android:label="@string/activity_settings_label" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.settings.VisualSettingsActivity"
+            android:label="@string/category_visual_title" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.settings.ControlSettingsActivity"
+            android:label="@string/category_controls_title" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.settings.StorageSettingsActivity"
+            android:label="@string/category_memory_title" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.settings.SupportSettingsActivity"
+            android:label="@string/category_support_title" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.settings.AboutSettingsActivity"
+            android:label="@string/category_about_title" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.settings.AdvancedSettingsActivity"
+            android:label="@string/category_about_title" >
+        </activity>
+        <activity
+            android:name="net.robotmedia.acv.ui.SubscribeActivity"
+            android:label="@string/activity_subscribe_label"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
     </application>
+
 </manifest>

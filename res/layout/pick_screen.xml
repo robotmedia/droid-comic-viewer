@@ -17,15 +17,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/pickScreenRoot">
     
     <Gallery 
 	    android:id="@+id/gallery"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
-    	android:paddingTop="15px"
-    	android:paddingBottom="15px"
-    	android:spacing="20px"
+    	android:paddingTop="15dip"
+    	android:paddingBottom="15dip"
+    	android:spacing="20dip"
 		android:scrollbars="horizontal" 
 		android:scrollbarStyle="outsideInset"/>
 	<EditText android:id="@+id/txt_screen_number"

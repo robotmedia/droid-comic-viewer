@@ -16,7 +16,9 @@
 -->
 <resources>
     <!-- Base application theme is the default theme. -->
-    <style name="Theme" parent="android:Theme">
+    <style name="Theme" parent="android:Theme.Holo">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/Theme.ActionBarStyle</item>
     </style>
 
 	<style name="Theme.text2b">
@@ -36,5 +38,9 @@
 	<style name="Theme.tabWidget">
 		<item name="android:gravity">fill_horizontal|center_vertical</item>
 		<item name="android:divider">@android:drawable/divider_horizontal_bright</item>
+	</style>
+	
+	<style name="Theme.ActionBarStyle" parent="android:style/Widget.Holo.ActionBar">
+		<item name="android:background">#a6000000</item>
 	</style>
 </resources>

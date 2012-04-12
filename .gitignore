@@ -10,6 +10,10 @@
 # Java class files
 *.class
 
+# A couple of jars
+lib/FlurryAgent.jar
+lib/GoogleAdMobAdsSdk-4.3.1.jar
+
 # generated files
 bin/
 gen/

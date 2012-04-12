@@ -17,12 +17,16 @@ package net.robotmedia.acv.ui.settings;
 
 import java.util.HashSet;
 
+import net.androidcomics.acv.R;
+import net.robotmedia.acv.logic.AdsManager;
 import net.robotmedia.acv.logic.TrackingManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
+import android.preference.*;
+import android.view.*;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class ExtendedPreferenceActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
@@ -43,7 +47,21 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 			final Preference preference = this.findPreference(key);
 			preference.setSummary(value);
 		}
-	}	
+	}
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.settings_pre_hc);
+		
+		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
+		View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
+		if(ad != null) {
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			lp.gravity = Gravity.CENTER_HORIZONTAL;
+			adsContainer.addView(ad, lp);
+		}
+	}
 	
 	@Override
 	public void onStart()

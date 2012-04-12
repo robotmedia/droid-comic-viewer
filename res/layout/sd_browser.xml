@@ -19,22 +19,24 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/sdBrowserTabHostContent"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
         >
     	<TabWidget
 	        android:id="@android:id/tabs"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:layout_alignParentTop="true"
 	        style="@style/Theme.tabWidget"
 	        />
     	<FrameLayout
     	    android:id="@android:id/tabcontent"
     	    android:layout_width="fill_parent"
     	    android:layout_height="fill_parent"
+    	    android:layout_below="@android:id/tabs"
+    	    android:layout_above="@+id/adsContainer"
     	    >
     	    <FrameLayout
     	        android:id="@+id/sdBrowserTabBrowser"
@@ -55,5 +57,11 @@
 				      android:layout_height="wrap_content"/>
 		    </FrameLayout>
     	</FrameLayout>
-    </LinearLayout>
+    	<LinearLayout
+    	    android:id="@id/adsContainer"
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_alignParentBottom="true"
+    	    />
+    </RelativeLayout>
 </TabHost>

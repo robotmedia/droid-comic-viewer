@@ -21,6 +21,7 @@ import java.util.*;
 
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.Constants;
+import net.robotmedia.acv.logic.AdsManager;
 import net.robotmedia.acv.logic.PreferencesController;
 import net.robotmedia.acv.provider.HistoryManager;
 import net.robotmedia.acv.utils.FileUtils;
@@ -142,6 +143,12 @@ public class SDBrowserActivity extends TabActivity {
 			});
 			recentListView.setAdapter(new RecentListAdapter(this, R.layout.sd_item_empty));
 
+			// Ads
+			View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
+			if(ad != null) {
+				ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
+				adsContainer.addView(ad);
+			}
 		} else {
 			showDialog(NO_SD);
 		}

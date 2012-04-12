@@ -18,56 +18,35 @@ package net.robotmedia.acv.ui;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.Constants;
 import net.robotmedia.acv.comic.Comic;
-import net.robotmedia.acv.logic.PreferencesController;
-import net.robotmedia.acv.logic.SetComicScreenAsTask;
-import net.robotmedia.acv.logic.ShareViewTask;
-import net.robotmedia.acv.logic.TrackingManager;
+import net.robotmedia.acv.logic.*;
 import net.robotmedia.acv.provider.HistoryManager;
 import net.robotmedia.acv.ui.settings.SettingsActivityPostHC;
 import net.robotmedia.acv.ui.settings.SettingsActivityPreHC;
-import net.robotmedia.acv.ui.widget.ComicView;
-import net.robotmedia.acv.ui.widget.ComicViewListener;
-import net.robotmedia.acv.ui.widget.DialogFactory;
-import net.robotmedia.acv.utils.FileUtils;
-import net.robotmedia.acv.utils.MathUtils;
-import net.robotmedia.acv.utils.Reflect;
+import net.robotmedia.acv.ui.widget.*;
+import net.robotmedia.acv.utils.*;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
+import android.os.*;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.GestureDetector;
+import android.view.*;
 import android.view.GestureDetector.OnGestureListener;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.*;
 
-public class ComicViewerActivity extends ExtendedActivity implements  OnGestureListener, GestureDetector.OnDoubleTapListener, ComicViewListener {
+public class ComicViewerActivity extends ExtendedActivity implements OnGestureListener, GestureDetector.OnDoubleTapListener, ComicViewListener {
 
 	public final static String POSITION_EXTRA = "position";
 	
@@ -102,6 +81,12 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 
 				mScreen.setComic(comic);
 				mScreen.goToScreen(initialIndex);
+				
+				if(isHoneyComb()) {
+					invalidateOptionsMenu();
+				}
+				hideActionBar();
+				
 			} else {
 				mScreen.setVisibility(View.GONE);
 				mDefaultView.setVisibility(View.VISIBLE);
@@ -119,9 +104,11 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 
 	private GestureDetector mGestureDetector;
 	private ImageButton mCornerTopLeft;
-	private ImageButton mCornerTopRight; 
-	private ImageButton mCornerBottomLeft; 
+	private ImageButton mCornerTopRight;
+	private ImageButton mCornerBottomLeft;
 	private ImageButton mCornerBottomRight;
+	private RelativeLayout mAdsContainer;
+	private boolean mainMenuActive = false;
 
 	protected Comic comic;
 	protected boolean destroyed = false;
@@ -216,7 +203,8 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 		 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		if(!isHoneyComb())
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.main);
@@ -246,6 +234,8 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 		
 		pController = new PreferencesController(this);
 		
+		mAdsContainer = (RelativeLayout) findViewById(R.id.mainAdsContainer);
+		
 		adjustBrightness();
 		adjustLowMemoryMode();
 		
@@ -257,6 +247,10 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 			String savedFilePath = savedInstanceState != null ? savedInstanceState.getString(Constants.COMIC_PATH_KEY) : null;
 			loadComicOnStartup(savedFilePath);
 		}
+		
+		
+		
+		showAds();
 	}
 
 	private void adjustCornerVisibility(ImageButton corner, String key, String defaultAction, boolean allInvisible) {
@@ -392,6 +386,33 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	}
 
 	@Override
+	public boolean onMenuItemSelected (int featureId, MenuItem item){
+
+		if(isHoneyComb()) {
+			boolean comicLoaded = isComicLoaded();
+
+			if(item.hasSubMenu()) {
+				Menu menu = item.getSubMenu();
+				
+				switch(featureId) {
+					case R.id.item_share:
+						menu.findItem(R.id.item_share_screen).setVisible(comicLoaded);
+						menu.findItem(R.id.item_set_as).setVisible(comicLoaded);
+						break;
+				}
+			} else {
+			}
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+	
+	@Override
+	public void onPanelClosed (int featureId, Menu menu) {
+		super.onPanelClosed(featureId, menu);
+		hideActionBarDelayed();
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String actionValue = null;
 		switch (item.getItemId()) {
@@ -462,25 +483,26 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		super.onPrepareOptionsMenu(menu);
-		if (mScreen.isLoading()) {
+		
+		if(!isHoneyComb() && mScreen.isLoading()) {
 			return false;
-		} else {
-			boolean comicLoaded = isComicLoaded();
-			menu.findItem(R.id.item_share_screen).setVisible(comicLoaded);
-			menu.findItem(R.id.item_set_as).setVisible(comicLoaded);
-			menu.findItem(R.id.item_navigate).setVisible(comicLoaded);
-			menu.findItem(R.id.item_zoom).setVisible(comicLoaded);
-			menu.findItem(R.id.item_browse).setVisible(comicLoaded);
-			menu.findItem(R.id.item_rotate).setVisible(comicLoaded);
-			
-			if (comicLoaded) {
-				boolean considerFrames = comic.hasFrames(mScreen.getIndex()) && preferences.getBoolean(Constants.ACV_FRAMES_KEY, true);
-				menu.findItem(R.id.item_next_screen).setVisible(considerFrames);
-				menu.findItem(R.id.item_previous_screen).setVisible(considerFrames);
-			}
-			return true;
 		}
+		
+		boolean comicLoaded = isComicLoaded();
+		menu.findItem(R.id.item_share_screen).setVisible(comicLoaded);
+		menu.findItem(R.id.item_set_as).setVisible(comicLoaded);
+		menu.findItem(R.id.item_navigate).setVisible(comicLoaded);
+		menu.findItem(R.id.item_zoom).setVisible(comicLoaded);
+		menu.findItem(R.id.item_browse).setVisible(comicLoaded);
+		menu.findItem(R.id.item_rotate).setVisible(comicLoaded);
+		
+		if (comicLoaded) {
+			boolean considerFrames = comic.hasFrames(mScreen.getIndex()) && preferences.getBoolean(Constants.ACV_FRAMES_KEY, true);
+			menu.findItem(R.id.item_next_screen).setVisible(considerFrames);
+			menu.findItem(R.id.item_previous_screen).setVisible(considerFrames);
+		}
+		return true;
+		
 	}
 	
 	public void onRequestSubscription() {
@@ -560,9 +582,13 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	}
 	
 	public boolean onSingleTapConfirmed(MotionEvent e) {
+		
 		if (mPinch || mCornerButtonConsumed) return false; // TODO is pinch necessary?
 		final Point p = new Point(Math.round(e.getX()), Math.round(e.getY()));
-		return action(Constants.SINGLE_TAP_KEY, Constants.ACTION_VALUE_NONE, p);
+		boolean processed = action(Constants.SINGLE_TAP_KEY, Constants.ACTION_VALUE_NONE, p);
+		if(!processed)
+			toggleControls();
+		return processed;
 	}
 
 	private boolean mCornerButtonConsumed = false;
@@ -577,7 +603,7 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	{
 	   super.onStop();
 		if (markCleanExitPending) {
-			pController.markCleanExit();			
+			pController.markCleanExit();
 		}
 	}
 	
@@ -768,6 +794,7 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 			mScreen.setVisibility(View.GONE);
 			mDefaultView.setVisibility(View.VISIBLE);
 			pController.savePreference(Constants.COMIC_PATH_KEY, null);
+			showAds();
 		} else {
 			finish();
 		}
@@ -882,6 +909,8 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 			loadComicTask = new LoadComicTask();
 			loadComicTask.initialIndex = initialIndex;
 			loadComicTask.execute(comicPath);
+			
+			hideAds();
 		}
 	}
 	
@@ -976,7 +1005,8 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	 * Shows the menu.
 	 */
 	private void showMenu() {
-		ComicViewerActivity.this.openOptionsMenu();
+		showActionBar();
+		openOptionsMenu();
 	}
 	
 	private void startBrowseActivity() {
@@ -997,7 +1027,7 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	}
 	
 	private void startSettingsActivity() {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+		if(isHoneyComb()) {
 			startActivityForResult(new Intent(this, SettingsActivityPreHC.class), Constants.SETTINGS_CODE);
 		} else {
 			startActivityForResult(new Intent(this, SettingsActivityPostHC.class), Constants.SETTINGS_CODE);
@@ -1147,5 +1177,28 @@ public class ComicViewerActivity extends ExtendedActivity implements  OnGestureL
 	public void onScreenChanged(int index) {
 		final String path = comic.getPath();
 		HistoryManager.getInstance(this).setBookmark(new File(path), index);
+	}
+	
+	protected void showAds() {
+		hideAds();
+		View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
+		if(ad != null) {
+			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+			mAdsContainer.addView(ad, lp);
+		}
+	}
+	
+	protected void hideAds() {
+		mAdsContainer.removeAllViews();
+	}
+	
+	@Override
+	protected boolean toggleControls() {
+		boolean shown = super.toggleControls();
+		if(shown) {
+			showMenu();
+		}
+		return shown;
 	}
 }
