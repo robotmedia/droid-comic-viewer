@@ -31,15 +31,17 @@ import android.widget.LinearLayout.LayoutParams;
 public class ExtendedPreferenceActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
-	
+
 	/**
-	 * Show the value of the given preference on its summary. Use this function on onCreate.
+	 * Show the value of the given preference on its summary. Use this function
+	 * on onCreate.
+	 * 
 	 * @param key Preference key
 	 */
 	protected void showValueOnSummary(String key) {
 		showValueOnSummaryKeys.add(key);
 	}
-	
+
 	private void showValues() {
 		final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		for (String key : showValueOnSummaryKeys) {
@@ -48,36 +50,20 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 			preference.setSummary(value);
 		}
 	}
-	
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.settings);
-		
-		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
-		View ad = AdsManager.getAd(this);
-		if(ad != null) {
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-			lp.gravity = Gravity.CENTER_HORIZONTAL;
-			adsContainer.addView(ad, lp);
-		}
+	public void onStart() {
+		super.onStart();
+		TrackingManager.onStart(this);
+		TrackingManager.pageView(String.valueOf(this.getTitle()));
 	}
-	
+
 	@Override
-	public void onStart()
-	{
-	   super.onStart();
-	   TrackingManager.onStart(this);
-	   TrackingManager.pageView(String.valueOf(this.getTitle()));
+	public void onStop() {
+		super.onStop();
+		TrackingManager.onStop(this);
 	}
-	
-	@Override
-	public void onStop()
-	{
-	   super.onStop();
-	   TrackingManager.onStop(this);
-	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();

@@ -16,13 +16,28 @@
 package net.robotmedia.acv.ui.settings;
 
 import net.androidcomics.acv.R;
+import net.robotmedia.acv.logic.AdsManager;
 import android.os.Bundle;
+import android.view.*;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class SettingsActivityPreHC extends ExtendedPreferenceActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.settings);
+		
+		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
+		View ad = AdsManager.getAd(this);
+		if(ad != null) {
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			lp.gravity = Gravity.CENTER_HORIZONTAL;
+			adsContainer.addView(ad, lp);
+		}
+		
 		addPreferencesFromResource(R.xml.preferences);
 	}
 	
