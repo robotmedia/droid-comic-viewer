@@ -51,9 +51,9 @@
     
     <string name="dialog_no_sd_title">Warning</string>
     <string name="dialog_no_sd_text">No SD card was found.\n\nPlease insert or mount your SD card to open comics.</string>
-    <string name="dialog_page_progress_title">Loading...</string>
-    <string name="dialog_page_progress_text">Loading screen @number. Please wait...</string>
-    <string name="dialog_loading_progress_title">Loading...</string>
+    <string name="dialog_page_progress_title">Loading&#8230;</string>
+    <string name="dialog_page_progress_text">Loading screen @number. Please wait&#8230;</string>
+    <string name="dialog_loading_progress_title">Loading&#8230;</string>
     <string name="dialog_loading_progress_text">Loading comic archive from SD card.</string>
     <string name="dialog_load_error_title">Oops!</string>
     <string name="dialog_load_error_text">An error has occurred while loading. If you need help, please contact support@androidcomics.net.</string>
@@ -113,39 +113,20 @@
     <string name="preference_default_brightness">Default brightness</string>
  
     <string name="category_memory_title">History</string>
-    <string name="preference_load_last_title">Load last comic</string>
-    <string name="preference_load_last_summary">Load last viewed comic on startup</string>
     <string name="preference_clear_history_title">Clear history</string>
     <string name="preference_clear_history_summary">Clear all viewing history</string>
  
-    <string name="category_support_title">Support</string>
     <string name="preference_low_memory_title">Low memory mode</string>
     <string name="preference_low_memory_summary">Disable preloading and transitions</string>  
-    <string name="preference_manual_title">User manual</string>
-    <string name="preference_manual_summary">Open the user manual in the Browser</string>
-    <string name="preference_report_problem_title">Report problem</string>
-    <string name="preference_report_problem_summary">Report a problem through Bug Reporter</string>
-    
-    <string name="dialog_bug_reporter_title"><b>Bug Reporter</b> required</string>
-    <string name="dialog_bug_reporter_text">This feature requires the <b>Bug Reporter</b> app.\n\nOpen the Market to install it?</string>    
-    
+        
     <string name="category_about_title">About</string>
-    <string name="preference_acv_listing_title">Android Market listing</string>
-    <string name="preference_acv_listing_summary">Open Droid Comic Viewer listing on the Android Market</string>  
+    <string name="preference_acv_listing_title">Google Play listing</string>
+    <string name="preference_acv_listing_summary">Open ACV listing on Google Play</string>  
     <string name="preference_version_title">Version</string>
-    <string name="preference_version_summary">Droid Comic Viewer v</string>  
+    <string name="preference_version_summary">ACV v</string>  
     <string name="preference_contact_title">Contact</string>
-    <string name="preference_contact_summary">Email Robot Comics</string>                       
-    <string name="preference_site_title">Website</string>
-    <string name="preference_site_summary">Open Robot Comics\' website in the Browser</string>                       
-    <string name="preference_subscribe_summary">Receive news about ACV and mobile comics releases</string>                       
-    <string name="category_acv_format_title">ACV format</string>
-    <string name="preference_acv_frames_title">Frames</string>
-    <string name="preference_acv_frames_summary">Frame by frame navigation</string>
-    <string name="preference_acv_vibration_title">Vibration</string>
-    <string name="preference_acv_vibration_summary">Vibration and screen tilt effects</string>
-    <string name="preference_acv_autoplay_title">Autoplay</string>
-    <string name="preference_acv_autoplay_summary">Enable autoplay sequences</string>
+    <string name="preference_contact_summary">Email Robot Media</string>                       
+    <string name="preference_subscribe_summary">Receive news about ACV</string>
     
     <!-- Advanced preferences -->
     <string name="category_advanced_title">Advanced</string>
@@ -168,9 +149,9 @@
 
 	<!-- Share -->
     <string name="share_app_title">Read comics in your Android!</string>
-    <string name="share_app_message">Check out Droid Comic Viewer, the #1 comics and manga reader for Android http://bit.ly/3dlKI5</string>
+    <string name="share_app_message">Check out ACV, the #1 comics and manga reader for Android http://goo.gl/FfAWL</string>
     <string name="share_screen_title">Screen from @comic</string>
-    <string name="share_screen_message">Check out this screen from @comic sent from Droid Comic Viewer http://bit.ly/3dlKI5</string>
+    <string name="share_screen_message">Check out this screen from @comic sent from ACV http://goo.gl/FfAWL</string>
 
 	<!-- Changelog -->
 	<string name="dialog_changelog_title">Changelog</string>

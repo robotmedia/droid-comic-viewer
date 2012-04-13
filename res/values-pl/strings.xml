@@ -133,14 +133,14 @@
 <string name='preference_manual_title'>Podręcznik użytkownika</string>
 <string name='preference_manual_summary'>Otwórz podręcznik użytkownika w domyślnej przeglądarce</string>
 <string name='category_about_title'>O programie</string>
-<string name='preference_acv_listing_title'>Opis w Android Market</string>
-<string name='preference_acv_listing_summary'>Otwórz opis Droid Comic Viewer w witrynie Android Market</string>
+<string name='preference_acv_listing_title'>Opis w Google Play</string>
+<string name='preference_acv_listing_summary'>Otwórz opis ACV w witrynie Google Play</string>
 <string name='preference_version_title'>Wersja</string>
-<string name='preference_version_summary'>Droid Comic Viewer wersja</string>
+<string name='preference_version_summary'>ACV wersja</string>
 <string name='preference_contact_title'>Kontakt</string>
-<string name='preference_contact_summary'>Wyślij e-maila do Robot Comics</string>
+<string name='preference_contact_summary'>Wyślij e-maila do Robot Media</string>
 <string name='preference_site_title'>Strona domowa</string>
-<string name='preference_site_summary'>Otwórz stronę domową Robot Comics w domyślnej przeglądarce</string>
+<string name='preference_site_summary'>Otwórz stronę domową Robot Media w domyślnej przeglądarce</string>
 <string name='preference_subscribe_summary'>Otrzymuj wiadomości o ACV i nowych komiksach na telefon</string>
 <string name='category_acv_format_title'>Format ACV</string>
 <string name='preference_acv_frames_title'>Klatki</string>
@@ -158,7 +158,7 @@
 <string name='dialog_email_error_title'>Niepoprawny adres e-mail.</string>
 <string name='dialog_email_error_text'>Wpisz poprawny adres e-mail.</string>
 <string name='share_app_title'>Czytaj komiksy w systemie Android!</string>
-<string name='share_app_message'>Wypróbuj Droid Comic Viewer, najpopularniejszą aplikację komiksową dla Androida http://bit.ly/3dlKI5</string>
+<string name='share_app_message'>Wypróbuj ACV, najpopularniejszą aplikację komiksową dla Androida http://goo.gl/FfAWL5</string>
 <string name='share_screen_title'>Ekran z @comic</string>
-<string name='share_screen_message'>Obejrzyj ten ekran z @comic wysłany za pośrednictwem Droid Comic Viewer http://bit.ly/3dlKI5</string>
+<string name='share_screen_message'>Obejrzyj ten ekran z @comic wysłany za pośrednictwem ACV http://goo.gl/FfAWL5</string>
 </resources>

@@ -124,15 +124,15 @@
     <string name="preference_low_memory_summary">Deshabilitar precarga y transiciones</string>  
     <string name="preference_manual_title">Manual de usuario</string>
     <string name="preference_manual_summary">Abrir el manual de usuario en el navegador</string>  
-    <string name="preference_acv_listing_title">Ficha en Android Market</string>
-    <string name="preference_acv_listing_summary">Abrir la ficha de Droid Comic Viewer en el Android Market</string>  
+    <string name="preference_acv_listing_title">Ficha en Google Play</string>
+    <string name="preference_acv_listing_summary">Abrir la ficha de ACV en Google Play</string>  
     <string name="category_about_title">Acerca de</string>
     <string name="preference_version_title">Versión</string>
-    <string name="preference_version_summary">Droid Comic Viewer v</string>  
+    <string name="preference_version_summary">ACV v</string>  
     <string name="preference_contact_title">Contacto</string>
-    <string name="preference_contact_summary">Enviar un email a Robot Comics</string>                       
+    <string name="preference_contact_summary">Enviar un email a Robot Media</string>                       
     <string name="preference_site_title">Sitio web</string>
-    <string name="preference_site_summary">Abrir el sitio web de Robot Comics en el navegador</string>      
+    <string name="preference_site_summary">Abrir el sitio web de Robot Media en el navegador</string>      
     <string name="preference_subscribe_summary">Recibe noticias sobre ACV y futuros lanzamientos</string>  
     <string name="category_acv_format_title">Ficheros ACV</string>
     <string name="preference_acv_frames_title">Cuadros</string>
@@ -154,7 +154,7 @@
 
 	<!-- Share -->
     <string name="share_app_title">Lee cómics en tu Android!</string>
-    <string name="share_app_message">Prueba Droid Comic Viewer, el mejor visor de comics y manga para Android http://bit.ly/3dlKI5</string>
+    <string name="share_app_message">Prueba ACV, el mejor visor de comics y manga para Android http://goo.gl/FfAWL5</string>
     <string name="share_screen_title">Pantalla de @comic</string>
-    <string name="share_screen_message">Mira esta pantalla de @comic enviada desde Droid Comic Viewer http://bit.ly/3dlKI5</string>               
+    <string name="share_screen_message">Mira esta pantalla de @comic enviada desde ACV http://goo.gl/FfAWL5</string>               
 </resources>

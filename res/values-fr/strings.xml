@@ -117,11 +117,11 @@
 <string name='preference_acv_listing_title'>Fiche sur le market Android</string>
 <string name='preference_acv_listing_summary'>Ouvrir la fiche d\'ACV sur le market</string>
 <string name='preference_version_title'>Version</string>
-<string name='preference_version_summary'>Droid Comic Viewer v</string>
+<string name='preference_version_summary'>ACV v</string>
 <string name='preference_contact_title'>Contacter</string>
-<string name='preference_contact_summary'>Envoyer un message à Robot Comics</string>
+<string name='preference_contact_summary'>Envoyer un message à Robot Media</string>
 <string name='preference_site_title'>Site web</string>
-<string name='preference_site_summary'>Ouvrir le site de Robot Comics dans le navigateur par défaut</string>
+<string name='preference_site_summary'>Ouvrir le site de Robot Media dans le navigateur par défaut</string>
 <string name='preference_subscribe_summary'>Recevoir les nouveautés sur ACV et les sorties de BD mobiles.</string>
 <string name='category_acv_format_title'>Format ACV</string>
 <string name='preference_acv_frames_title'>Cases</string>
@@ -139,7 +139,7 @@
 <string name='dialog_email_error_title'>Adresse mail invalide</string>
 <string name='dialog_email_error_text'>Veuillez entrer une adresse valide.</string>
 <string name='share_app_title'>Lisez des BD sur votre système Android!</string>
-<string name='share_app_message'>Découvrez Droid Comic Viewer, le lecteur #1 de bandes-dessinées et de manga sur Android http://bit.ly/3dlKI5</string>
+<string name='share_app_message'>Découvrez ACV, le lecteur #1 de bandes-dessinées et de manga sur Android http://goo.gl/FfAWL5</string>
 <string name='share_screen_title'>Page tirée de @comic</string>
 <string name='share_screen_message'>Lis cette page grâce à @comic</string>
 </resources>

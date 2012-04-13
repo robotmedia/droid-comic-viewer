@@ -38,11 +38,6 @@
 			android:targetClass="net.robotmedia.acv.ui.settings.AdvancedSettingsActivity" />
 	</net.robotmedia.acv.ui.settings.IconPreferenceScreen>
 	<net.robotmedia.acv.ui.settings.IconPreferenceScreen
-		android:title="@string/category_support_title" settings:icon="@android:drawable/ic_menu_help">
-		<intent android:action="android.intent.action.MAIN"
-			android:targetPackage="net.androidcomics.acv" android:targetClass="net.robotmedia.acv.ui.settings.SupportSettingsActivity" />
-	</net.robotmedia.acv.ui.settings.IconPreferenceScreen>
-	<net.robotmedia.acv.ui.settings.IconPreferenceScreen
 		android:title="@string/category_about_title" settings:icon="@android:drawable/ic_menu_info_details">
 		<intent android:action="android.intent.action.MAIN"
 			android:targetPackage="net.androidcomics.acv" android:targetClass="net.robotmedia.acv.ui.settings.AboutSettingsActivity" />

@@ -114,14 +114,14 @@
 <string name='preference_manual_title'>Manuale utente</string>
 <string name='preference_manual_summary'>Apre il manuale utente nel browser</string>
 <string name='category_about_title'>Informazioni</string>
-<string name='preference_acv_listing_title'>Pagina Android Market</string>
-<string name='preference_acv_listing_summary'>Apri la pagina di Droid Comic Viewer su Android Market</string>
+<string name='preference_acv_listing_title'>Pagina Google Play</string>
+<string name='preference_acv_listing_summary'>Apri la pagina di ACV su Google Play</string>
 <string name='preference_version_title'>Versione</string>
-<string name='preference_version_summary'>Droid Comic Viewer v</string>
+<string name='preference_version_summary'>ACV v</string>
 <string name='preference_contact_title'>Contatti</string>
-<string name='preference_contact_summary'>Invia una email a Robot Comics</string>
+<string name='preference_contact_summary'>Invia una email a Robot Media</string>
 <string name='preference_site_title'>Sito web</string>
-<string name='preference_site_summary'>Apre il sito di Robot Comics nel browser</string>
+<string name='preference_site_summary'>Apre il sito di Robot Media nel browser</string>
 <string name='preference_subscribe_summary'>Ricevi notizie riguardo ACV e future pubblicazioni</string>
 <string name='category_acv_format_title'>Formato ACV</string>
 <string name='preference_acv_frames_title'>Fotogrammi</string>
@@ -139,7 +139,7 @@
 <string name='dialog_email_error_title'>Email non valida</string>
 <string name='dialog_email_error_text'>Per favore inserisci un indirizzo email valido.</string>
 <string name='share_app_title'>Leggi i fumetti sul tuo Android!</string>
-<string name='share_app_message'>Prova Droid Comic Viewer, il lettore di fumetti e manga #1 per Android http://bit.ly/3dlKI5</string>
+<string name='share_app_message'>Prova ACV, il lettore di fumetti e manga #1 per Android http://goo.gl/FfAWL5</string>
 <string name='share_screen_title'>Schermata da @comic</string>
-<string name='share_screen_message'>Guarda questa schermata di @comic, inviata da Droid Comic Viewer http://bit.ly/3dlKI5</string>         
+<string name='share_screen_message'>Guarda questa schermata di @comic, inviata da ACV http://goo.gl/FfAWL5</string>         
 </resources>

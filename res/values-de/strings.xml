@@ -88,10 +88,10 @@
     <string name="category_memory_title">Speicher</string>
     <string name="preference_load_last_title">Laden des letzten Comic</string>
     <string name="preference_load_last_summary">Laden des zuletzt gesehenen Comics beim Start</string>
-    <string name="preference_acv_listing_summary">Öffnen der Droid Comic Viewer Liste auf dem Android Market</string>  
+    <string name="preference_acv_listing_summary">Öffnen der ACV Liste auf dem Google Play</string>  
     <string name="category_about_title">Über</string>
     <string name="preference_version_title">Version</string>
-    <string name="preference_version_summary">Droid Comic Viewer v</string>  
+    <string name="preference_version_summary">ACV v</string>  
     <string name="preference_site_title">Internetseite</string>
-    <string name="preference_site_summary">Öffnen der Robot Comics Internetseite im Browser</string>  
+    <string name="preference_site_summary">Öffnen der Robot Media Internetseite im Browser</string>  
 </resources>
