@@ -4,7 +4,6 @@ import java.lang.reflect.*;
 
 import net.androidcomics.acv.BuildConfig;
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
 
 public class AdMobProxy {
@@ -79,13 +78,26 @@ public class AdMobProxy {
 	}
 
 	private static final String BANNER = "BANNER";
+	private static final String IAB_MRECT = "IAB_MRECT";
+	private static final String IAB_BANNER = "IAB_BANNER";
+	private static final String IAB_LEADERBOARD = "IAB_LEADERBOARD";
 	
 	private static Object sizeToAdSize(int size) {
 
+		Field f = null;
+		
 		try {
-			// TODO actually use size parameter!
-			Field f = adSizeClass.getField(BANNER);
-			return f.get(null);
+			switch(size) {
+				case AdsManager.SIZE_FULL_BANNER:
+					f = adSizeClass.getField(IAB_BANNER);
+					break;
+				default:
+					case AdsManager.SIZE_BANNER:
+					f = adSizeClass.getField(BANNER);	
+			}
+			if(f != null)
+				return f.get(null);
+
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
