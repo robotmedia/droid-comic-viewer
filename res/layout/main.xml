@@ -20,49 +20,63 @@
     android:layout_height="fill_parent"
     android:layout_gravity="center" >
 
-    <RelativeLayout
-        android:id="@+id/mainAdsContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        />
-
     <LinearLayout
         android:id="@+id/main_recent"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/mainAdsContainer"
         android:orientation="vertical"
-        android:padding="10dp"
-        >
-        <ImageView
-	        android:id="@+id/main_logo"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center_horizontal"
-	        android:paddingTop="10dip"
-	        android:paddingBottom="10dip"
-	        android:src="@drawable/logo"
-	        />
-        <TextView
+        android:weightSum="2" >
+
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_recent_items"
-            style="@style/Theme.ListHeader"
-            />
-		<ListView
-		    android:id="@+id/main_recent_list"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			/>
-		<TextView 
-		    android:id="@+id/main_recent_list_no_items"
-		    android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/main_recent_items_empty"
-			style="@style/Theme.ListItemText"
-		    />
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/main_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/logo" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/mainAdsContainer"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <TextView
+                    style="@style/Theme.ListHeader"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_recent_items" />
+
+                <ListView
+                    android:id="@+id/main_recent_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/main_recent_list_no_items"
+                    style="@style/Theme.ListItemText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_recent_items_empty" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@id/mainAdsContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
     </LinearLayout>
 
     <net.robotmedia.acv.ui.widget.ComicView
