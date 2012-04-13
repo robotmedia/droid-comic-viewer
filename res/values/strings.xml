@@ -21,6 +21,9 @@
     <string name="activity_credits_label">Credits</string>
     <string name="activity_subscribe_label">Subscribe</string>
 
+    <!-- Main -->
+    <string name="main_recent_items">OPEN RECENT</string>
+    <string name="main_recent_items_empty">Nothing read yet.</string>
 	<string name="main_intro">Press <b>Menu</b> or fling up to start</string>
     <string name="item_navigate_title">Go to</string>
     <string name="item_navigate_shortcut">G</string>

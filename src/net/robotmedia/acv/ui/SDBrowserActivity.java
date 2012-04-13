@@ -144,7 +144,7 @@ public class SDBrowserActivity extends TabActivity {
 			recentListView.setAdapter(new RecentListAdapter(this, R.layout.sd_item_empty));
 
 			// Ads
-			View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
+			View ad = AdsManager.getAd(this);
 			if(ad != null) {
 				ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
 				adsContainer.addView(ad);

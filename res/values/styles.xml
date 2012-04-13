@@ -39,8 +39,23 @@
 		<item name="android:gravity">fill_horizontal|center_vertical</item>
 		<item name="android:divider">@android:drawable/divider_horizontal_bright</item>
 	</style>
-	
+
 	<style name="Theme.ActionBarStyle" parent="android:style/Widget.Holo.ActionBar">
 		<item name="android:background">#a6000000</item>
+	</style>
+
+	<!-- List -->
+	<style name="Theme.ListHeader">
+	    <item name="android:textStyle">bold</item>
+	    <item name="android:textColor">@color/kiwi_green</item>
+	    <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:background">@drawable/bg_header</item>
+	</style>
+	<style name="Theme.ListItemText">
+	    <item name="android:textColor">@color/white</item>
+	    <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:background">@drawable/bg_row</item>
 	</style>
 </resources>

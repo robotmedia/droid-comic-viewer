@@ -41,6 +41,7 @@ public class HistoryManager {
 		final String path = file.getAbsolutePath();
 		if (mDB.existsFile(path)) {
 			mDB.increaseFileViews(path);
+			mDB.updateLastOpened(path);
 		} else {
 			mDB.insertFile(path);
 		}

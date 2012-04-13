@@ -22,6 +22,8 @@ import java.util.*;
 
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.Constants;
+import net.robotmedia.acv.adapter.ACVListAdapter;
+import net.robotmedia.acv.adapter.RecentListBaseAdapter;
 import net.robotmedia.acv.comic.Comic;
 import net.robotmedia.acv.logic.*;
 import net.robotmedia.acv.provider.HistoryManager;
@@ -44,6 +46,7 @@ import android.view.*;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.*;
 
 public class ComicViewerActivity extends ExtendedActivity implements OnGestureListener, GestureDetector.OnDoubleTapListener, ComicViewListener {
@@ -76,7 +79,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				trackOpen();
 				
 				mScreen.setVisibility(View.VISIBLE);
-				mDefaultView.setVisibility(View.GONE);
+				hideRecentItems();
 				pController.savePreference(Constants.COMIC_PATH_KEY, comic.getPath());
 
 				mScreen.setComic(comic);
@@ -89,7 +92,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				
 			} else {
 				mScreen.setVisibility(View.GONE);
-				mDefaultView.setVisibility(View.VISIBLE);
+				showRecentItems();
 				showDialog(Constants.DIALOG_LOAD_ERROR);
 			}
 		}
@@ -116,7 +119,9 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	protected LoadComicTask loadComicTask = null;
 
 	protected boolean markCleanExitPending = false;
-	protected View mDefaultView;
+	protected ViewGroup mRecentItems = null;
+	protected ListView mRecentItemsList = null;
+	protected ACVListAdapter mRecentItemsListAdapter = null;
 	protected View mMain;
 	protected ComicView mScreen;
 	protected PreferencesController pController;
@@ -177,6 +182,79 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		}
 	}
 
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+		if(!isHoneyComb()) {
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
+		}
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		setContentView(R.layout.main);
+
+		dialogFactory = new ACVDialogFactory(this);
+		mRecentItems = (ViewGroup) findViewById(R.id.main_recent);
+		mRecentItemsList = (ListView) findViewById(R.id.main_recent_list);
+		mRecentItemsList.setEmptyView(findViewById(R.id.main_recent_list_no_items));
+		mRecentItemsListAdapter = new RecentListBaseAdapter(this, R.layout.list_item_recent);
+		mRecentItemsList.setAdapter(mRecentItemsListAdapter);
+		mRecentItemsList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				String path = (String) parent.getItemAtPosition(position);
+				loadComic(path);
+			}
+		});
+		
+		mGestureDetector = new GestureDetector(this);
+		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+		mMain = findViewById(R.id.main_layout);
+
+		ImageView logo = (ImageView) findViewById(R.id.main_logo);
+		logo.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				showMenu();
+		}});
+
+		mScreen = (ComicView) findViewById(R.id.screen);
+		mScreen.setListener(this);
+
+		mCornerTopLeft = (ImageButton) findViewById(R.id.corner_top_left);
+		mCornerTopRight = (ImageButton) findViewById(R.id.corner_top_right);
+		mCornerBottomLeft = (ImageButton) findViewById(R.id.corner_bottom_left);
+		mCornerBottomRight = (ImageButton) findViewById(R.id.corner_bottom_right);
+		adjustCornersVisibility(true);
+
+		pController = new PreferencesController(this);
+
+		mAdsContainer = (RelativeLayout) findViewById(R.id.mainAdsContainer);
+
+		adjustBrightness();
+		adjustLowMemoryMode();
+
+		// TODO: Shouldn't this be first?
+		if (startupOrientation(savedInstanceState)) { // If no orientation change was requested
+			pController.checkCleanExit();
+			markCleanExitPending = true;
+
+			String savedFilePath = savedInstanceState != null ? savedInstanceState.getString(Constants.COMIC_PATH_KEY) : null;
+			//loadComicOnStartup(savedFilePath);
+			showRecentItems();
+		}
+
+		showAds();
+	}
+	
+	@Override
+	public void onResume() {
+		mRecentItemsListAdapter.refresh();
+		super.onResume();
+	}
+
 	private void adjustLowMemoryMode() {
 		boolean lowMemory = preferences.getBoolean(PreferencesController.PREFERENCE_LOW_MEMORY, false);
 		mScreen.setPreload(!lowMemory);
@@ -193,66 +271,6 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		 getWindow().setAttributes(lp);
 	}
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		// ActivityManager activityManager = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
-		// int memoryClass = Reflect.getMemoryClass(activityManager);
-		// Compress.adjustWindowSize(memoryClass >= 24);
-		 
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		
-		if(!isHoneyComb())
-			requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-		setContentView(R.layout.main);
-
-		dialogFactory = new ACVDialogFactory(this);
-		mDefaultView = findViewById(R.id.main_default);
-		mGestureDetector = new GestureDetector(this);
-		preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-		mMain = findViewById(R.id.main_layout);
-
-		ImageView logo = (ImageView) findViewById(R.id.main_logo);
-		logo.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View arg0) {
-				showMenu();
-			}});		
-		
-		mScreen = (ComicView) findViewById(R.id.screen);
-		mScreen.setListener(this);
-		
-		mCornerTopLeft = (ImageButton) findViewById(R.id.corner_top_left);
-		mCornerTopRight = (ImageButton) findViewById(R.id.corner_top_right);
-		mCornerBottomLeft = (ImageButton) findViewById(R.id.corner_bottom_left);
-		mCornerBottomRight = (ImageButton) findViewById(R.id.corner_bottom_right);
-		adjustCornersVisibility(true);
-		
-		pController = new PreferencesController(this);
-		
-		mAdsContainer = (RelativeLayout) findViewById(R.id.mainAdsContainer);
-		
-		adjustBrightness();
-		adjustLowMemoryMode();
-		
-		// TODO: Shouldn't this be first?
-		if (startupOrientation(savedInstanceState)) { // If no orientation change was requested
-			pController.checkCleanExit();
-			markCleanExitPending = true;
-
-			String savedFilePath = savedInstanceState != null ? savedInstanceState.getString(Constants.COMIC_PATH_KEY) : null;
-			loadComicOnStartup(savedFilePath);
-		}
-		
-		
-		
-		showAds();
-	}
-
 	private void adjustCornerVisibility(ImageButton corner, String key, String defaultAction, boolean allInvisible) {
 		final String action = preferences.getString(key, defaultAction);
 		final boolean visible = !allInvisible && !Constants.ACTION_VALUE_NONE.equals(action);
@@ -262,7 +280,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 			corner.setImageDrawable(null);
 		}
 	}
-	
+
 	private void adjustCornersVisibility(final boolean visible) {
 		final boolean allInvisible = !visible || preferences.getBoolean(Constants.PREFERENCE_INVISIBLE_CORNERS, false);
 		adjustCornerVisibility(mCornerTopLeft, Constants.INPUT_CORNER_TOP_LEFT, Constants.ACTION_VALUE_NONE, allInvisible);
@@ -511,7 +529,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	
 	public void onScreenLoadFailed() {
 		mScreen.setVisibility(View.INVISIBLE);
-		mDefaultView.setVisibility(View.VISIBLE);
+		showRecentItems();
 
 		// Remove the comic path in case the comic is defective. 
 		// If the page load failed because of an orientation change, the comic path is saved in the instance state anyway.
@@ -792,7 +810,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		if (isComicLoaded()) {
 			removePreviousComic(true);
 			mScreen.setVisibility(View.GONE);
-			mDefaultView.setVisibility(View.VISIBLE);
+			showRecentItems();
 			pController.savePreference(Constants.COMIC_PATH_KEY, null);
 			showAds();
 		} else {
@@ -1027,7 +1045,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	}
 	
 	private void startSettingsActivity() {
-		if(isHoneyComb()) {
+		if(!isHoneyComb()) {
 			startActivityForResult(new Intent(this, SettingsActivityPreHC.class), Constants.SETTINGS_CODE);
 		} else {
 			startActivityForResult(new Intent(this, SettingsActivityPostHC.class), Constants.SETTINGS_CODE);
@@ -1075,6 +1093,8 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				Constants.LOAD_LAST_KEY, String.valueOf(preferences.getBoolean(Constants.LOAD_LAST_KEY, true)),
 				Constants.ORIENTATION_KEY, describeOrientation(getResources().getConfiguration().orientation));
 	}
+	
+	
 	
 	private void loadComicOnStartup(String comicPath) {
 		
@@ -1179,17 +1199,18 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		HistoryManager.getInstance(this).setBookmark(new File(path), index);
 	}
 	
-	protected void showAds() {
+	private void showAds() {
 		hideAds();
-		View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
+		View ad = AdsManager.getAd(this);
 		if(ad != null) {
 			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-			lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+			//lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+			lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 			mAdsContainer.addView(ad, lp);
 		}
 	}
 	
-	protected void hideAds() {
+	private void hideAds() {
 		mAdsContainer.removeAllViews();
 	}
 	
@@ -1201,4 +1222,14 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		}
 		return shown;
 	}
+		
+	private void showRecentItems() {
+		mRecentItemsListAdapter.refresh();
+		mRecentItems.setVisibility(View.VISIBLE);
+	}
+	
+	private void hideRecentItems() {
+		mRecentItems.setVisibility(View.GONE);
+	}
+	
 }

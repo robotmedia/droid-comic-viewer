@@ -23,34 +23,47 @@
     <RelativeLayout
         android:id="@+id/mainAdsContainer"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         />
 
-    <RelativeLayout
-        android:id="@+id/main_default"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical" >
-
+    <LinearLayout
+        android:id="@+id/main_recent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/mainAdsContainer"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
         <ImageView
-            android:id="@+id/main_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:src="@drawable/icon" />
-
+	        android:id="@+id/main_logo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center_horizontal"
+	        android:paddingTop="10dip"
+	        android:paddingBottom="10dip"
+	        android:src="@drawable/logo"
+	        />
         <TextView
-            android:id="@+id/main_intro"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/main_logo"
-            android:gravity="center"
-            android:padding="25px"
-            android:text="@string/main_intro" />
-    </RelativeLayout>
+            android:text="@string/main_recent_items"
+            style="@style/Theme.ListHeader"
+            />
+		<ListView
+		    android:id="@+id/main_recent_list"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			/>
+		<TextView 
+		    android:id="@+id/main_recent_list_no_items"
+		    android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/main_recent_items_empty"
+			style="@style/Theme.ListItemText"
+		    />
+    </LinearLayout>
 
     <net.robotmedia.acv.ui.widget.ComicView
         android:id="@+id/screen"

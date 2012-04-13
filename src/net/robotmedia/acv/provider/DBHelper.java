@@ -30,6 +30,8 @@ public class DBHelper {
 	   private SQLiteStatement mInsertFile;
 	   private SQLiteStatement mUpdateBookmark;
 	   private SQLiteStatement mIncreaseViews;
+	   private SQLiteStatement mUpdateLastOpened;
+	   
 	   private static final String INSERT_FILE = 
 		   "INSERT INTO " + 
 		   DBOpenHelper.FILES_TABLE + " (" +
@@ -39,17 +41,26 @@ public class DBHelper {
 		   DBOpenHelper.BOOKMARK_COLUMN + ", " +
 		   DBOpenHelper.VIEWS_COLUMN + ", " +
 		   DBOpenHelper.FAVORITE_COLUMN + ") values (?, ?, 1, 0, 0, 0)";
+	   
 	   private static final String UPDATE_BOOKMARK = 
 		   "UPDATE " + 
 		   DBOpenHelper.FILES_TABLE + " SET " +
 		   DBOpenHelper.BOOKMARK_COLUMN + " = ? WHERE " +
 		   DBOpenHelper.PATH_COLUMN + " = ?";
+	   
 	   private static final String INCREASE_VIEWS = 
 		   "UPDATE " + 
 		   DBOpenHelper.FILES_TABLE + " SET " +
 		   DBOpenHelper.VIEWS_COLUMN + " = " + 
 		   DBOpenHelper.VIEWS_COLUMN + " + 1 WHERE " +
 		   DBOpenHelper.PATH_COLUMN + " = ?";
+	   
+	   private static final String UPDATE_OPENED =
+		"UPDATE " +
+			DBOpenHelper.FILES_TABLE + " SET " +
+			DBOpenHelper.OPENED_COLUMN + " = ? " +
+			"WHERE " +
+			DBOpenHelper.PATH_COLUMN + " = ?";
 	   
 	   public DBHelper(Context context) {
 	      mContext = context;
@@ -58,6 +69,7 @@ public class DBHelper {
 	      mInsertFile = mDB.compileStatement(INSERT_FILE);
 	      mUpdateBookmark = mDB.compileStatement(UPDATE_BOOKMARK);
 	      mIncreaseViews = mDB.compileStatement(INCREASE_VIEWS);
+	      mUpdateLastOpened = mDB.compileStatement(UPDATE_OPENED);
 	   }
 
 	   public long insertFile(String path) {
@@ -75,6 +87,12 @@ public class DBHelper {
 	   public void increaseFileViews(String path) {
 		   mIncreaseViews.bindString(1, path);
 		   mIncreaseViews.execute();
+	   }
+	   
+	   public void updateLastOpened(String path) {
+		   mUpdateLastOpened.bindLong(1, new Date().getTime());
+		   mUpdateLastOpened.bindString(2, path);
+		   mUpdateLastOpened.execute();
 	   }
 	   
 	   public boolean existsFile(String path) {

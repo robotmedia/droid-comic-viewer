@@ -55,7 +55,7 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 		setContentView(R.layout.settings);
 		
 		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
-		View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
+		View ad = AdsManager.getAd(this);
 		if(ad != null) {
 			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 			lp.gravity = Gravity.CENTER_HORIZONTAL;

@@ -177,7 +177,7 @@ public class BrowseActivity extends ExtendedActivity {
         	
         });
         
-        View ad = AdsManager.getAd(this, AdsManager.SIZE_BANNER);
+        View ad = AdsManager.getAd(this);
         RelativeLayout root = (RelativeLayout) findViewById(R.id.pickScreenRoot);
         if(ad != null) {
         	RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
