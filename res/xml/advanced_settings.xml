@@ -30,16 +30,5 @@
 			android:inputType="numberDecimal" />
    		<CheckBoxPreference android:key="low_memory"
 			android:title="@string/preference_low_memory_title" android:summary="@string/preference_low_memory_summary"
-			android:defaultValue="false" />
-	<PreferenceCategory android:title="@string/category_acv_format_title">
-			<CheckBoxPreference android:key="acv_frames"
-			android:title="@string/preference_acv_frames_title" android:summary="@string/preference_acv_frames_summary"
-			android:defaultValue="true" />
-			<CheckBoxPreference android:key="acv_vibration"
-			android:title="@string/preference_acv_vibration_title" android:summary="@string/preference_acv_vibration_summary"
-			android:defaultValue="true" />
-			<CheckBoxPreference android:key="acv_autoplay"
-			android:title="@string/preference_acv_autoplay_title" android:summary="@string/preference_acv_autoplay_summary"
-			android:defaultValue="true" />
-	</PreferenceCategory>		
+			android:defaultValue="false" />		
 </PreferenceScreen>
