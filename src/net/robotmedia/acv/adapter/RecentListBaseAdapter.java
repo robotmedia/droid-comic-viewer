@@ -12,18 +12,31 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class RecentListBaseAdapter extends ACVListAdapter<String> {
-
+	protected int maxNumItems = -1;
+	
 	public RecentListBaseAdapter(Context context, int rowResId) {
 		super(context, rowResId);
 		contents = new ArrayList<String>();
 		refresh();
 	}
 
+	public void setMaxNumItems(int num) {
+		maxNumItems = num;
+		refresh();
+	}
+	
 	@Override
 	public void refresh() {
 		contents.clear();
 		List<String> lastFiles = HistoryManager.getInstance(context).getRecentFiles();
-		contents.addAll(lastFiles);
+		if(maxNumItems > 0) {
+			for(String file : lastFiles) {
+				contents.add(file);
+			}
+		} else {
+			// No limit
+			contents.addAll(lastFiles);
+		}
 		notifyDataSetChanged();
 	}
 
