@@ -30,8 +30,12 @@ public class RecentListBaseAdapter extends ACVListAdapter<String> {
 		contents.clear();
 		List<String> lastFiles = HistoryManager.getInstance(context).getRecentFiles();
 		if(maxNumItems > 0) {
+			int c = 0;
 			for(String file : lastFiles) {
 				contents.add(file);
+				if(++c >= maxNumItems) {
+					break;
+				}
 			}
 		} else {
 			// No limit
