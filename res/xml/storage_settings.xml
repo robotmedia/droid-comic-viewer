@@ -16,9 +16,6 @@
 -->
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
-  		<CheckBoxPreference android:key="load_last"
-			android:title="@string/preference_load_last_title" android:summary="@string/preference_load_last_summary"
-			android:defaultValue="true" />
 		<Preference android:key="clear_history"
 				android:title="@string/preference_clear_history_title"
 				android:summary="@string/preference_clear_history_summary" />

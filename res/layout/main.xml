@@ -68,6 +68,9 @@
                     style="@style/Theme.ListItemText"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:singleLine="false"
+                    android:lines="3"
                     android:text="@string/main_recent_items_empty" />
             </LinearLayout>
 
@@ -85,52 +88,58 @@
         android:layout_height="fill_parent"
         android:visibility="gone" />
 
-    <ImageButton
-        android:id="@+id/corner_top_left"
-        android:layout_width="80dip"
-        android:layout_height="80dip"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/transparent"
-        android:clickable="false"
-        android:scaleType="center"
-        android:src="@drawable/corner_button" >
-    </ImageButton>
+    <RelativeLayout
+        android:id="@+id/main_buttons_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
-    <ImageButton
-        android:id="@+id/corner_top_right"
-        android:layout_width="80dip"
-        android:layout_height="80dip"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/transparent"
-        android:clickable="false"
-        android:scaleType="center"
-        android:src="@drawable/corner_button" >
-    </ImageButton>
+        <ImageButton
+            android:id="@+id/corner_top_left"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:scaleType="center"
+            android:src="@drawable/corner_button" >
+        </ImageButton>
 
-    <ImageButton
-        android:id="@+id/corner_bottom_left"
-        android:layout_width="80dip"
-        android:layout_height="80dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@android:color/transparent"
-        android:clickable="false"
-        android:scaleType="center"
-        android:src="@drawable/corner_button" >
-    </ImageButton>
+        <ImageButton
+            android:id="@+id/corner_top_right"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:scaleType="center"
+            android:src="@drawable/corner_button" >
+        </ImageButton>
 
-    <ImageButton
-        android:id="@+id/corner_bottom_right"
-        android:layout_width="80dip"
-        android:layout_height="80dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="@android:color/transparent"
-        android:clickable="false"
-        android:scaleType="center"
-        android:src="@drawable/corner_button" >
-    </ImageButton>
+        <ImageButton
+            android:id="@+id/corner_bottom_left"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:scaleType="center"
+            android:src="@drawable/corner_button" >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/corner_bottom_right"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:scaleType="center"
+            android:src="@drawable/corner_button" >
+        </ImageButton>
+    </RelativeLayout>
 
 </RelativeLayout>

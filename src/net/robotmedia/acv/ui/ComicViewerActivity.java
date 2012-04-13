@@ -122,6 +122,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	protected ViewGroup mRecentItems = null;
 	protected ListView mRecentItemsList = null;
 	protected ACVListAdapter mRecentItemsListAdapter = null;
+	protected View mButtonsContainer;
 	protected View mMain;
 	protected ComicView mScreen;
 	protected PreferencesController pController;
@@ -212,6 +213,8 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		mGestureDetector = new GestureDetector(this);
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+		mButtonsContainer = findViewById(R.id.main_buttons_container);
+		
 		mMain = findViewById(R.id.main_layout);
 
 		ImageView logo = (ImageView) findViewById(R.id.main_logo);
@@ -1226,10 +1229,12 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	private void showRecentItems() {
 		mRecentItemsListAdapter.refresh();
 		mRecentItems.setVisibility(View.VISIBLE);
+		mButtonsContainer.setVisibility(View.INVISIBLE);
 	}
 	
 	private void hideRecentItems() {
 		mRecentItems.setVisibility(View.GONE);
+		mButtonsContainer.setVisibility(View.VISIBLE);
 	}
 	
 }
