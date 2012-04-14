@@ -53,9 +53,9 @@
 <string name='menu_close_shortcut'>F</string>
 <string name='dialog_no_sd_title'>Atenção</string>
 <string name='dialog_no_sd_text'>Cartão SD não foi encontrado.\n\nPor favor insira ou monte seu cartão SD para abrir os comics.</string>
-<string name='dialog_page_progress_title'>Carregando...</string>
-<string name='dialog_page_progress_text'>Carregando página @number. Por favor, aguarde...</string>
-<string name='dialog_loading_progress_title'>Carregando...</string>
+<string name='dialog_page_progress_title'>Carregando&#8230;</string>
+<string name='dialog_page_progress_text'>Carregando página @number. Por favor, aguarde&#8230;</string>
+<string name='dialog_loading_progress_title'>Carregando&#8230;</string>
 <string name='dialog_loading_progress_text'>Carregando Comic do cartão SD.</string>
 <string name='dialog_load_error_title'>Oops!</string>
 <string name='dialog_load_error_text'>Aconteceu um erro enquanto carregava. Se precisar de ajuda, por favor contate support@androidcomics.net</string>

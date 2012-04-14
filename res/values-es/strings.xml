@@ -54,9 +54,9 @@
     
     <string name="dialog_no_sd_title">Alerta</string>
     <string name="dialog_no_sd_text">No se encontró tarjeta SD.\n\nMontar o insertar una tarjeta SD para ver comics.</string>
-    <string name="dialog_page_progress_title">Cargando...</string>
-    <string name="dialog_page_progress_text">Cargando pantalla @number. Espera por favor...</string>
-    <string name="dialog_loading_progress_title">Cargando...</string>
+    <string name="dialog_page_progress_title">Cargando&#8230;</string>
+    <string name="dialog_page_progress_text">Cargando pantalla @number. Espera por favor&#8230;</string>
+    <string name="dialog_loading_progress_title">Cargando&#8230;</string>
     <string name="dialog_loading_progress_text">Cargando comic desde la tarjeta SD</string>
     <string name="dialog_load_error_title">¡Oops!</string>
     <string name="dialog_load_error_text">Ocurrió un error mientras se cargaba el comic. Si necesitas ayuda, por favor envía un mensaje a support@androidcomics.net.</string>
