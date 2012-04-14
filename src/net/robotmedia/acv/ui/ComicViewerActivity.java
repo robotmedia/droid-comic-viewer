@@ -516,7 +516,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		menu.findItem(R.id.item_rotate).setVisible(comicLoaded);
 		
 		if (comicLoaded) {
-			boolean considerFrames = comic.hasFrames(mScreen.getIndex()) && preferences.getBoolean(Constants.ACV_FRAMES_KEY, true);
+			boolean considerFrames = comic.hasFrames(mScreen.getIndex());
 			menu.findItem(R.id.item_next_screen).setVisible(considerFrames);
 			menu.findItem(R.id.item_previous_screen).setVisible(considerFrames);
 		}

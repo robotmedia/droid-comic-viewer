@@ -160,7 +160,7 @@ public class ComicView extends RelativeLayout implements OnCompletionListener, O
 					current.getLetterbox().hide(false); // In case we come from a screen with frames
 				}
 				
-				if (forward && isEnabled(Constants.ACV_AUTOPLAY_KEY)) {
+				if (forward) {
 					final boolean autoplay = ((ACVComic) comic).isAutoplay(position);
 					if (autoplay || mAutoplay) {
 						stopAnimation = false;
@@ -385,7 +385,7 @@ public class ComicView extends RelativeLayout implements OnCompletionListener, O
 	private HashMap<File, Integer> soundHistory = new HashMap<File, Integer>();
 	
 	private synchronized void playSound(final File sound) {
-		if (isEnabled(Constants.ACV_SOUND_KEY) && (soundPlayer == null || !soundPlayer.isPlaying())) {
+		if (soundPlayer == null || !soundPlayer.isPlaying()) {
 			if (!soundHistory.containsKey(sound)) {
 				soundHistory.put(sound, 1);
 				soundPlayer = new MediaPlayer();
@@ -889,10 +889,7 @@ public class ComicView extends RelativeLayout implements OnCompletionListener, O
 	 * @return
 	 */
 	private boolean mustConsiderFrames() {
-		if (isEnabled(Constants.ACV_FRAMES_KEY)) {
-			return comic.hasFrames(position);
-		}
-		return false;
+		return comic.hasFrames(position);
 	}
 	
 	private Runnable mAutoplayRunnable;
@@ -902,7 +899,7 @@ public class ComicView extends RelativeLayout implements OnCompletionListener, O
 		
 		final boolean vibrate = acv.isVibrate(position, framePosition);
 		final boolean autoplay;
-		if (forward && isEnabled(Constants.ACV_AUTOPLAY_KEY)) {
+		if (forward) {
 			autoplay = acv.isAutoplay(position, framePosition);
 			if (autoplay || mAutoplay) {
 				long duration = acv.getDuration(position, framePosition);
@@ -1199,39 +1196,41 @@ public class ComicView extends RelativeLayout implements OnCompletionListener, O
 	}
 	
 	private void vibrate(final boolean stopAnimationWhenDone) {
-		if (isEnabled(Constants.ACV_VIBRATION_KEY)) {
-			final Vibrator vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-			if (vibrator != null) {
-				vibrator.vibrate(500);
-			}
-			final AnimationSet set = new AnimationSet(true);
-			int fromXDelta = 1;
-			int fromYDelta = 1;
-			final int maxDeltaScaled = MathUtils.dipToPixel(getContext(), 30);
-			for (int i = 0; i < 5; i++) {
-				int toXDelta = Math.round((float) (Math.random() * maxDeltaScaled) - ((float) maxDeltaScaled / 2f));
-				int toYDelta = Math.round((float) (Math.random() * maxDeltaScaled) - ((float) maxDeltaScaled / 2f));
-				TranslateAnimation t = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
-				t.setDuration(50);
-				t.setStartOffset(50 * i);
-				set.addAnimation(t);
-				fromXDelta = toXDelta;
-				fromYDelta = toYDelta;
-			}
-			set.setAnimationListener(new AnimationListener() {
-				@Override public void onAnimationEnd(Animation arg0) { if (stopAnimationWhenDone) stopAnimating(); }
-				@Override public void onAnimationRepeat(Animation arg0) {}
-				@Override public void onAnimationStart(Animation arg0) { startAnimating(); }
-			});
-			this.startAnimation(set);
-		} else if (stopAnimationWhenDone) {
-			stopAnimating();
+		final Vibrator vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+		if (vibrator != null) {
+			vibrator.vibrate(500);
 		}
-	}
-	
-	private boolean isEnabled(String key) {
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-		return preferences.getBoolean(key, true);
+		final AnimationSet set = new AnimationSet(true);
+		int fromXDelta = 1;
+		int fromYDelta = 1;
+		final int maxDeltaScaled = MathUtils.dipToPixel(getContext(), 30);
+		for (int i = 0; i < 5; i++) {
+			int toXDelta = Math.round((float) (Math.random() * maxDeltaScaled) - ((float) maxDeltaScaled / 2f));
+			int toYDelta = Math.round((float) (Math.random() * maxDeltaScaled) - ((float) maxDeltaScaled / 2f));
+			TranslateAnimation t = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
+			t.setDuration(50);
+			t.setStartOffset(50 * i);
+			set.addAnimation(t);
+			fromXDelta = toXDelta;
+			fromYDelta = toYDelta;
+		}
+		set.setAnimationListener(new AnimationListener() {
+			@Override
+			public void onAnimationEnd(Animation arg0) {
+				if (stopAnimationWhenDone)
+					stopAnimating();
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation arg0) {
+			}
+
+			@Override
+			public void onAnimationStart(Animation arg0) {
+				startAnimating();
+			}
+		});
+		this.startAnimation(set);
 	}
 	
 }

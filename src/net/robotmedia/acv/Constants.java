@@ -28,13 +28,7 @@ public class Constants {
 	public static final String VERSION_KEY = "version";
 	public static final String CLEAN_EXIT_KEY = "clean_exit";
 	public static final String BRIGHTNESS_KEY = "brightness";	
-	
-	// ACV format preferences
-	public static final String ACV_FRAMES_KEY = "acv_frames";
-	public static final String ACV_VIBRATION_KEY = "acv_vibration";
-	public static final String ACV_AUTOPLAY_KEY = "acv_autoplay";
-	public static final String ACV_SOUND_KEY = "acv_sound";
-	
+		
 	// Events
 	public static final String SINGLE_TAP_KEY = "single_tap";
 	public static final String LONG_TAP_KEY = "long_tap";
