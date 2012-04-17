@@ -65,7 +65,6 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 			if (result != null) {
 				HistoryManager.getInstance(ComicViewerActivity.this).remember(new File(path));
 			}
-			// result.setDensityScale(getResources().getDisplayMetrics().density);
 			return result;
 		}
 		
@@ -79,7 +78,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				
 				mScreen.setVisibility(View.VISIBLE);
 				hideRecentItems();
-				pController.savePreference(Constants.COMIC_PATH_KEY, comic.getPath());
+				preferencesController.savePreference(Constants.COMIC_PATH_KEY, comic.getPath());
 
 				mScreen.setComic(comic);
 				mScreen.goToScreen(initialIndex);
@@ -124,7 +123,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	protected View mButtonsContainer;
 	protected View mMain;
 	protected ComicView mScreen;
-	protected PreferencesController pController;
+	protected PreferencesController preferencesController;
 	protected SharedPreferences preferences;
 	protected boolean requestedRotation = false;
 
@@ -151,16 +150,16 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 			}
 
-			if (pController.isLeftToRight()) {
-				if (pController.isUsedForPreviousNext(Constants.TRACKBALL_RIGHT_KEY, Constants.TRACKBALL_LEFT_KEY) || 
-						pController.isUsedForPreviousNext(Constants.INPUT_FLING_LEFT, Constants.INPUT_FLING_RIGHT) || 
-						pController.isUsedForPreviousNext(Constants.INPUT_CORNER_BOTTOM_RIGHT, Constants.INPUT_CORNER_BOTTOM_LEFT)) {
+			if (preferencesController.isLeftToRight()) {
+				if (preferencesController.isUsedForPreviousNext(Constants.TRACKBALL_RIGHT_KEY, Constants.TRACKBALL_LEFT_KEY) || 
+						preferencesController.isUsedForPreviousNext(Constants.INPUT_FLING_LEFT, Constants.INPUT_FLING_RIGHT) || 
+						preferencesController.isUsedForPreviousNext(Constants.INPUT_CORNER_BOTTOM_RIGHT, Constants.INPUT_CORNER_BOTTOM_LEFT)) {
 					showDialog(Constants.DIALOG_FLIP_CONTROLS);
 				}
 			} else {
-				if (pController.isUsedForPreviousNext(Constants.TRACKBALL_LEFT_KEY, Constants.TRACKBALL_RIGHT_KEY) || 
-						pController.isUsedForPreviousNext(Constants.INPUT_FLING_RIGHT, Constants.INPUT_FLING_LEFT) || 
-						pController.isUsedForPreviousNext(Constants.INPUT_CORNER_BOTTOM_LEFT, Constants.INPUT_CORNER_BOTTOM_RIGHT)) {
+				if (preferencesController.isUsedForPreviousNext(Constants.TRACKBALL_LEFT_KEY, Constants.TRACKBALL_RIGHT_KEY) || 
+						preferencesController.isUsedForPreviousNext(Constants.INPUT_FLING_RIGHT, Constants.INPUT_FLING_LEFT) || 
+						preferencesController.isUsedForPreviousNext(Constants.INPUT_CORNER_BOTTOM_LEFT, Constants.INPUT_CORNER_BOTTOM_RIGHT)) {
 					showDialog(Constants.DIALOG_FLIP_CONTROLS);
 				}
 			}
@@ -232,7 +231,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		mCornerBottomRight = (ImageButton) findViewById(R.id.corner_bottom_right);
 		adjustCornersVisibility(true);
 
-		pController = new PreferencesController(this);
+		preferencesController = new PreferencesController(this);
 
 		mAdsContainer = (RelativeLayout) findViewById(R.id.mainAdsContainer);
 
@@ -241,13 +240,22 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 
 		// TODO: Shouldn't this be first?
 		if (startupOrientation(savedInstanceState)) { // If no orientation change was requested
-			pController.checkCleanExit();
+			preferencesController.checkCleanExit();
 			markCleanExitPending = true;
-
-			showRecentItems();
 		}
-
-		showAds();
+		
+		String comicPath = null;
+		if(savedInstanceState != null && savedInstanceState.containsKey(Constants.COMIC_PATH_KEY)) {
+			comicPath = savedInstanceState.getString(Constants.COMIC_PATH_KEY);
+		}
+		
+		if(comicPath == null) {
+			showRecentItems();
+			showAds();
+		} else {
+			loadComic(comicPath);
+		}
+		
 	}
 	
 	@Override
@@ -534,7 +542,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 
 		// Remove the comic path in case the comic is defective. 
 		// If the page load failed because of an orientation change, the comic path is saved in the instance state anyway.
-		pController.savePreference(Constants.COMIC_PATH_KEY, null);
+		preferencesController.savePreference(Constants.COMIC_PATH_KEY, null);
 		
 		removePreviousComic(true);
 		
@@ -622,7 +630,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	{
 	   super.onStop();
 		if (markCleanExitPending) {
-			pController.markCleanExit();
+			preferencesController.markCleanExit();
 		}
 	}
 	
@@ -812,7 +820,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 			removePreviousComic(true);
 			mScreen.setVisibility(View.GONE);
 			showRecentItems();
-			pController.savePreference(Constants.COMIC_PATH_KEY, null);
+			preferencesController.savePreference(Constants.COMIC_PATH_KEY, null);
 			showAds();
 		} else {
 			finish();
@@ -1093,50 +1101,6 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				Constants.SHOW_NUMBER_KEY, String.valueOf(preferences.getBoolean(Constants.SHOW_NUMBER_KEY, false)),
 				Constants.LOAD_LAST_KEY, String.valueOf(preferences.getBoolean(Constants.LOAD_LAST_KEY, true)),
 				Constants.ORIENTATION_KEY, describeOrientation(getResources().getConfiguration().orientation));
-	}
-	
-	
-	
-	private void loadComicOnStartup(String comicPath) {
-		
-		if (comicPath != null) {
-			loadComic(comicPath);
-			return;
-		}
-		
-		final Intent intent = getIntent();
-		if (intent.getAction().equals(Intent.ACTION_VIEW)) {
-			final Uri uri = intent.getData();
-			try {
-				final File file = new File(new URI(uri.toString()));
-				comicPath = file.getAbsolutePath();
-				if (comicPath != null) {
-					loadComic(comicPath, intent);
-					return;
-				}
-			} catch (URISyntaxException e) {
-				Log.w("loadComicOnStartup", "Invalid intent data");
-			}
-		}
-		
-		// Attempt to find comic path in intent
-		comicPath = intent.getStringExtra(Constants.COMIC_PATH_LEGACY_KEY); 
-		// Compatibility with previous versions of ACV
-		if (comicPath == null) {
-			comicPath = intent.getStringExtra(Constants.COMIC_PATH_KEY);
-		}
-		if (comicPath != null) {
-			loadComic(comicPath, intent);
-			return;
-		}
-
-		boolean loadLast = preferences.getBoolean(Constants.LOAD_LAST_KEY, true);
-		if (loadLast) {
-			comicPath = preferences.getString(Constants.COMIC_PATH_KEY, null);
-			if (comicPath != null) {
-				loadComic(comicPath);
-			}
-		}
 	}
 	
 	@Override
