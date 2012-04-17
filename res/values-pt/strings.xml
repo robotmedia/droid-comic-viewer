@@ -112,7 +112,6 @@
 <string name='category_memory_title'>Memória</string>
 <string name='preference_load_last_title'>Carregar último comic</string>
 <string name='preference_load_last_summary'>Carregar último comic na inicialização</string>
-<string name='category_support_title'>Suporte</string>
 <string name='preference_manual_title'>Manual do usuário</string>
 <string name='preference_manual_summary'>Abre o manual do usuário no navegador</string>
 <string name='category_about_title'>Sobre</string>

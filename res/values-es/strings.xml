@@ -119,7 +119,6 @@
     <string name="preference_load_last_summary">Carga el último comic al inicio</string>
     <string name="preference_clear_history_title">Borrar historial</string>
     <string name="preference_clear_history_summary">Borrar todo el historial de visualización</string>
-    <string name="category_support_title">Soporte</string>
     <string name="preference_low_memory_title">Bajo consumo de memoria</string>
     <string name="preference_low_memory_summary">Deshabilitar precarga y transiciones</string>  
     <string name="preference_manual_title">Manual de usuario</string>

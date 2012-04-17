@@ -129,7 +129,6 @@
 <string name='category_memory_title'>Pamięć</string>
 <string name='preference_load_last_title'>Wczytaj ostatni komiks</string>
 <string name='preference_load_last_summary'>Wczytaj ostatnio otwarty komiks przy uruchomieniu aplikacji</string>
-<string name='category_support_title'>Pomoc</string>
 <string name='preference_manual_title'>Podręcznik użytkownika</string>
 <string name='preference_manual_summary'>Otwórz podręcznik użytkownika w domyślnej przeglądarce</string>
 <string name='category_about_title'>O programie</string>

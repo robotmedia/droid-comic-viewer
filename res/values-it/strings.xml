@@ -110,7 +110,6 @@
 <string name='category_memory_title'>Memoria</string>
 <string name='preference_load_last_title'>Carica l\'ultimo fumetto</string>
 <string name='preference_load_last_summary'>All\'avvio carica l\'ultimo fumetto letto</string>
-<string name='category_support_title'>Supporto</string>
 <string name='preference_manual_title'>Manuale utente</string>
 <string name='preference_manual_summary'>Apre il manuale utente nel browser</string>
 <string name='category_about_title'>Informazioni</string>

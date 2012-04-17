@@ -78,12 +78,6 @@
             >
         </activity>
         <activity
-            android:name="net.robotmedia.acv.ui.CreditsActivity"
-            android:label="@string/activity_credits_label"
-            android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Dialog" >
-        </activity>
-        <activity
             android:name="net.robotmedia.acv.ui.SDBrowserActivity"
             android:label="@string/activity_sd_browser_label"
             android:screenOrientation="behind" >
@@ -107,10 +101,6 @@
         <activity
             android:name="net.robotmedia.acv.ui.settings.StorageSettingsActivity"
             android:label="@string/category_memory_title" >
-        </activity>
-        <activity
-            android:name="net.robotmedia.acv.ui.settings.SupportSettingsActivity"
-            android:label="@string/category_support_title" >
         </activity>
         <activity
             android:name="net.robotmedia.acv.ui.settings.AboutSettingsActivity"

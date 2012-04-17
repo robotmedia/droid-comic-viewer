@@ -110,7 +110,6 @@
 <string name='category_memory_title'>Mémoire</string>
 <string name='preference_load_last_title'>Charger la dernière BD</string>
 <string name='preference_load_last_summary'>Charger la dernière BD consultée au démarrage</string>
-<string name='category_support_title'>Support</string>
 <string name='preference_manual_title'>Manuel d\'utilisation</string>
 <string name='preference_manual_summary'>Ouvrir le manuel d\'utilisation dans le Navigateur par défaut</string>
 <string name='category_about_title'>A propos</string>
