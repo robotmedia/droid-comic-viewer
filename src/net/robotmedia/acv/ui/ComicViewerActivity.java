@@ -1162,8 +1162,10 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 
 	@Override
 	public void onScreenChanged(int index) {
-		final String path = comic.getPath();
-		HistoryManager.getInstance(this).setBookmark(new File(path), index);
+		if(comic != null) {
+			final String path = comic.getPath();
+			HistoryManager.getInstance(this).setBookmark(new File(path), index);
+		}
 	}
 	
 	private void showAds() {
