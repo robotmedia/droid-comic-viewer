@@ -17,6 +17,7 @@ package net.robotmedia.acv.ui;
 
 import java.util.HashSet;
 
+import net.robotmedia.acv.logic.AdsManager;
 import net.robotmedia.acv.logic.TrackingManager;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -40,7 +41,9 @@ public class ExtendedActivity extends Activity {
 	protected Runnable mHideActionBarRunnable = new Runnable() {
 		@Override
 		public void run() {
-			hideActionBar();
+			if(isHoneyComb()) {
+				new ActionBarHelper().hide();
+			}
 		}
 	};
 	protected Handler mHandler;
@@ -60,12 +63,17 @@ public class ExtendedActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
+
+		AdsManager.destroyAds(this);
+
 		super.onDestroy();
+
 		for (AsyncTask<?, ?, ?> task : mTasks) {
 			if (task.getStatus() != AsyncTask.Status.FINISHED) {
 				task.cancel(true);
 			}
 		}
+
 	}
 
 	@Override
@@ -89,28 +97,26 @@ public class ExtendedActivity extends Activity {
 		mHandler = new Handler(looper);
 
 		if (isHoneyComb()) {
-			mActionBar = getActionBar();
-			if (mActionBar != null) {
-				mActionBar.setDisplayShowHomeEnabled(false);
-				mActionBar.setDisplayShowTitleEnabled(false);
-				mActionBar.setDisplayHomeAsUpEnabled(false);
-				mActionBar.setDisplayShowCustomEnabled(true);
-				mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-			}
-
+			setupActionBar();
 			hideActionBar();
+		}
+	}
+	
+	protected void setupActionBar() {
+		if (isHoneyComb()) {
+			new ActionBarHelper().setup();
 		}
 	}
 
 	protected void showActionBar() {
 		if (isHoneyComb()) {
-			mActionBar.show();
+			new ActionBarHelper().show();
 		}
 	}
 
 	protected void hideActionBar() {
 		if (isHoneyComb()) {
-			mActionBar.hide();
+			new ActionBarHelper().hide();
 		}
 	}
 
@@ -120,15 +126,15 @@ public class ExtendedActivity extends Activity {
 			mHandler.postDelayed(mHideActionBarRunnable, 7000);
 		}
 	}
-	
+
 	// Return true if the action bar ends up being shown
 	protected boolean toggleControls() {
 		if(isHoneyComb()) {
 			mHandler.removeCallbacks(mHideActionBarRunnable);
-			if(mActionBar.isShowing()) {
-				mActionBar.hide();
+			if(new ActionBarHelper().isShowing()) {
+				new ActionBarHelper().hide();
 			} else {
-				mActionBar.show();
+				new ActionBarHelper().show();
 				return true;
 			}
 		}
@@ -143,4 +149,36 @@ public class ExtendedActivity extends Activity {
 		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
 	}
 
+	protected class ActionBarHelper {
+
+		public void setup() {
+			ActionBar actionBar = getActionBar();
+
+			if (actionBar != null) {
+				actionBar.setDisplayShowHomeEnabled(false);
+				actionBar.setDisplayShowTitleEnabled(false);
+				actionBar.setDisplayHomeAsUpEnabled(false);
+				actionBar.setDisplayShowCustomEnabled(true);
+				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			}
+		}
+
+		public void hide() {
+			getActionBar().hide();
+		}
+		
+		public void show() {
+			getActionBar().show();
+		}
+		
+		public boolean isShowing() {
+			return getActionBar().isShowing();
+		}
+	}
+	
+	protected class MenuHelper {
+		public void invalidateOptionsMenu() {
+			ExtendedActivity.this.invalidateOptionsMenu();
+		}
+	}
 }

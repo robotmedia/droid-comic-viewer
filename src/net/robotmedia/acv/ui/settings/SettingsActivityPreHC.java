@@ -41,4 +41,11 @@ public class SettingsActivityPreHC extends ExtendedPreferenceActivity {
 		addPreferencesFromResource(R.xml.preferences);
 	}
 	
+	@Override
+	protected void onDestroy() {
+		
+		AdsManager.destroyAds(this);
+		
+		super.onDestroy();
+	}
 }

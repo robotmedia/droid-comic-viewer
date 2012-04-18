@@ -84,7 +84,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 				mScreen.goToScreen(initialIndex);
 				
 				if(isHoneyComb()) {
-					invalidateOptionsMenu();
+					new MenuHelper().invalidateOptionsMenu();
 				}
 				hideActionBar();
 				
@@ -167,7 +167,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 
 			adjustBrightness();
 			adjustLowMemoryMode();
-		
+
 			if (isComicLoaded()) mScreen.goToScreen(mScreen.getIndex());
 		} else if (requestCode == Constants.SUBSCRIBE_CODE) {
 			switch (resultCode) {
@@ -932,12 +932,12 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	private void loadComic(final String comicPath, final int initialIndex) {
 		final File file = new File(comicPath);
 		if (file.exists()) {
+			hideAds();
+
 			mComicPath = comicPath;
 			loadComicTask = new LoadComicTask();
 			loadComicTask.initialIndex = initialIndex;
 			loadComicTask.execute(comicPath);
-			
-			hideAds();
 		}
 	}
 	
@@ -1143,7 +1143,8 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		
 		if (emptyTemp) {
 			File tempDirectory = new File(Environment.getExternalStorageDirectory(), Constants.TEMP_PATH);
-			FileUtils.deleteDirectory(tempDirectory);
+			if(tempDirectory.exists())
+				FileUtils.deleteDirectory(tempDirectory);
 		}
 		if (comic != null) {
 			comic.destroy();
@@ -1176,6 +1177,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	}
 	
 	private void hideAds() {
+		AdsManager.destroyAds(this);
 		mAdsContainer.removeAllViews();
 	}
 	

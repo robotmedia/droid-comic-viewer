@@ -15,6 +15,7 @@ public class AdMobProxy {
 	private static Method adRequestAddTestDeviceMethod = null;
 	private static Constructor adViewConstructor = null;
 	private static Method adViewLoadMethod = null;
+	private static Method adViewDestroyMethod = null;
 
 	private static void init() {
 		if (adViewConstructor == null)  {
@@ -26,6 +27,7 @@ public class AdMobProxy {
 				adRequestAddTestDeviceMethod = adRequestClass.getMethod("addTestDevice", String.class);
 				adViewConstructor = adViewClass.getConstructor(Activity.class, adSizeClass, String.class);
 				adViewLoadMethod = adViewClass.getMethod("loadAd", adRequestClass);
+				adViewDestroyMethod = adViewClass.getMethod("destroy");
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (SecurityException e) {
@@ -77,6 +79,32 @@ public class AdMobProxy {
 		return null;
 	}
 
+	/**
+	 * Apparently there's a serious bug with WebViews + Activity.onDestroy in Android 1.5 and 1.6.
+	 * As AdMob uses WebViews, it forces the application to crash.
+	 * The work-around is to destroy AdViews in activity.onDestroy.
+	 * This method removes the ad with id = viewId in the activity view hierarchy.
+	 * 
+	 * @param activity
+	 * @param viewId
+	 */
+	public static void destroyAds(Activity activity, int viewId) {
+		if(adViewDestroyMethod != null) {
+			View v = activity.findViewById(viewId);
+			if(v != null) {
+				try {
+					adViewDestroyMethod.invoke(v);
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	private static final String BANNER = "BANNER";
 	private static final String IAB_MRECT = "IAB_MRECT";
 	private static final String IAB_BANNER = "IAB_BANNER";

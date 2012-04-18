@@ -1,5 +1,6 @@
 package net.robotmedia.acv.logic;
 
+import net.androidcomics.acv.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -23,7 +24,9 @@ public class AdsManager {
 	public static View getAd(Activity activity, int size) {
 		init(activity);
 		if (usesAds) {
-			return AdMobProxy.getAd(activity, size, publisherId, testDeviceId);
+			View ad = AdMobProxy.getAd(activity, size, publisherId, testDeviceId);
+			ad.setId(R.id.ad);
+			return ad;
 		}
 		return null;
 	}
@@ -43,7 +46,11 @@ public class AdsManager {
 		return null;
 	}
 	
-	
+	public static void destroyAds(Activity activity) {
+		if(usesAds) {
+			AdMobProxy.destroyAds(activity, R.id.ad);
+		}
+	}
 
 	protected static void init(Context context) {
 		if (usesAds) {
