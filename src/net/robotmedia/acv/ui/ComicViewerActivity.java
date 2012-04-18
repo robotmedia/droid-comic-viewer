@@ -1032,7 +1032,8 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	 * Shows the menu.
 	 */
 	private void showMenu() {
-		showActionBar();
+		if(isHoneyComb() && !isIcecream())
+			showActionBar();
 		openOptionsMenu();
 	}
 	
@@ -1169,7 +1170,6 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		View ad = AdsManager.getAd(this);
 		if(ad != null) {
 			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-			//lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 			lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 			mAdsContainer.addView(ad, lp);
 		}

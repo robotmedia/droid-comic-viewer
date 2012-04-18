@@ -138,5 +138,9 @@ public class ExtendedActivity extends Activity {
 	protected boolean isHoneyComb() {
 		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
 	}
+	
+	protected boolean isIcecream() {
+		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+	}
 
 }
