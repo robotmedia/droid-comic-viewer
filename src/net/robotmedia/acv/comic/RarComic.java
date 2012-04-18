@@ -55,6 +55,7 @@ public class RarComic extends Comic {
 			e.printStackTrace();
 			TrackingManager.trackError("RarComic", e);
 		}
+
 		if (arc != null && !arc.isEncrypted()) {
 			final TreeMap<String, String> headers = new TreeMap<String, String>();
 			fileHeaders = new TreeMap<String, FileHeader>();
@@ -75,7 +76,7 @@ public class RarComic extends Comic {
 					}
 				}
 			}
-			
+
 			ArrayList<String> ordered = new ArrayList<String>(headers.keySet());
 			orderedScreens = new ArrayList<String>(ordered.size());
 			for (int i = 0; i < ordered.size(); i++) {
@@ -110,7 +111,7 @@ public class RarComic extends Comic {
 		}
 		return file;
 	}
-	
+
 	public synchronized void prepareScreen(int position) {
 		if (position >= 0 && position < this.getLength()) {
 			ImageState status = imageState.get(String.valueOf(position));
@@ -125,9 +126,9 @@ public class RarComic extends Comic {
 			}
 		}
 	}
-	
+
 	private synchronized Bitmap getBitmapFromFileHeaderIfNeeded(int position, String fileName, boolean recycle) {
-		Bitmap bitmap = null;		
+		Bitmap bitmap = null;
 		ImageState status = imageState.get(String.valueOf(position));
 		if (status == null || status.equals(ImageState.UNKNOWN)) {
 			try {
@@ -145,7 +146,7 @@ public class RarComic extends Comic {
 				if (withinBounds) {
 					imageState.put(String.valueOf(position), ImageState.ORIGINAL);
 				} else {
-					bitmap = resampleAndSave(position, width, height);					
+					bitmap = resampleAndSave(position, width, height);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -163,38 +164,46 @@ public class RarComic extends Comic {
 	public int getLength() {
 		return orderedScreens != null ? orderedScreens.size() : 0;
 	}
-	
+
+	@Override
 	public Drawable getScreen(final int position) {
 		ImageState status = imageState.get(String.valueOf(position));
 		if (status == null) status = ImageState.UNKNOWN;
-		String entryName = orderedScreens.get(position);
-		switch (status) {
-		case ORIGINAL:
-		case MODIFIED:
-			String filePath = getTempFilePath(position);
-			if (filePath != null) {
-				return Drawable.createFromPath(filePath);
-			}
-		default:
-			Bitmap bitmap = getBitmapFromFileHeaderIfNeeded(position, entryName, false);
-			if (bitmap == null) {
-				status = imageState.get(String.valueOf(position));
-				if (status == null) status = ImageState.UNKNOWN;
-				switch (status) {
+
+		try {
+			String entryName = orderedScreens.get(position);
+
+			switch (status) {
 				case ORIGINAL:
 				case MODIFIED:
-					filePath = getTempFilePath(position);
+					String filePath = getTempFilePath(position);
 					if (filePath != null) {
 						return Drawable.createFromPath(filePath);
 					}
-					return Drawable.createFromPath(filePath);
 				default:
-					error();
-					return null;
+					Bitmap bitmap = getBitmapFromFileHeaderIfNeeded(position, entryName, false);
+					if (bitmap == null) {
+						status = imageState.get(String.valueOf(position));
+						if (status == null) status = ImageState.UNKNOWN;
+						switch (status) {
+						case ORIGINAL:
+						case MODIFIED:
+							filePath = getTempFilePath(position);
+							if (filePath != null) {
+								return Drawable.createFromPath(filePath);
+							}
+							return Drawable.createFromPath(filePath);
+						default:
+							error();
+							return null;
+						}
+					} else {
+						return new BitmapDrawable(bitmap);
+					}
 				}
-			} else {
-				return new BitmapDrawable(bitmap);
-			}
+
+		} catch(IndexOutOfBoundsException e) {
+			return null;
 		}
 	}
 
