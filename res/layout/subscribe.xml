@@ -15,27 +15,62 @@
   limitations under the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content" android:layout_height="wrap_content"
-	android:orientation="vertical">
-	<TextView android:text="@string/txt_subscribe_intro"
-		android:id="@+id/TextView01" android:paddingBottom="15px" android:paddingLeft="10px" android:paddingRight="10px" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_gravity="center"
-		android:layout_centerHorizontal="true" android:gravity="center_horizontal"></TextView>
-	<EditText android:layout_below="@+id/TextView01" android:id="@+id/txt_subscribe_email"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:text="email" android:inputType="textEmailAddress"
-		android:paddingTop="15px" android:paddingBottom="15px"
-		android:gravity="center_horizontal" android:layout_centerHorizontal="true" android:width="250px"></EditText>
-	<RelativeLayout android:layout_height="wrap_content"
-		android:paddingTop="15px" android:paddingBottom="15px"
-		android:id="@+id/RelativeLayout01" android:layout_width="wrap_content"
-		android:gravity="center" android:layout_below="@+id/txt_subscribe_email"
-		android:layout_centerHorizontal="true">
-		<Button android:id="@+id/btn_subcribe_cancel" android:text="@android:string/cancel"
-			android:layout_width="wrap_content" android:layout_below="@+id/EditText01"
-			android:layout_height="wrap_content"></Button>
-		<Button android:id="@+id/btn_subcribe_submit" android:text="@string/btn_subscribe_submit"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:layout_toRightOf="@+id/btn_subcribe_cancel"></Button>
-	</RelativeLayout>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/txt_subscribe_intro" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/txt_subscribe_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView01"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:text="email"
+        android:width="250dp" >
+    </EditText>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_subscribe_email"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp" >
+
+        <Button
+            android:id="@+id/btn_subcribe_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_subscribe_email"
+            android:text="@android:string/cancel" >
+        </Button>
+
+        <Button
+            android:id="@+id/btn_subcribe_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/btn_subcribe_cancel"
+            android:text="@string/btn_subscribe_submit" >
+        </Button>
+    </RelativeLayout>
+
 </RelativeLayout>

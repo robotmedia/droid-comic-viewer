@@ -164,14 +164,19 @@ public class ExtendedActivity extends Activity {
 		}
 
 		public void hide() {
-			getActionBar().hide();
+			if(getActionBar() != null)
+				getActionBar().hide();
 		}
 		
 		public void show() {
-			getActionBar().show();
+			if(getActionBar() != null)
+				getActionBar().show();
 		}
 		
 		public boolean isShowing() {
+			if(getActionBar() == null) {
+				return false;
+			}
 			return getActionBar().isShowing();
 		}
 	}
