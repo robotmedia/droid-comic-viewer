@@ -16,10 +16,16 @@
 package net.robotmedia.acv.ui.settings.mobile;
 
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import net.androidcomics.acv.R;
+import net.robotmedia.acv.billing.BillingManager;
+import net.robotmedia.acv.ui.settings.SettingsHelper;
 
 public class SettingsActivityMobile extends ExtendedPreferenceActivity {
 
+	private BillingManager billing;
+	
 	@Override
 	protected int getPreferencesResource() {
 		return R.xml.preferences;
@@ -28,8 +34,28 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		this.billing = new BillingManager(this);
 		
-		this.helper.preparePurchasePremium();
+		Preference preference = this.findPreference(SettingsHelper.PREFERENCE_PURCHASE_PREMIUM);
+		if (BillingManager.isPremium(this)) {
+			preference.setEnabled(false);
+		} else {	
+			this.helper.setOnPreferenceClickListener(SettingsHelper.PREFERENCE_PURCHASE_PREMIUM, new OnPreferenceClickListener() {
+				
+				@Override
+				public boolean onPreferenceClick(Preference preference) {
+					billing.purchasePremium();
+					return true;
+				}
+			});
+		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		this.billing.onDestroy();
+		super.onDestroy();
 	}
 	
 }

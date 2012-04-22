@@ -9,19 +9,12 @@ public class SettingsHelperMobile extends SettingsHelper {
 	private PreferenceActivity preferences;
 	
 	public SettingsHelperMobile(PreferenceActivity preferences) {
-		super(preferences);
 		this.preferences = preferences;
 	}
 
 	@Override
 	protected Preference findPreference(String key) {
 		return this.preferences.findPreference(key);
-	}
-	
-	@Override
-	protected void clearHistory() {
-		super.clearHistory();
-		this.preferences.finish();
 	}
 	
 }
