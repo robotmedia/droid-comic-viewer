@@ -20,13 +20,14 @@ import java.util.HashSet;
 import net.robotmedia.acv.logic.TrackingManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 public class ExtendedPreferenceFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
 
-	protected SettingsHelperTablet helper = new SettingsHelperTablet(this);
+	protected SettingsHelperTablet helper;
 	
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
 	
@@ -45,6 +46,12 @@ public class ExtendedPreferenceFragment extends PreferenceFragment implements On
 			final Preference preference = this.findPreference(key);
 			preference.setSummary(value);
 		}
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.helper = new SettingsHelperTablet(this);
 	}
 	
 	@Override

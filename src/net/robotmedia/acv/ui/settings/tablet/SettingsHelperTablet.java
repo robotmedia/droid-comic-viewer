@@ -9,7 +9,6 @@ public class SettingsHelperTablet extends SettingsHelper {
 	private PreferenceFragment preferences;
 	
 	public SettingsHelperTablet(PreferenceFragment preferences) {
-		super(preferences.getActivity());
 		this.preferences = preferences;
 	}
 	
