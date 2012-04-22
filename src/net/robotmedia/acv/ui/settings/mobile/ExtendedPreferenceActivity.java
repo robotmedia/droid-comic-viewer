@@ -20,7 +20,6 @@ import java.util.HashSet;
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.logic.AdsManager;
 import net.robotmedia.acv.logic.TrackingManager;
-import net.robotmedia.acv.utils.BuildUtils;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
@@ -56,8 +55,6 @@ public abstract class ExtendedPreferenceActivity extends PreferenceActivity impl
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		if (!BuildUtils.isHoneycombOrLater()) {
-
 		setContentView(R.layout.settings);	
 		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
 		View ad = AdsManager.getAd(this);
@@ -67,8 +64,7 @@ public abstract class ExtendedPreferenceActivity extends PreferenceActivity impl
 			adsContainer.addView(ad, lp);
 		}
 		
-			addPreferencesFromResource(this.getPreferencesResource());
-		}
+		addPreferencesFromResource(this.getPreferencesResource());
 	}
 	
 	protected abstract int getPreferencesResource();
