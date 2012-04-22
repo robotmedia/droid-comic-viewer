@@ -21,3 +21,5 @@ gen/
 # Local configuration file (sdk path, etc)
 local.properties
 res/values/private_s.xml
+
+src/net/robotmedia/acv/billing/Configuration.java
