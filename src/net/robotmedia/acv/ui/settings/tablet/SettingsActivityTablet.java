@@ -13,17 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.tablet;
+
+import java.util.List;
+
+import android.preference.PreferenceActivity;
 
 import net.androidcomics.acv.R;
-import android.os.Bundle;
 
-public class VisualSettingsFragment extends ExtendedPreferenceFragment {
+public class SettingsActivityTablet extends PreferenceActivity {
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.visual_settings);
-	}
+    public void onBuildHeaders(List<Header> target) {
+        loadHeadersFromResource(R.xml.preference_headers, target);
+    }
 	
 }

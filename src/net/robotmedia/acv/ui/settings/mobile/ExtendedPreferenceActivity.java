@@ -13,66 +13,93 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.mobile;
 
 import java.util.HashSet;
 
+import net.androidcomics.acv.R;
+import net.robotmedia.acv.logic.AdsManager;
 import net.robotmedia.acv.logic.TrackingManager;
+import net.robotmedia.acv.utils.BuildUtils;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
+import android.preference.*;
+import android.view.*;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
-public class ExtendedPreferenceFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
+public abstract class ExtendedPreferenceActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
-	
+
 	/**
-	 * Show the value of the given preference on its summary. Use this function on onCreate.
+	 * Show the value of the given preference on its summary. Use this function
+	 * on onCreate.
+	 * 
 	 * @param key Preference key
 	 */
 	protected void showValueOnSummary(String key) {
 		showValueOnSummaryKeys.add(key);
 	}
-	
+
 	private void showValues() {
-		final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+		final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		for (String key : showValueOnSummaryKeys) {
 			final String value = sharedPreferences.getString(key, "");
 			final Preference preference = this.findPreference(key);
 			preference.setSummary(value);
 		}
-	}	
-	
-	@Override
-	public void onStart()
-	{
-	   super.onStart();
-	   TrackingManager.onStart(this.getActivity());
-	   TrackingManager.pageView(String.valueOf(this.getActivity().getTitle()));
-	}
-	
-	@Override
-	public void onStop()
-	{
-	   super.onStop();
-	   TrackingManager.onStop(this.getActivity());
-	}
-	
-	@Override
-	public void onResume() {
-		super.onResume();
-		showValues();
-		// Set up a listener whenever a key changes
-		PreferenceManager.getDefaultSharedPreferences(this.getActivity()).registerOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
-	public void onPause() {
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		if (!BuildUtils.isHoneycombOrLater()) {
+
+		setContentView(R.layout.settings);	
+		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
+		View ad = AdsManager.getAd(this);
+		if (ad != null) {
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			lp.gravity = Gravity.CENTER_HORIZONTAL;
+			adsContainer.addView(ad, lp);
+		}
+		
+			addPreferencesFromResource(this.getPreferencesResource());
+		}
+	}
+	
+	protected abstract int getPreferencesResource();
+	
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		TrackingManager.onStart(this);
+		TrackingManager.pageView(String.valueOf(this.getTitle()));
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		TrackingManager.onStop(this);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		showValues();
+		// Set up a listener whenever a key changes
+		PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+	}
+
+	@Override
+	protected void onPause() {
 		super.onPause();
 		// Unregister the listener whenever a key changes
-		PreferenceManager.getDefaultSharedPreferences(this.getActivity()).unregisterOnSharedPreferenceChangeListener(this);
+		PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
@@ -82,5 +109,11 @@ public class ExtendedPreferenceFragment extends PreferenceFragment implements On
 			final Preference preference = this.findPreference(key);
 			preference.setSummary(value);
 		}
+	}
+	
+	@Override
+	protected void onDestroy() {	
+		AdsManager.destroyAds(this);
+		super.onDestroy();
 	}
 }

@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
-
-import java.util.List;
+package net.robotmedia.acv.ui.settings.mobile;
 
 import net.androidcomics.acv.R;
 
-public class SettingsActivityPostHC extends ExtendedPreferenceActivity {
+public class SettingsActivityMobile extends ExtendedPreferenceActivity {
 
 	@Override
-    public void onBuildHeaders(List<Header> target) {
-        loadHeadersFromResource(R.xml.preference_headers, target);
-    }
+	protected int getPreferencesResource() {
+		return R.xml.preferences;
+	}
 	
 }

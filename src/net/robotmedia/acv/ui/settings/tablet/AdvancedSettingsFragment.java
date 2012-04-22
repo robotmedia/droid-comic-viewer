@@ -13,32 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.tablet;
 
 import net.androidcomics.acv.R;
-import net.robotmedia.acv.provider.HistoryManager;
+import net.robotmedia.acv.logic.PreferencesController;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 
-public class StorageSettingsActivity extends ExtendedPreferenceActivity {
-
-	private final static String CLEAR_HISTORY = "clear_history";
+public class AdvancedSettingsFragment extends ExtendedPreferenceFragment {
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.storage_settings);
-		
-		final Preference clearHistory = findPreference(CLEAR_HISTORY);
-		clearHistory.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			public boolean onPreferenceClick(Preference preference) {
-				HistoryManager.getInstance(StorageSettingsActivity.this).clear();
-				finish();
-				return true;
-			}
-		});
+		addPreferencesFromResource(R.xml.advanced_settings);
+		this.showValueOnSummary(PreferencesController.PREFERENCE_MAX_IMAGE_WIDTH);
+		this.showValueOnSummary(PreferencesController.PREFERENCE_MAX_IMAGE_HEIGHT);
+	}
+	
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		super.onSharedPreferenceChanged(sharedPreferences, key);
+		final PreferencesController preferences = new PreferencesController(this.getActivity());
+		preferences.setMaxImageResolution();
 	}
 	
 }

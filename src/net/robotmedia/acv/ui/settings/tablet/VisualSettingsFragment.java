@@ -13,28 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.tablet;
 
 import net.androidcomics.acv.R;
-import net.robotmedia.acv.logic.PreferencesController;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
-public class AdvancedSettingsActivity extends ExtendedPreferenceActivity {
-	
+public class VisualSettingsFragment extends ExtendedPreferenceFragment {
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.advanced_settings);
-		this.showValueOnSummary(PreferencesController.PREFERENCE_MAX_IMAGE_WIDTH);
-		this.showValueOnSummary(PreferencesController.PREFERENCE_MAX_IMAGE_HEIGHT);
-	}
-	
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		super.onSharedPreferenceChanged(sharedPreferences, key);
-		final PreferencesController preferences = new PreferencesController(this);
-		preferences.setMaxImageResolution();
+		addPreferencesFromResource(R.xml.visual_settings);
 	}
 	
 }
