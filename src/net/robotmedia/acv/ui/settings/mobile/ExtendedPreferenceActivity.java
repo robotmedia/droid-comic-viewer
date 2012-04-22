@@ -31,6 +31,8 @@ import android.widget.LinearLayout.LayoutParams;
 public abstract class ExtendedPreferenceActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
+	
+	protected SettingsHelperMobile helper = new SettingsHelperMobile(this);
 
 	/**
 	 * Show the value of the given preference on its summary. Use this function
@@ -54,7 +56,7 @@ public abstract class ExtendedPreferenceActivity extends PreferenceActivity impl
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+				
 		setContentView(R.layout.settings);	
 		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
 		View ad = AdsManager.getAd(this);

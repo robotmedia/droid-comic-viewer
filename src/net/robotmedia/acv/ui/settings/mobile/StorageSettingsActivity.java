@@ -16,28 +16,15 @@
 package net.robotmedia.acv.ui.settings.mobile;
 
 import net.androidcomics.acv.R;
-import net.robotmedia.acv.provider.HistoryManager;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 
 public class StorageSettingsActivity extends ExtendedPreferenceActivity {
-
-	private final static String CLEAR_HISTORY = "clear_history";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		final Preference clearHistory = findPreference(CLEAR_HISTORY);
-		clearHistory.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			public boolean onPreferenceClick(Preference preference) {
-				HistoryManager.getInstance(StorageSettingsActivity.this).clear();
-				finish();
-				return true;
-			}
-		});
+		this.helper.prepareClearHistory();
 	}
 	
 	@Override
