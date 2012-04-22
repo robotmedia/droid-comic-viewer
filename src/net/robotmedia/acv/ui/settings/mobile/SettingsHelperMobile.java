@@ -19,7 +19,7 @@ public class SettingsHelperMobile extends SettingsHelper {
 	}
 	
 	@Override
-	public void clearHistory() {
+	protected void clearHistory() {
 		super.clearHistory();
 		this.preferences.finish();
 	}

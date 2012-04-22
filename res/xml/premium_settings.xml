@@ -16,6 +16,6 @@
 -->
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
-		<Preference android:key="remove_ads" android:title="@string/preference_premium_title"
+		<Preference android:key="purchase_premium" android:title="@string/preference_premium_title"
 			android:summary="@string/preference_premium_summary"/>	
 </PreferenceScreen>

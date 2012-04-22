@@ -15,6 +15,7 @@
  ******************************************************************************/
 package net.robotmedia.acv.ui.settings.mobile;
 
+import android.os.Bundle;
 import net.androidcomics.acv.R;
 
 public class SettingsActivityMobile extends ExtendedPreferenceActivity {
@@ -22,6 +23,13 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity {
 	@Override
 	protected int getPreferencesResource() {
 		return R.xml.preferences;
+	}
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		this.helper.preparePurchasePremium();
 	}
 	
 }
