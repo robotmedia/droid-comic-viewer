@@ -8,12 +8,12 @@ import android.view.View;
 
 public class AdMobProxy {
 
-	private static Class adViewClass = null;
-	private static Class adSizeClass = null;
-	private static Class adRequestClass = null;
+	private static Class<?> adViewClass = null;
+	private static Class<?> adSizeClass = null;
+	private static Class<?> adRequestClass = null;
 	private static Method adRequestSetTestingMethod = null;
 	private static Method adRequestAddTestDeviceMethod = null;
-	private static Constructor adViewConstructor = null;
+	private static Constructor<?> adViewConstructor = null;
 	private static Method adViewLoadMethod = null;
 	private static Method adViewDestroyMethod = null;
 
