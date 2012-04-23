@@ -37,6 +37,7 @@
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/category_about_title" />
     <header
+        android:id="@+id/header_premium"
         android:fragment="net.robotmedia.acv.ui.settings.tablet.PremiumSettingsFragment"
         android:icon="@drawable/ic_menu_star"
         android:title="@string/category_premium_title" />

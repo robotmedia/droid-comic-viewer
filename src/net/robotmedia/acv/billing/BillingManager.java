@@ -1,18 +1,24 @@
 package net.robotmedia.acv.billing;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.widget.Toast;
 import net.androidcomics.acv.R;
+import net.robotmedia.acv.logic.AdsManager;
 import net.robotmedia.billing.BillingController;
 import net.robotmedia.billing.BillingRequest.ResponseCode;
 import net.robotmedia.billing.IBillingObserver;
 import net.robotmedia.billing.model.Transaction.PurchaseState;
 
 public class BillingManager implements IBillingObserver {
+
+	public interface IObserver {
+		public void onPremiumPurchased();
+	}
 	
 	private Activity context;
 	private static final String ITEM_PREMIUM = "android.test.purchased";
+	private IObserver observer;
 
 	public BillingManager(Activity context) {
 		this.context = context;
@@ -48,10 +54,16 @@ public class BillingManager implements IBillingObserver {
 
 		if (state != PurchaseState.PURCHASED) return;
 		
-		Toast toast = Toast.makeText(context, context.getString(R.string.premium_purchased), Toast.LENGTH_SHORT);
-		toast.show();
+		AdsManager.disableAds();
 		
-		context.finish();
+		final AlertDialog dialog = new AlertDialog.Builder(context).setIcon(android.R.drawable.ic_menu_info_details)
+				.setTitle(R.string.alert_premium_purchased_title).setMessage(R.string.alert_premium_purchased_message)
+				.setPositiveButton(android.R.string.ok, null).create();
+		dialog.show();
+		
+		if (this.observer != null) {
+			observer.onPremiumPurchased();
+		}
 	}
 
 	@Override
@@ -59,6 +71,14 @@ public class BillingManager implements IBillingObserver {
 
 	@Override
 	public void onTransactionsRestored() {}
+
+	public IObserver getObserver() {
+		return observer;
+	}
+
+	public void setObserver(IObserver observer) {
+		this.observer = observer;
+	}
 	
 
 }

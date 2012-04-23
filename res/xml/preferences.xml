@@ -15,7 +15,7 @@
   limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:settings="http://schemas.android.com/apk/res/net.androidcomics.acv">
+	xmlns:settings="http://schemas.android.com/apk/res/net.androidcomics.acv" android:key="root">
 	<net.robotmedia.acv.ui.settings.IconPreferenceScreen
 		android:title="@string/category_visual_title" settings:icon="@android:drawable/ic_menu_gallery">
 		<intent android:action="android.intent.action.MAIN"
@@ -42,7 +42,7 @@
 		<intent android:action="android.intent.action.MAIN"
 			android:targetPackage="net.androidcomics.acv" android:targetClass="net.robotmedia.acv.ui.settings.mobile.AboutSettingsActivity" />
 	</net.robotmedia.acv.ui.settings.IconPreferenceScreen>
-	<PreferenceCategory android:title="@string/category_premium_title">
+	<PreferenceCategory android:title="@string/category_premium_title" android:key="premium">
 		<Preference android:key="purchase_premium" android:title="@string/preference_premium_title"
 			android:summary="@string/preference_premium_summary"/>	    
 	</PreferenceCategory>

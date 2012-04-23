@@ -18,12 +18,17 @@ package net.robotmedia.acv.ui.settings.mobile;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceGroup;
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.billing.BillingManager;
+import net.robotmedia.acv.billing.BillingManager.IObserver;
 import net.robotmedia.acv.ui.settings.SettingsHelper;
 
-public class SettingsActivityMobile extends ExtendedPreferenceActivity {
+public class SettingsActivityMobile extends ExtendedPreferenceActivity implements IObserver {
 
+	private static final String PREFERENCE_ROOT = "root";
+	private static final String PREFERENCE_PREMIUM = "premium";
+	
 	private BillingManager billing;
 	
 	@Override
@@ -36,10 +41,10 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity {
 		super.onCreate(savedInstanceState);
 
 		this.billing = new BillingManager(this);
+		this.billing.setObserver(this);
 		
-		Preference preference = this.findPreference(SettingsHelper.PREFERENCE_PURCHASE_PREMIUM);
 		if (BillingManager.isPremium(this)) {
-			preference.setEnabled(false);
+			this.removePremium();
 		} else {	
 			this.helper.setOnPreferenceClickListener(SettingsHelper.PREFERENCE_PURCHASE_PREMIUM, new OnPreferenceClickListener() {
 				
@@ -54,8 +59,22 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity {
 	
 	@Override
 	protected void onDestroy() {
+		this.billing.setObserver(null);
 		this.billing.onDestroy();
 		super.onDestroy();
+	}
+
+	@Override
+	public void onPremiumPurchased() {
+		this.removePremium();
+	}
+	
+	private void removePremium() {
+		PreferenceGroup root = (PreferenceGroup) findPreference(PREFERENCE_ROOT);
+		Preference premium = root.findPreference(PREFERENCE_PREMIUM);
+		if (premium == null) return;
+		
+		root.removePreference(premium);
 	}
 	
 }
