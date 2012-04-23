@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.mobile;
 
 import java.util.HashSet;
 
@@ -28,10 +28,11 @@ import android.view.*;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-public class ExtendedPreferenceActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+public abstract class ExtendedPreferenceActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
-
+	private ViewGroup adsContainer;
+	
 	/**
 	 * Show the value of the given preference on its summary. Use this function
 	 * on onCreate.
@@ -51,6 +52,32 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 		}
 	}
 
+	protected void showAd() {
+		this.removeAd();
+		View ad = AdsManager.getAd(this);
+		if (ad != null) {
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			lp.gravity = Gravity.CENTER_HORIZONTAL;
+			adsContainer.addView(ad, lp);
+		}		
+	}
+	
+	protected void removeAd() {
+		adsContainer.removeAllViews();
+	}
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);				
+		setContentView(R.layout.settings);
+		adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
+		this.showAd();
+		addPreferencesFromResource(this.getPreferencesResource());
+	}
+	
+	protected abstract int getPreferencesResource();
+	
+	
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -70,6 +97,7 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 		showValues();
 		// Set up a listener whenever a key changes
 		PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+		this.showAd();
 	}
 
 	@Override
@@ -86,5 +114,11 @@ public class ExtendedPreferenceActivity extends PreferenceActivity implements On
 			final Preference preference = this.findPreference(key);
 			preference.setSummary(value);
 		}
+	}
+	
+	@Override
+	protected void onDestroy() {	
+		AdsManager.destroyAds(this);
+		super.onDestroy();
 	}
 }

@@ -13,39 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.tablet;
 
 import net.androidcomics.acv.R;
-import net.robotmedia.acv.logic.AdsManager;
 import android.os.Bundle;
-import android.view.*;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 
-public class SettingsActivityPreHC extends ExtendedPreferenceActivity {
+public class VisualSettingsFragment extends ExtendedPreferenceFragment {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.settings);
-		
-		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
-		View ad = AdsManager.getAd(this);
-		if(ad != null) {
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-			lp.gravity = Gravity.CENTER_HORIZONTAL;
-			adsContainer.addView(ad, lp);
-		}
-		
-		addPreferencesFromResource(R.xml.preferences);
+		addPreferencesFromResource(R.xml.visual_settings);
 	}
 	
-	@Override
-	protected void onDestroy() {
-		
-		AdsManager.destroyAds(this);
-		
-		super.onDestroy();
-	}
 }

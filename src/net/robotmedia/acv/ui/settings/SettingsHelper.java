@@ -15,15 +15,19 @@
  ******************************************************************************/
 package net.robotmedia.acv.ui.settings;
 
-import net.androidcomics.acv.R;
-import android.os.Bundle;
+import android.app.Activity;
 
-public class VisualSettingsActivity extends ExtendedPreferenceActivity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.visual_settings);
-	}
+public class SettingsHelper {
+		
+	private Activity activity;
 	
+	public SettingsHelper(Activity activity) {
+		this.activity = activity;
+	}
+
+	public Activity getActivity() {
+		return activity;
+	}	
+
+
 }

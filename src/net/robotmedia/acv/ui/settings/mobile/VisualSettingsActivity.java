@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.mobile;
 
 import net.androidcomics.acv.R;
-import android.os.Bundle;
 
-public class VisualSettingsFragment extends ExtendedPreferenceFragment {
-
+public class VisualSettingsActivity extends ExtendedPreferenceActivity {
+	
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.visual_settings);
+	protected int getPreferencesResource() {
+		return R.xml.visual_settings;
 	}
 	
 }

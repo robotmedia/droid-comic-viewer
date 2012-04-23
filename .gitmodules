@@ -1,0 +1,3 @@
+[submodule "lib/AndroidBillingLibrary"]
+	path = lib/AndroidBillingLibrary
+	url = git@github.com:robotmedia/AndroidBillingLibrary.git

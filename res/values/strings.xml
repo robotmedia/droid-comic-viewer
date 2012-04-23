@@ -71,6 +71,8 @@
     
     <string name="screen_browser_go">Go</string>
     
+    <!-- Preferences -->
+    
 	<string name="category_controls_title">Controls</string>
     <string name="preference_map_actions_title">Custom controls</string>
     <string name="preference_map_actions_summary">Set the action of each control event</string>   
@@ -128,7 +130,14 @@
     <string name="preference_contact_summary">Email Robot Media</string>                       
     <string name="preference_subscribe_summary">Receive news about ACV</string>
     
-    <!-- Advanced preferences -->
+    <!-- Premium -->
+    <string name="category_premium_title">Premium</string>
+    <string name="preference_premium_title">Remove Ads</string>
+    <string name="preference_premium_summary">Buy ACV Premium to Remove Ads</string>
+    <string name="alert_premium_purchased_title">Premium Purchased</string>
+    <string name="alert_premium_purchased_message">Thank you for supporting ACV!</string>
+    
+    <!-- Advanced Preferences -->
     <string name="category_advanced_title">Advanced</string>
     <string name="preference_max_image_width_title">Max image width</string>
     <string name="preference_max_image_width_dialog_title">Max image width</string>
