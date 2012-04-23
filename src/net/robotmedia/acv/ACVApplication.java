@@ -51,6 +51,7 @@ public class ACVApplication extends Application implements IBillingObserver {
 		} catch (IllegalAccessException e) {
 		}
 				
+		BillingController.registerObserver(this);
 		BillingController.checkBillingSupported(this);		
 	}
 	
@@ -59,7 +60,6 @@ public class ACVApplication extends Application implements IBillingObserver {
 		boolean restored = preferences.getBoolean(KEY_TRANSACTIONS_RESTORED, false);
 		if (restored) return;
 		
-		BillingController.registerObserver(this);		
 		BillingController.restoreTransactions(this);
 	}
 
