@@ -16,8 +16,6 @@
 package net.robotmedia.acv.ui;
 
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.*;
 
 import net.androidcomics.acv.R;
@@ -37,10 +35,8 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.*;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.*;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.View.OnClickListener;
@@ -261,6 +257,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	@Override
 	public void onResume() {
 		mRecentItemsListAdapter.refresh();
+		this.showAds();
 		super.onResume();
 	}
 
