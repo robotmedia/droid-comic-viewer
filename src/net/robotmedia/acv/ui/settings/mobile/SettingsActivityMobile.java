@@ -62,6 +62,7 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 	@Override
 	public void onPremiumPurchased() {
 		this.removePremium();
+		this.removeAd();
 	}
 	
 	private void removePremium() {
