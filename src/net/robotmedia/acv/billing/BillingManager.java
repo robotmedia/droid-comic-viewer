@@ -18,7 +18,7 @@ public class BillingManager implements IBillingObserver {
 	}
 	
 	private Activity context;
-	private static final String ITEM_PREMIUM = "android.test.purchased";
+	private static final String ITEM_PREMIUM = "premium";
 	private IObserver observer;
 
 	public BillingManager(Activity context) {
