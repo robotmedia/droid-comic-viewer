@@ -130,11 +130,12 @@
     <string name="preference_contact_summary">Email Robot Media</string>                       
     <string name="preference_subscribe_summary">Receive news about ACV</string>
     
-    <!-- Premium Preferences -->
+    <!-- Premium -->
     <string name="category_premium_title">Premium</string>
     <string name="preference_premium_title">Remove Ads</string>
     <string name="preference_premium_summary">Buy ACV Premium to Remove Ads</string>
-    <string name="premium_purchased">Thank you for supporting ACV!</string>
+    <string name="alert_premium_purchased_title">Premium Purchased</string>
+    <string name="alert_premium_purchased_message">Thank you for supporting ACV!</string>
     
     <!-- Advanced Preferences -->
     <string name="category_advanced_title">Advanced</string>
