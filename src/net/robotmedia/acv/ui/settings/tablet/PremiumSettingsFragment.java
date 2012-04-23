@@ -3,32 +3,27 @@ package net.robotmedia.acv.ui.settings.tablet;
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.billing.BillingManager;
 import net.robotmedia.acv.billing.BillingManager.IObserver;
-import net.robotmedia.acv.ui.settings.SettingsHelper;
+import net.robotmedia.acv.ui.settings.PremiumSettingsHelper;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 
 public class PremiumSettingsFragment extends ExtendedPreferenceFragment implements IObserver {
 
 	private BillingManager billing;
+	private PremiumSettingsHelper helper;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.premium_settings);		
 
+		this.helper = new PremiumSettingsHelper(this.getActivity());
 		this.billing = new BillingManager(this.getActivity());
 		this.billing.setObserver(this);
 
-		this.helper.setOnPreferenceClickListener(SettingsHelper.PREFERENCE_PURCHASE_PREMIUM, new OnPreferenceClickListener() {
-			
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				billing.purchasePremium();
-				return true;
-			}
-		});
+		Preference preference = findPreference(PremiumSettingsHelper.PREFERENCE_PURCHASE_PREMIUM);
+		helper.preparePurchasePremium(preference, this.billing);
 	}
 	
 	@Override

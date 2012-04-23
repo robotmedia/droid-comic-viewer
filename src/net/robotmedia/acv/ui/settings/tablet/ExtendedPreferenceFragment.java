@@ -26,8 +26,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 public class ExtendedPreferenceFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
-
-	protected SettingsHelperTablet helper;
 	
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
 	
@@ -51,7 +49,6 @@ public class ExtendedPreferenceFragment extends PreferenceFragment implements On
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.helper = new SettingsHelperTablet(this);
 	}
 	
 	@Override

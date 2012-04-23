@@ -34,7 +34,7 @@ public class SettingsActivityTablet extends PreferenceActivity {
         for (Header header : target) {
         	if (header.id != R.id.header_premium) continue;
         	
-        	if (BillingManager.isPremium(this)) {
+        	if (!BillingManager.canPurchasePremium(this)) {
         		target.remove(header);
         	}
         }

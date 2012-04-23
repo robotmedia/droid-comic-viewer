@@ -32,8 +32,6 @@ public abstract class ExtendedPreferenceActivity extends PreferenceActivity impl
 
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
 	
-	protected SettingsHelperMobile helper;
-
 	/**
 	 * Show the value of the given preference on its summary. Use this function
 	 * on onCreate.
@@ -55,10 +53,7 @@ public abstract class ExtendedPreferenceActivity extends PreferenceActivity impl
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		this.helper = new SettingsHelperMobile(this);
-				
+		super.onCreate(savedInstanceState);				
 		setContentView(R.layout.settings);	
 		ViewGroup adsContainer = (ViewGroup) findViewById(R.id.adsContainer);
 		View ad = AdsManager.getAd(this);

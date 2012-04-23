@@ -6,6 +6,7 @@ import android.content.Context;
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.logic.AdsManager;
 import net.robotmedia.billing.BillingController;
+import net.robotmedia.billing.BillingController.BillingStatus;
 import net.robotmedia.billing.BillingRequest.ResponseCode;
 import net.robotmedia.billing.IBillingObserver;
 import net.robotmedia.billing.model.Transaction.PurchaseState;
@@ -31,6 +32,10 @@ public class BillingManager implements IBillingObserver {
 	
 	public void purchasePremium() {
 		BillingController.requestPurchase(this.context, ITEM_PREMIUM);
+	}
+	
+	public static boolean canPurchasePremium(Context context) {
+		return BillingController.checkBillingSupported(context) == BillingStatus.SUPPORTED && !isPremium(context);
 	}
 	
 	public static boolean isPremium(Context context) {

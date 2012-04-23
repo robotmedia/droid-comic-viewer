@@ -17,12 +17,11 @@ package net.robotmedia.acv.ui.settings.mobile;
 
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceGroup;
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.billing.BillingManager;
 import net.robotmedia.acv.billing.BillingManager.IObserver;
-import net.robotmedia.acv.ui.settings.SettingsHelper;
+import net.robotmedia.acv.ui.settings.PremiumSettingsHelper;
 
 public class SettingsActivityMobile extends ExtendedPreferenceActivity implements IObserver {
 
@@ -30,6 +29,7 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 	private static final String PREFERENCE_PREMIUM = "premium";
 	
 	private BillingManager billing;
+	private PremiumSettingsHelper helper;
 	
 	@Override
 	protected int getPreferencesResource() {
@@ -40,20 +40,15 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		this.helper = new PremiumSettingsHelper(this);
 		this.billing = new BillingManager(this);
 		this.billing.setObserver(this);
 		
-		if (BillingManager.isPremium(this)) {
+		if (BillingManager.canPurchasePremium(this)) {
+			Preference preference = findPreference(PremiumSettingsHelper.PREFERENCE_PURCHASE_PREMIUM);
+			helper.preparePurchasePremium(preference, this.billing);
+		} else {
 			this.removePremium();
-		} else {	
-			this.helper.setOnPreferenceClickListener(SettingsHelper.PREFERENCE_PURCHASE_PREMIUM, new OnPreferenceClickListener() {
-				
-				@Override
-				public boolean onPreferenceClick(Preference preference) {
-					billing.purchasePremium();
-					return true;
-				}
-			});
 		}
 	}
 	
