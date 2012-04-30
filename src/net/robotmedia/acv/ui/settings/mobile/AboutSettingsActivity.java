@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.mobile;
 
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.Constants;
@@ -30,11 +30,15 @@ public class AboutSettingsActivity extends ExtendedPreferenceActivity {
 
 	private static final String KEY_SUBSCRIBE = "subscribe";
 	private static final String SOURCE_VALUE = "DroidComicViewer";
+
+	@Override
+	protected int getPreferencesResource() {
+		return R.xml.about_settings;
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.about_settings);
 		
 		Preference version = findPreference(Constants.VERSION_KEY);
 		String versionName; 

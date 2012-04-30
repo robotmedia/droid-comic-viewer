@@ -141,6 +141,13 @@
     <string name="preference_acv_autoplay_title">Autoplay</string>
     <string name="preference_acv_autoplay_summary">Secuencias de reproducción automática</string>
     
+    <!-- Premium -->
+    <string name="category_premium_title">Premium</string>
+    <string name="preference_premium_title">Quitar Anuncios</string>
+    <string name="preference_premium_summary">Compra ACV Premium para quitar los anuncios</string>
+    <string name="alert_premium_purchased_title">Premium Comprado</string>
+    <string name="alert_premium_purchased_message">¡Gracias por apoyar a ACV!</string>
+    
     <!-- Subscribe -->
     <string name="txt_subscribe_intro">Subscríbete a nuestro boletín para ser notificado de nuevos lanzamientos.</string>
     <string name="btn_subscribe_submit">Enviar</string>

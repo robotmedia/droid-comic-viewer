@@ -16,8 +16,6 @@
 package net.robotmedia.acv.ui;
 
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.*;
 
 import net.androidcomics.acv.R;
@@ -26,8 +24,8 @@ import net.robotmedia.acv.adapter.RecentListBaseAdapter;
 import net.robotmedia.acv.comic.Comic;
 import net.robotmedia.acv.logic.*;
 import net.robotmedia.acv.provider.HistoryManager;
-import net.robotmedia.acv.ui.settings.SettingsActivityPostHC;
-import net.robotmedia.acv.ui.settings.SettingsActivityPreHC;
+import net.robotmedia.acv.ui.settings.mobile.SettingsActivityMobile;
+import net.robotmedia.acv.ui.settings.tablet.SettingsActivityTablet;
 import net.robotmedia.acv.ui.widget.*;
 import net.robotmedia.acv.utils.*;
 import android.app.Dialog;
@@ -37,10 +35,8 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.*;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.*;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.View.OnClickListener;
@@ -261,6 +257,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	@Override
 	public void onResume() {
 		mRecentItemsListAdapter.refresh();
+		this.showAds();
 		super.onResume();
 	}
 
@@ -1056,9 +1053,9 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 	
 	private void startSettingsActivity() {
 		if(!isHoneyComb()) {
-			startActivityForResult(new Intent(this, SettingsActivityPreHC.class), Constants.SETTINGS_CODE);
+			startActivityForResult(new Intent(this, SettingsActivityMobile.class), Constants.SETTINGS_CODE);
 		} else {
-			startActivityForResult(new Intent(this, SettingsActivityPostHC.class), Constants.SETTINGS_CODE);
+			startActivityForResult(new Intent(this, SettingsActivityTablet.class), Constants.SETTINGS_CODE);
 		}
 	}
 	
