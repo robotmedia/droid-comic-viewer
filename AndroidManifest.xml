@@ -35,7 +35,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
+	<uses-permission android:name="com.android.vending.BILLING" />
+    
     <application
         android:name="net.robotmedia.acv.ACVApplication"
         android:icon="@drawable/icon"
@@ -84,31 +85,29 @@
             android:screenOrientation="behind" >
         </activity>
         <activity
-            android:name="net.robotmedia.acv.ui.settings.SettingsActivityPreHC"
+            android:name="net.robotmedia.acv.ui.settings.mobile.SettingsActivityMobile"
             android:label="@string/activity_settings_label" >
         </activity>
         <activity
-            android:name="net.robotmedia.acv.ui.settings.SettingsActivityPostHC"
+            android:name="net.robotmedia.acv.ui.settings.tablet.SettingsActivityTablet"
             android:label="@string/activity_settings_label" >
         </activity>
         <activity
-            android:name="net.robotmedia.acv.ui.settings.VisualSettingsActivity"
+            android:name="net.robotmedia.acv.ui.settings.mobile.VisualSettingsActivity"
             android:label="@string/category_visual_title" >
         </activity>
         <activity
-            android:name="net.robotmedia.acv.ui.settings.ControlSettingsActivity"
+            android:name="net.robotmedia.acv.ui.settings.mobile.ControlSettingsActivity"
             android:label="@string/category_controls_title" >
         </activity>
-        <activity
-            android:name="net.robotmedia.acv.ui.settings.StorageSettingsActivity"
+        <activity android:name="net.robotmedia.acv.ui.settings.mobile.StorageSettingsActivity"
             android:label="@string/category_memory_title" >
         </activity>
         <activity
-            android:name="net.robotmedia.acv.ui.settings.AboutSettingsActivity"
+            android:name="net.robotmedia.acv.ui.settings.mobile.AboutSettingsActivity"
             android:label="@string/category_about_title" >
         </activity>
-        <activity
-            android:name="net.robotmedia.acv.ui.settings.AdvancedSettingsActivity"
+        <activity android:name="net.robotmedia.acv.ui.settings.mobile.AdvancedSettingsActivity"
             android:label="@string/category_about_title" >
         </activity>
         <activity
@@ -119,6 +118,15 @@
         <activity
             android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-    </application>
+        
+        <service android:name="net.robotmedia.billing.BillingService" />
+        <receiver android:name="net.robotmedia.billing.BillingReceiver" >
+            <intent-filter>
+                <action android:name="com.android.vending.billing.IN_APP_NOTIFY" />
+                <action android:name="com.android.vending.billing.RESPONSE_CODE" />
+                <action android:name="com.android.vending.billing.PURCHASE_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+</application>
 
 </manifest>

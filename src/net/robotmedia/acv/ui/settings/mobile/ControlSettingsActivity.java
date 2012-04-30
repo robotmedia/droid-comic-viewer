@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.mobile;
 
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.Constants;
@@ -29,7 +29,6 @@ public class ControlSettingsActivity extends ExtendedPreferenceActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.control_settings);
 		
 		Preference controlDefaults = findPreference(Constants.CONTROL_DEFAULTS_KEY);
 		controlDefaults.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -41,6 +40,11 @@ public class ControlSettingsActivity extends ExtendedPreferenceActivity {
 				return true;
 			}
 		});
+	}
+	
+	@Override
+	protected int getPreferencesResource() {
+		return R.xml.control_settings;
 	}
 	
 	public final String[] customControlKeys = new String[] {Constants.SINGLE_TAP_KEY,

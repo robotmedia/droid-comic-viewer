@@ -17,24 +17,29 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <header
-        android:fragment="net.robotmedia.acv.ui.settings.VisualSettingsFragment"
+        android:fragment="net.robotmedia.acv.ui.settings.tablet.VisualSettingsFragment"
         android:icon="@android:drawable/ic_menu_gallery"
         android:title="@string/category_visual_title" />
     <header
-        android:fragment="net.robotmedia.acv.ui.settings.ControlSettingsFragment"
+        android:fragment="net.robotmedia.acv.ui.settings.tablet.ControlSettingsFragment"
         android:icon="@drawable/ic_settings_accessibility"
         android:title="@string/category_controls_title" />
     <header
-        android:fragment="net.robotmedia.acv.ui.settings.StorageSettingsFragment"
+        android:fragment="net.robotmedia.acv.ui.settings.tablet.StorageSettingsFragment"
         android:icon="@drawable/ic_settings_storage"
         android:title="@string/category_memory_title" />
     <header
-        android:fragment="net.robotmedia.acv.ui.settings.AdvancedSettingsFragment"
+        android:fragment="net.robotmedia.acv.ui.settings.tablet.AdvancedSettingsFragment"
         android:icon="@drawable/ic_settings_privacy"
         android:title="@string/category_advanced_title" />
     <header
-        android:fragment="net.robotmedia.acv.ui.settings.AboutSettingsFragment"
+        android:fragment="net.robotmedia.acv.ui.settings.tablet.AboutSettingsFragment"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/category_about_title" />
-
+    <header
+        android:id="@+id/header_premium"
+        android:fragment="net.robotmedia.acv.ui.settings.tablet.PremiumSettingsFragment"
+        android:icon="@drawable/ic_menu_star"
+        android:title="@string/category_premium_title" />
+    
 </preference-headers>

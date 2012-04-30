@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.mobile;
 
 import net.androidcomics.acv.R;
 import net.robotmedia.acv.logic.PreferencesController;
@@ -23,9 +23,13 @@ import android.os.Bundle;
 public class AdvancedSettingsActivity extends ExtendedPreferenceActivity {
 	
 	@Override
+	protected int getPreferencesResource() {
+		return R.xml.advanced_settings;
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.advanced_settings);
 		this.showValueOnSummary(PreferencesController.PREFERENCE_MAX_IMAGE_WIDTH);
 		this.showValueOnSummary(PreferencesController.PREFERENCE_MAX_IMAGE_HEIGHT);
 	}

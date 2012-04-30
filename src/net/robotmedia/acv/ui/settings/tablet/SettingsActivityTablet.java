@@ -13,17 +13,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.tablet;
 
 import java.util.List;
 
+import android.preference.PreferenceActivity;
+
 import net.androidcomics.acv.R;
+import net.robotmedia.acv.billing.BillingManager;
 
-public class SettingsActivityPostHC extends ExtendedPreferenceActivity {
+public class SettingsActivityTablet extends PreferenceActivity {
 
+	private List<Header> headers;
+	
 	@Override
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.preference_headers, target);
+        
+        // Remove Premium header if the app is premium
+        for (Header header : target) {
+        	if (header.id != R.id.header_premium) continue;
+        	
+        	if (!BillingManager.canPurchasePremium(this)) {
+        		target.remove(header);
+        	}
+        }
+        headers = target;
     }
 	
+	@Override
+	public Header onGetNewHeader() {
+		return bug22430Workaround();
+	}
+	
+	/**
+	 * @see <a href="http://code.google.com/p/android/issues/detail?id=22430">http://code.google.com/p/android/issues/detail?id=22430</a>
+	 * @see {@link PremiumSettingsFragment#onPremiumPurchased()}
+	 * @return
+	 */
+	private Header bug22430Workaround() {
+		return headers.get(0);
+	}
+		
 }

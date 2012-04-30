@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.tablet;
 
 import java.util.HashSet;
 
 import net.robotmedia.acv.logic.TrackingManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 public class ExtendedPreferenceFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
-
+	
 	private HashSet<String> showValueOnSummaryKeys = new HashSet<String>();
 	
 	/**
@@ -43,7 +44,12 @@ public class ExtendedPreferenceFragment extends PreferenceFragment implements On
 			final Preference preference = this.findPreference(key);
 			preference.setSummary(value);
 		}
-	}	
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
 	
 	@Override
 	public void onStart()

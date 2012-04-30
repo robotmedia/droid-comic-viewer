@@ -13,31 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.robotmedia.acv.ui.settings;
+package net.robotmedia.acv.ui.settings.tablet;
 
 import net.androidcomics.acv.R;
-import net.robotmedia.acv.provider.HistoryManager;
+import net.robotmedia.acv.ui.settings.CollectionSettingsHelper;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 
 public class StorageSettingsFragment extends ExtendedPreferenceFragment {
-
-	private final static String CLEAR_HISTORY = "clear_history";
+	
+	private CollectionSettingsHelper helper;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.storage_settings);
 		
-		final Preference clearHistory = findPreference(CLEAR_HISTORY);
-		clearHistory.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			public boolean onPreferenceClick(Preference preference) {
-				HistoryManager.getInstance(StorageSettingsFragment.this.getActivity()).clear();
-				return true;
-			}
-		});
+		this.helper = new CollectionSettingsHelper(this.getActivity());
+		this.helper.prepareClearHistory(this.findPreference(CollectionSettingsHelper.PREFERENCE_CLEAR_HISTORY));
 	}
 	
 }
