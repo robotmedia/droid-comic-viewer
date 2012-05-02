@@ -28,12 +28,12 @@ public class PremiumSettingsHelper extends SettingsHelper {
 
 	public final static String PREFERENCE_PURCHASE_PREMIUM = "purchase_premium";
 
-	public void preparePurchasePremium(Preference preference, final BillingManager billing) {
+	public void preparePurchasePremium(Preference preference) {
 		preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				billing.purchasePremium();
+				BillingManager.getInstance(getActivity()).purchasePremium();
 				return true;
 			}
 		});

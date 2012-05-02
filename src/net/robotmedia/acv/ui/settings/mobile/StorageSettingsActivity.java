@@ -35,6 +35,7 @@ public class StorageSettingsActivity extends ExtendedPreferenceActivity {
 				finish();
 			}
 		};
+		@SuppressWarnings("deprecation")
 		Preference preference = findPreference(CollectionSettingsHelper.PREFERENCE_CLEAR_HISTORY);
 		this.helper.prepareClearHistory(preference);
 	}

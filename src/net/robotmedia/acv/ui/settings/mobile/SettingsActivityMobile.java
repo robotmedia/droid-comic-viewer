@@ -15,6 +15,7 @@
  ******************************************************************************/
 package net.robotmedia.acv.ui.settings.mobile;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceGroup;
@@ -28,7 +29,6 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 	private static final String PREFERENCE_ROOT = "root";
 	private static final String PREFERENCE_PREMIUM = "premium";
 	
-	private BillingManager billing;
 	private PremiumSettingsHelper helper;
 	
 	@Override
@@ -41,12 +41,12 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 		super.onCreate(savedInstanceState);
 
 		this.helper = new PremiumSettingsHelper(this);
-		this.billing = new BillingManager(this);
-		this.billing.setObserver(this);
+		BillingManager.getInstance(this).setObserver(this);
 		
-		if (BillingManager.canPurchasePremium(this)) {
+		if (BillingManager.getInstance(this).canPurchasePremium()) {
+			@SuppressWarnings("deprecation")
 			Preference preference = findPreference(PremiumSettingsHelper.PREFERENCE_PURCHASE_PREMIUM);
-			helper.preparePurchasePremium(preference, this.billing);
+			helper.preparePurchasePremium(preference);
 		} else {
 			this.removePremium();
 		}
@@ -54,8 +54,7 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 	
 	@Override
 	protected void onDestroy() {
-		this.billing.setObserver(null);
-		this.billing.onDestroy();
+		BillingManager.getInstance(this).setObserver(null);
 		super.onDestroy();
 	}
 
@@ -66,11 +65,17 @@ public class SettingsActivityMobile extends ExtendedPreferenceActivity implement
 	}
 	
 	private void removePremium() {
+		@SuppressWarnings("deprecation")
 		PreferenceGroup root = (PreferenceGroup) findPreference(PREFERENCE_ROOT);
 		Preference premium = root.findPreference(PREFERENCE_PREMIUM);
 		if (premium == null) return;
 		
 		root.removePreference(premium);
+	}
+
+	@Override
+	public Activity getPurchaseActivity() {
+		return this;
 	}
 	
 }

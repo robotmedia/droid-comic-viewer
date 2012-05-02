@@ -1,7 +1,6 @@
 package net.robotmedia.acv.logic;
 
 import net.androidcomics.acv.R;
-import net.robotmedia.acv.billing.BillingManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -61,8 +60,7 @@ public class AdsManager {
 
 		if (resourceId != 0) {
 			publisherId = context.getString(resourceId);
-			
-			usesAds = !BillingManager.isPremium(context);
+			usesAds = true;
 		} else {
 			usesAds = false;
 		}
