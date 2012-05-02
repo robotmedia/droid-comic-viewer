@@ -16,6 +16,8 @@
 package net.robotmedia.acv.ui;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 
 import net.androidcomics.acv.R;
@@ -35,8 +37,10 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.*;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.*;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.View.OnClickListener;
@@ -246,8 +250,16 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		}
 		
 		if(comicPath == null) {
-			showRecentItems();
-			showAds();
+			Intent intent = getIntent();
+			boolean loaded = false;
+			
+			if(intent != null) {
+				loaded = attemptToLoadComicFromViewIntent(intent);
+			}
+			if(!loaded) {
+				showRecentItems();
+				showAds();
+			}
 		} else {
 			loadComic(comicPath);
 		}
@@ -936,6 +948,23 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 			loadComicTask.initialIndex = initialIndex;
 			loadComicTask.execute(comicPath);
 		}
+	}
+	
+	private boolean attemptToLoadComicFromViewIntent(Intent intent) {
+		if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+			final Uri uri = intent.getData();
+			try {
+				final File file = new File(new URI(uri.toString()));
+				String comicPath = file.getAbsolutePath();
+				if (comicPath != null) {
+					loadComic(comicPath, intent);
+					return true;
+				}
+			} catch (URISyntaxException e) {
+				Log.w("attemptToLoadComicFromViewIntent", "Invalid intent data");
+			}
+		}
+		return false;
 	}
 	
 	private boolean next() {
