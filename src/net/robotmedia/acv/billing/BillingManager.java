@@ -64,7 +64,6 @@ public class BillingManager implements IBillingObserver {
 		public Activity getPurchaseActivity();
 	}
 	
-	private static final String TAG = "BillingACV";
 	private Context context;
 	private static final String ITEM_PREMIUM = "premium";
 	//private static final String ITEM_PREMIUM = "android.test.purchased";
