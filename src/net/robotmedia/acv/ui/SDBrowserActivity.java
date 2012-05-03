@@ -120,6 +120,11 @@ public class SDBrowserActivity extends TabActivity {
 
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					File file = (File) parent.getItemAtPosition(position);
+
+					if(file == null) {
+						return;
+					}
+
 					if (file.isDirectory()) {
 						changeDirectory(file);
 					} else if (file.exists()) {
