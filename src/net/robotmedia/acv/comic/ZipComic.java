@@ -178,6 +178,11 @@ public class ZipComic extends Comic {
 	}
 		
 	public Drawable getScreen(final int position) {
+		
+		if(position < 0 || position >= screens.size()) {
+			return null;
+		}
+		
 		final String entryName = screens.get(position);
 		return getDrawable(entryName);
 	}
