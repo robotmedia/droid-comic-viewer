@@ -72,6 +72,26 @@
                     android:mimeType="application/x-acv"
                     android:scheme="file" >
                 </data>
+                <data
+                    android:mimeType="application/zip"
+                    android:scheme="file" >
+                </data>
+                <data 
+                     android:scheme="file"
+                     android:pathPattern=".*\\.cbr" >
+                </data>
+                <data 
+                     android:scheme="file"
+                     android:pathPattern=".*\\.cbz" >
+                </data>
+                <data 
+                     android:scheme="file"
+                     android:pathPattern=".*\\.acv" >
+                </data>
+                 <data 
+                     android:scheme="file"
+                     android:pathPattern=".*\\.zip" >
+                </data>
             </intent-filter>
         </activity>
         <activity
