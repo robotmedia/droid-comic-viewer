@@ -21,14 +21,21 @@ import android.app.Application;
 
 public class ACVApplication extends Application {
 
+	private static String pkgName;
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		final PreferencesController preferences = new PreferencesController(this);
 		preferences.legacy();
 		preferences.setMaxImageResolution();
+		
+		pkgName = this.getPackageName();
 
 		BillingManager.getInstance(this).initialize();
 	}
 
+	public static String getPkgName() {
+		return pkgName;
+	}
 }

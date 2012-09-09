@@ -122,7 +122,7 @@ public class Constants {
 	public static final int COMPRESSION_QUALITY = 80;
 	
 	@Deprecated
-	public static String TEMP_PATH = "acv/.temp";
+	public static String TEMP_PATH = "temp";
 	
 	public static float ZOOM_STEP = 1.5f;
 	public static float MAX_ZOOM_FACTOR = 2f;

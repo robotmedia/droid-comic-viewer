@@ -225,7 +225,7 @@ public class ACVComic extends Comic {
 	} 
 						
 	public String getContentBaseURL() {
-		final File dir = new File(Environment.getExternalStorageDirectory(), this.getRelativePath());
+		final File dir = FileUtils.getExternalStorageDirectory(this.getRelativePath());
 		return Uri.fromFile(dir).toString() + "/";
 	}
 

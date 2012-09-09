@@ -1168,7 +1168,7 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		mScreen.recycleBitmaps();
 		
 		if (emptyTemp) {
-			File tempDirectory = new File(Environment.getExternalStorageDirectory(), Constants.TEMP_PATH);
+			File tempDirectory = FileUtils.getExternalStorageDirectory(Constants.TEMP_PATH);
 			if(tempDirectory.exists())
 				FileUtils.deleteDirectory(tempDirectory);
 		}
