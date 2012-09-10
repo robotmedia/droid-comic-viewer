@@ -17,6 +17,9 @@ package net.robotmedia.acv.utils;
 
 import java.io.File;
 
+import android.os.Environment;
+
+import net.robotmedia.acv.ACVApplication;
 import net.robotmedia.acv.Constants;
 
 public class FileUtils {
@@ -25,6 +28,15 @@ public class FileUtils {
 	private static final String EXTENSION_HTM = "htm";
 	private static final String EXTENSION_HTML = "html";
 
+	public static File getExternalStorageDirectory(String name) {
+		File storageDir = new File(Environment.getExternalStorageDirectory(),
+			"/Android/data/" + ACVApplication.getPkgName() + "/files");
+		if(!storageDir.exists())
+			storageDir.mkdirs();
+		
+		return new File(storageDir, name);
+	}
+	
 	public static String getFileExtension(String fileName) {
 		String[] splitExtension = fileName.split("\\.");
 		if (splitExtension.length > 1) {

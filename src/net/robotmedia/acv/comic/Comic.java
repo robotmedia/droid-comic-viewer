@@ -211,7 +211,7 @@ public abstract class Comic {
 	}
 	
 	protected File createTempFile(String name) {
-		File dir = new File(Environment.getExternalStorageDirectory(), this.getRelativePath());
+		File dir = FileUtils.getExternalStorageDirectory(this.getRelativePath());
 		if (id != null) {
 			dir = new File(dir, this.getID());
 		}
