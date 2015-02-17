@@ -1169,8 +1169,14 @@ public class ComicViewerActivity extends ExtendedActivity implements OnGestureLi
 		
 		if (emptyTemp) {
 			File tempDirectory = new File(Environment.getExternalStorageDirectory(), Constants.TEMP_PATH);
-			if(tempDirectory.exists())
-				FileUtils.deleteDirectory(tempDirectory);
+			if(tempDirectory.exists()) {
+				File[] files = tempDirectory.listFiles();
+				if (files != null) {
+					for (File f : files) {
+						f.delete();
+					}
+				}
+			}
 		}
 		if (comic != null) {
 			comic.destroy();
